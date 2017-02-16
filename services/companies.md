@@ -137,7 +137,7 @@ By submitting your project, you will have in return an IBAN that you can share w
 |-------|------|----------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation. |
 
-**Example:**
+**Example of a Call containing anll required information at this stage:**
 ```js
 PUT /companies/NT4edA/iban
 {
@@ -483,83 +483,26 @@ At this stage, basically your company should be registered. Congratulation! Ther
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation. |
+| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+| registrationNumber | String (20) | Required | The registration number of the company created. |
+| document | [Document Object](#document_object) | Required | The registration number of the company created. |
 
 **Example:**
 ```js
 PUT /companies/NT4edA/document/certificateIncorporation
+{
+	
 ```
 
 **Returns:**
 
 | Field | Type | Description |
 |-------|------|-------------|
-| id | [ID](../conventions/formattingConventions.md#type_id) | The internal reference for this company creation. |
-| status | [Status](#type_status) | The stage of your company creation project. |
-| companyCreationData | [Company Creation Data Object](#companyCreationData_object) | Standard information on the projet and the future activity of the company. |
-| shareholdingStructure | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on the future company. |
-| account | [Account Object](#account_object) | The IBAN account that has been open for the purpose of creating the company. |
+| companies | [Companies Object](../conventions/formattingConventions.md#companies_object) | Your up-to-date company creation project description |
 
-**Example:**
+**Example:** 
 ```js
-"companies": {
-    "id": NT4edA,
-    "status": "Registration documents being reviewed",
-    "companyCreationDatas": {
-    	"activityCode": "8542Z",
-	"legalForm": "EURL",
-	"authorizedCapital": {
-		"value": "100000.00",
-		"amount": "EUR",
-	"documents": {
-		"document": {
-			"type": "businessPlan",
-			"id": "Rocket Startup - Business Plan",
-			"status": "uploaded",
-		},
-		"document": {
-			"type": "articleOfAssociation",
-			"id": "Rocket Startup - Projets de Statuts",
-			"status": "uploaded",
-		},
-	},
-    },
-    "shareholdingStructure": {
-    	"shareholder": {
-		"type": "Individual",
-		"isMainFounder": 1,
-		"ownershipPourcentage": 100%,
-		"registeredIndividualName": {
-			"firstName": "Maxime",
-			"middleName": null,
-			"lastName": "Champoux",
-		}
-		"registeredCountry": FR,
-		"registeredNumber": null,
-		"tag": null,
-		"email": "mch@ibanfirst.com",
-		"birthDate": null,
-		"phoneNumber": null,		
-		"position": "Astronaute",
-		"documents": {
-			"document": {
-				"type": "idProof",
-				"id": "Maxime Champoux - CNI",
-				"status": "uploaded",
-			},
-		},
-	},
-    },
-    "account": {
-	"currency": EUR,
-	"accountNumber": "FR914516981638516313513",
-	"holderName": "Rocket Startup [En cours de création]",
-    },
-}
-```
-}
-```
-}
+"companies": {companies},
 ```
 <hr />
 
