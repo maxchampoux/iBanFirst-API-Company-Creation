@@ -7,7 +7,7 @@
 | [`PUT /companies/-{id}/projectComplete`](#put_companiesComplete) | Ask for a certificate of deposit |
 | [`GET /companies/-{id}/document/certificateDeposit/`](#getDocuments_certificateIncorporation) | Retrieve your certificate of deposit |
 | [`POST /companies/-{id}/certificateIncorporation`](#post_companiesCertificateIncorporation) | Upload your Kbis |
-| [`POST /companies/-{id}/releaseDeposit`](#post_companiesReleaseDeposit) | Release the deposit |
+| [`POST /companies/-{id}/releaseDeposit`](#post_companiesReleaseDeposit) |  Release the deposit and enjoy your iBanFirst account  |
 | [`PUT /companies/-{id}/`](#put_companies) | Update information relative to a company creation project|
 | [`GET /companies/-{id}/`](#get_companies) | Retrieve infromation relative to a company creation project |
 | [`DELETE /companies/-{id}/`](#delete_companies) | Delete a company creation project |
@@ -491,7 +491,7 @@ At this stage, basically your company should be registered. Congratulation! Ther
 
 **Example:**
 ```js
-POST /certificateIncorporation/NT4edA/
+POST /companies/NT4edA/certificateIncorporation/
 {
 	"regitrationNumber": 814455614,
 	"regitrationDate": 25-06-2017,
@@ -512,43 +512,38 @@ POST /certificateIncorporation/NT4edA/
 ```
 <hr />
 
-### <a id="post_companiesReleaseDeposit"></a> Release the deposit ###
+### <a id="post_companiesReleaseDeposit"></a> Release the deposit and enjoy your iBanFirst account ###
 
 ```
 Method: POST 
 URL: /companies/-{id}/releaseDeposit
 ```
 
-At this stage, basically your company should be registered. Congratulation! Therefore, we will require the registration information on your company:
-* Document: certificate of incorporation, signed article of association, status: uploaded.
-* Registration number
-* Registration date
+As soon as we have finalized the due diligence on your company, you can ask for the release of the deposit by signing and uploading your Opening account agreement. An iBanFirst user access to your account will be automatically created. The main founder will receive this user access by email.
 
 **Parameters:**
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
-| registrationNumber | String (20) | Required | The registration number of the company created. |
 | documentType | [Document Type](../conventions/formattingConventions.md#type_document) | Required | The type of document to reference with your company creation project |
 | documentUrl | [Document Url](../conventions/formattingConventions.md#type_url) | Required | The url of document to reference with your company creation project |
 
+
 **Example:**
 ```js
-POST /certificateIncorporation/NT4edA/
+POST /NT4edA/releaseDeposit
 {
-	"regitrationNumber": 814455614,
-	"regitrationDate": 25-06-2017,
-	"documentType": "certificateIncorporation",
+	"documentType": "openingAccountAgreement",
 	"documentUrl": "https://ph-files.imgix.net/07d80ab9-a5e1-4d70-ae85-ddf51ff79e1f?auto=format&auto=compress&codec=mozjpeg&cs=strip&fit=crop&w=120&h=120",
-	
+}
 ```
 
 **Returns:**
 
 | Field | Type | Description |
 |-------|------|-------------|
-| companies | [Companies Object](../objects/objects.md#companies_object) | Your up-to-date company creation project description |
+| user | [User Object](../objects/objects.md#user_object) | The user access to your iBanFirst account |
 
 **Example:** 
 ```js
