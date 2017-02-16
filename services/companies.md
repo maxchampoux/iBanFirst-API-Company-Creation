@@ -31,7 +31,7 @@ On your future company ([Company Creation Data Object](../objects/objects.md#com
 * registeredName
 * registeredAddress
 
-On the main founder ([Shareholding Structure Object](#shareholdingStructure_object)):
+On the main founder ([Shareholding Structure Object](../objects/objects.md#shareholdingStructure_object)):
 * type 
 * isMainFounder
 * registeredIndividualName (or registeredCorporateName if type = "corporate")
@@ -43,8 +43,8 @@ On the main founder ([Shareholding Structure Object](#shareholdingStructure_obje
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| companyCreationData | [Company Creation Data Object](#companyCreationData_object) | Required | Standard information on the projet and the future activity of the company. |
-| shareholdingStructure | Array<[Shareholder Object](#shareholder_object)> | Required | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on the future company. 
+| companyCreationData | [Company Creation Data Object](../objects/objects.md#companyCreationData_object) | Required | Standard information on the projet and the future activity of the company. |
+| shareholdingStructure | Array<[Shareholder Object](../objects/objects.md#shareholder_object)> | Required | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on the future company. 
 
 **Example:**
 ```js
@@ -79,7 +79,7 @@ POST /companies/
 
 | Field | Type | Description |
 |-------|------|-------------|
-| companies | [Companies Object](../conventions/formattingConventions.md#companies_object) | Your up-to-date company creation project description |
+| companies | [Companies Object](../objects/objects.md#companies_object) | Your up-to-date company creation project description |
 
 **Example:** 
 ```js
@@ -96,7 +96,7 @@ URL: /companies/-{id}/iban
 ```
 Ok well, at this stage we will require the following datas & documents:
 
-On your future company ([Company Creation Data Object](#companyCreationData_object)):
+On your future company ([Company Creation Data Object](../objects/objects.md#companyCreationData_object)):
 * legalForm
 * registeredName
 * registeredAddress
@@ -106,7 +106,7 @@ On your future company ([Company Creation Data Object](#companyCreationData_obje
 * liberatedPercentage
 * document = "openingAccountAgreement", "projectArticleOfAssociation"
 
-On the main founder ([Shareholding Structure Object](#shareholdingStructure_object)):
+On the main founder ([Shareholding Structure Object](../objects/objects.md#shareholdingStructure_object)):
 * type
 * isMainFounder = true
 * sharesNumber
@@ -119,7 +119,7 @@ On the main founder ([Shareholding Structure Object](#shareholdingStructure_obje
 * is Pep (if type = "individual")
 * shareholdingStructure (if type = "corporate" and for all shareholders on the 2 level owning +25%)
 
-On the other individual founders ([Shareholding Structure Object](#shareholdingStructure_object)):
+On the other individual founders ([Shareholding Structure Object](../objects/objects.md#shareholdingStructure_object)):
 * type
 * isMainFounder = true
 * sharesNumber
@@ -269,7 +269,7 @@ PUT /companies/NT4edA/iban
 
 | Field | Type | Description |
 |-------|------|-------------|
-| companies | [Companies Object](../conventions/formattingConventions.md#companies_object) | Your up-to-date company creation project description |
+| companies | [Companies Object](../objects/objects.md#companies_object) | Your up-to-date company creation project description |
 
 **Example:** 
 ```js
@@ -284,7 +284,7 @@ URL: /companies/-{id}/projectComplete
 ```
 At this stage, we will require additional data and documents:
 
-On your future company ([Company Creation Data Object](#companyCreationData_object)):
+On your future company ([Company Creation Data Object](../objects/objects.md#companyCreationData_object)):
 * legalForm
 * registeredName
 * registeredAddress
@@ -294,7 +294,7 @@ On your future company ([Company Creation Data Object](#companyCreationData_obje
 * liberatedPercentage
 * document = "openingAccountAgreement", "projectArticleOfAssociation", "articleOfAssociation, "businessPlan"
 
-On the main founder ([Shareholding Structure Object](#shareholdingStructure_object)):
+On the main founder ([Shareholding Structure Object](../objects/objects.md#shareholdingStructure_object)):
 * type
 * isMainFounder = true
 * sharesNumber
@@ -307,7 +307,7 @@ On the main founder ([Shareholding Structure Object](#shareholdingStructure_obje
 * is Pep (if type = "individual")
 * shareholdingStructure (if type = "corporate" and for all shareholder on the 2 level owning +25%)
 
-On the other founders ([Shareholding Structure Object](#shareholdingStructure_object)):
+On the other founders ([Shareholding Structure Object](../objects/objects.md#shareholdingStructure_object)):
 * type
 * isMainFounder = true
 * sharesNumber
@@ -459,7 +459,7 @@ PUT /companies/NT4edA/iban
 
 | Field | Type | Description |
 |-------|------|-------------|
-| companies | [Companies Object](../conventions/formattingConventions.md#companies_object) | Your up-to-date company creation project description |
+| companies | [Companies Object](../objects/objects.md#companies_object) | Your up-to-date company creation project description |
 
 **Example:** 
 ```js
@@ -498,7 +498,7 @@ PUT /companies/NT4edA/document/certificateIncorporation
 
 | Field | Type | Description |
 |-------|------|-------------|
-| companies | [Companies Object](../conventions/formattingConventions.md#companies_object) | Your up-to-date company creation project description |
+| companies | [Companies Object](../objects/objects.md#companies_object) | Your up-to-date company creation project description |
 
 **Example:** 
 ```js
