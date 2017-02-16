@@ -19,9 +19,7 @@
 
 <hr />
 
-## Details ##
-
-#### <a id="post_companies"></a> Start a company creation project ####
+## <a id="post_companies"></a> Start a company creation project ##
 
 ```
 Method: POST 
@@ -90,7 +88,7 @@ POST /companies/
 
 <hr />
 
-#### <a id="put_companiesIban"></a> Ask for an IBAN ####
+### <a id="put_companiesIban"></a> Ask for an IBAN ###
 
 ```
 Method: PUT 
@@ -224,7 +222,7 @@ PUT /companies/NT4edA/iban
 		"isMainFounder": false,
 		"email": "myHolding@email.com",
 		"registeredCorporateAddress": {
-			"street": "1 rue de l'université",
+			"street": "1 rue de l'universitÃ©",
 			"postCode": "75006",
 			"city": "Paris",
 			"country": "France",
@@ -278,7 +276,7 @@ PUT /companies/NT4edA/iban
 "companies": {companies},
 ```
 
-#### <a id="put_companiesComplete"></a> Ask for a certificate of deposit ####
+### <a id="put_companiesComplete"></a> Ask for a certificate of deposit ###
 
 ```
 Method: PUT 
@@ -413,7 +411,7 @@ PUT /companies/NT4edA/iban
 		"isMainFounder": false,
 		"email": "myHolding@email.com",
 		"registeredCorporateAddress": {
-			"street": "1 rue de l'université",
+			"street": "1 rue de l'universitÃ©",
 			"postCode": "75006",
 			"city": "Paris",
 			"country": "France",
@@ -470,7 +468,7 @@ PUT /companies/NT4edA/iban
 
 <hr />
 
-#### <a id="put_companiesCertificateIncorporation"></a> Upload your Kbis ####
+### <a id="put_companiesCertificateIncorporation"></a> Upload your Kbis ###
 
 ```
 Method: PUT 
@@ -555,7 +553,7 @@ PUT /companies/NT4edA/document/certificateIncorporation
     "account": {
 	"currency": EUR,
 	"accountNumber": "FR914516981638516313513",
-	"holderName": "Rocket Startup [En cours de création]",
+	"holderName": "Rocket Startup [En cours de crÃ©ation]",
     },
 }
 ```
