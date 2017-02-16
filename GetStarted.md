@@ -28,14 +28,14 @@ You can use either this API service, a FTP server or a tailor-made webhook to re
 
 #### 5. Upload your Kbis ####
 
- [`PUT /companies/-{id}/document/certificateIncorporation`](/services/companies.md#put_companiesCertificateIncorporation) 
+ [`POST /companies/-{id}/certificateIncorporation`](/services/companies.md#post_companiesCertificateIncorporation) 
  
 Until your project is not complete, the following service will return errors mentionning the missings information.
 When your project is complete, you must upload the official certificate of incorporation.
 
 #### 6. Ask for the release of the deposit ####
 
-[`PUT /companies/-{id}/releaseDeposit`](/services/companies.md#put_companiesReleaseDeposit)
+[`POST /companies/-{id}/releaseDeposit`](/services/companies.md#post_companiesReleaseDeposit)
 
 Until your project is not complete, the following service will return errors mentionning the missings information.
 When your project is complete, you must upload the official certificate of incorporation.
