@@ -6,8 +6,8 @@
 | [`PUT /companies/-{id}/iban`](#put_companiesIban) | Ask for an IBAN |
 | [`PUT /companies/-{id}/projectComplete`](#put_companiesComplete) | Ask for a certificate of deposit |
 | [`GET /companies/-{id}/document/certificateDeposit/`](#getDocuments_certificateIncorporation) | Retrieve your certificate of deposit |
-| [`PUT /companies/-{id}/document/certificateIncorporation`](#put_companiesCertificateIncorporation) | Upload your Kbis |
-| [`PUT /companies/-{id}/releaseDeposit`](#put_companiesReleaseDeposit) | Ask for the release of the deposit |
+| [`POST /companies/-{id}/certificateIncorporation`](#post_companiesCertificateIncorporation) | Upload your Kbis |
+| [`POST /companies/-{id}/releaseDeposit`](#post_companiesReleaseDeposit) | Release the deposit |
 | [`PUT /companies/-{id}/`](#put_companies) | Update information relative to a company creation project|
 | [`GET /companies/-{id}/`](#get_companies) | Retrieve infromation relative to a company creation project |
 | [`DELETE /companies/-{id}/`](#delete_companies) | Delete a company creation project |
@@ -468,7 +468,7 @@ PUT /companies/NT4edA/iban
 
 <hr />
 
-### <a id="put_companiesCertificateIncorporation"></a> Upload your Kbis ###
+### <a id="post_companiesCertificateIncorporation"></a> Upload your Kbis ###
 
 ```
 Method: POST 
@@ -478,6 +478,7 @@ URL: /companies/-{id}/CertificateIncorporation
 At this stage, basically your company should be registered. Congratulation! Therefore, we will require the registration information on your company:
 * Document: certificate of incorporation, signed article of association, status: uploaded.
 * Registration number
+* Registration date
 
 **Parameters:**
 
@@ -493,6 +494,51 @@ At this stage, basically your company should be registered. Congratulation! Ther
 POST /certificateIncorporation/NT4edA/
 {
 	"regitrationNumber": 814455614,
+	"regitrationDate": 25-06-2017,
+	"documentType": "certificateIncorporation",
+	"documentUrl": "https://ph-files.imgix.net/07d80ab9-a5e1-4d70-ae85-ddf51ff79e1f?auto=format&auto=compress&codec=mozjpeg&cs=strip&fit=crop&w=120&h=120",
+	
+```
+
+**Returns:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| companies | [Companies Object](../objects/objects.md#companies_object) | Your up-to-date company creation project description |
+
+**Example:** 
+```js
+"companies": {companies},
+```
+<hr />
+
+### <a id="post_companiesReleaseDeposit"></a> Release the deposit ###
+
+```
+Method: POST 
+URL: /companies/-{id}/releaseDeposit
+```
+
+At this stage, basically your company should be registered. Congratulation! Therefore, we will require the registration information on your company:
+* Document: certificate of incorporation, signed article of association, status: uploaded.
+* Registration number
+* Registration date
+
+**Parameters:**
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+| registrationNumber | String (20) | Required | The registration number of the company created. |
+| documentType | [Document Type](../conventions/formattingConventions.md#type_document) | Required | The type of document to reference with your company creation project |
+| documentUrl | [Document Url](../conventions/formattingConventions.md#type_url) | Required | The url of document to reference with your company creation project |
+
+**Example:**
+```js
+POST /certificateIncorporation/NT4edA/
+{
+	"regitrationNumber": 814455614,
+	"regitrationDate": 25-06-2017,
 	"documentType": "certificateIncorporation",
 	"documentUrl": "https://ph-files.imgix.net/07d80ab9-a5e1-4d70-ae85-ddf51ff79e1f?auto=format&auto=compress&codec=mozjpeg&cs=strip&fit=crop&w=120&h=120",
 	
