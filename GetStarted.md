@@ -4,7 +4,7 @@
 
 Please use the following service to create your company project:
 
-[`POST /companies/`](/objects/formattingConventions.md#post_companies)
+[`POST /companies/`](../iBanFirst-API-Company-Creation/objects/formattingConventions.md#post_companies)
 
 #### 2. Ask for an IBAN ####
 
