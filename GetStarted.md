@@ -30,15 +30,13 @@ You can use either this API service, a FTP server or a tailor-made webhook to re
 
  [`POST /companies/-{id}/certificateIncorporation`](/services/companies.md#post_companiesCertificateIncorporation) 
  
-Until your project is not complete, the following service will return errors mentionning the missings information.
-When your project is complete, you must upload the official certificate of incorporation.
+You have you certificate of Incorporation, that's great! It means that you company now exist and that you can enjoy you account after a quick verification from our side.
 
-#### 6. Ask for the release of the deposit ####
+#### 6. Release the deposit and enjoy your iBanFirst account  ####
 
 [`POST /companies/-{id}/releaseDeposit`](/services/companies.md#post_companiesReleaseDeposit)
 
-Until your project is not complete, the following service will return errors mentionning the missings information.
-When your project is complete, you must upload the official certificate of incorporation.
+You are there, use this call to have access to your account en enjoy your iBanFirst account!
 
 #### XX. Know where you are in your company creation project ####
 
