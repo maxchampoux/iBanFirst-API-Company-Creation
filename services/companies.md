@@ -471,8 +471,8 @@ PUT /companies/NT4edA/iban
 ### <a id="put_companiesCertificateIncorporation"></a> Upload your Kbis ###
 
 ```
-Method: PUT 
-URL: /companies/-{id}/document/CertificateIncorporation
+Method: POST 
+URL: /companies/-{id}/CertificateIncorporation
 ```
 
 At this stage, basically your company should be registered. Congratulation! Therefore, we will require the registration information on your company:
@@ -485,12 +485,16 @@ At this stage, basically your company should be registered. Congratulation! Ther
 |-------|------|----------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
 | registrationNumber | String (20) | Required | The registration number of the company created. |
-| document | [Document Object](#document_object) | Required | The registration number of the company created. |
+| documentType | [Document Type](../conventions/formattingConventions.md#type_document) | Required | The type of document to reference with your company creation project |
+| documentUrl | [Document Url](../conventions/formattingConventions.md#type_url) | Required | The url of document to reference with your company creation project |
 
 **Example:**
 ```js
-PUT /companies/NT4edA/document/certificateIncorporation
+POST /certificateIncorporation/NT4edA/
 {
+	"regitrationNumber": 814455614,
+	"documentType": "certificateIncorporation",
+	"documentUrl": "https://ph-files.imgix.net/07d80ab9-a5e1-4d70-ae85-ddf51ff79e1f?auto=format&auto=compress&codec=mozjpeg&cs=strip&fit=crop&w=120&h=120",
 	
 ```
 
