@@ -3,7 +3,8 @@
 #### 1. Create your company project ####
 
 Please use the following service to create your company project:
-[`POST /companies/`](../objects/formattingConventions.md#post_companies)
+
+[`POST /companies/`](/objects/formattingConventions.md#post_companies)
 
 #### 2. Ask for an IBAN ####
 
