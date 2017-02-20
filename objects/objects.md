@@ -5,6 +5,7 @@
 * [Company Submit Datas Object](#companySubmitDatas_object)
 * [Shareholder Object](#shareholder_object)
 * [Founders Object](#founder_object)
+* [Address Object](#address_object)
 * [Account Object](#account_object)
 * [Phone Object](#phone_object)
 * [Individual Name Object](#individualName_object)
@@ -22,8 +23,8 @@ My object to follow where I am in the company creation process.
 |-------|------|-------------|
 | id | [ID](#type_id) | The IF code identifying the company to be created. |
 | status | [status](#status) | The status of the company file. |
-| companyCreationDatas | [Company Creation Datas](#companyCreationDatas) | Specific data required for "attestation de dépôt du capital social" |
-| companyRegistrationDatas | [Company Registration Datas](#companyRegistrationDatas) | Specific data required for "libération du capital social" |
+| companyCreationDatas | [Company Creation Datas](#companyCreationDatas) | Specific data required for "attestation de dÃ©pÃ´t du capital social" |
+| companyRegistrationDatas | [Company Registration Datas](#companyRegistrationDatas) | Specific data required for "libÃ©ration du capital social" |
 | shareholdingStructures | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on the future company. |
 | managerialStructures | Array<[Founder Object](#founder_object)> | The regulatory list of the representatives, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on the future company. |
 | accounts | [Account Object](#account_object) | The IBAN account that has been open for the purpose of creating the company. |
@@ -32,7 +33,7 @@ My object to follow where I am in the company creation process.
 ```js
 "companies": {
     "id": NT4edA,
-    "status": "En attente de dépot de capital social",
+    "status": "En attente de dÃ©pot de capital social",
     "companyCreationDatas": {companyCreationDatas}
     "shareholdingStructures": [{shareholder}]
     "managerialStructures": [{founder}]
