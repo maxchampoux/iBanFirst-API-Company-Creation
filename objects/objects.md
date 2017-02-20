@@ -35,7 +35,6 @@ My object to follow where I am in the company creation process.
     "status": "En attente de dépot de capital social",
     "companyCreationDatas": {companyCreationDatas}
     "shareholdingStructures": [{shareholder}]
-    "managerialStructures": [{founder}]
     "account": {account},	    
 }
 ```
