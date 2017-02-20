@@ -329,7 +329,7 @@ By submitting your project, you consider that your project is complete and we wi
 
 **Example of a Call containing anll required information at this stage:**
 ```js
-PUT /companies/NT4edA/iban
+PUT /companies/NT4edA/projectComplete
 {
     "companyCreationDatas": {
 	"registeredName": "Rocket Startup",
