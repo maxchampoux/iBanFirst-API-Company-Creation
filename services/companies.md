@@ -204,9 +204,9 @@ PUT /companies/NT4edA/iban
 			"lastName": "Doe",
 		},
 		"registeredIndividualCountry": FR,
-		"registeredIndivdualNationality": "France",
+		"registeredIndividualNationality": "FR",
 		"birthDate": 25-06-1991,
-		"birthCountry": "France",
+		"birthCountry": "FR",
 		"isPep": true,
 		"documents": {
 			"document": {
@@ -219,6 +219,7 @@ PUT /companies/NT4edA/iban
 		"type": "Corporate",
 		"sharesNumber": 40000.00,
 		"legalForm": "EURL",
+		"registeredCorporateAddress": "My Holding",
 		"isMainFounder": false,
 		"email": "myHolding@email.com",
 		"registeredCorporateAddress": {
