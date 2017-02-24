@@ -31,12 +31,135 @@ My object to follow where I am in the company creation process.
 **Example:**
 ```js
 "companies": {
-    "id": NT4edA,
-    "status": "En attente de dépot de capital social",
-    "companyCreationDatas": {companyCreationDatas}
-    "shareholdingStructures": [{shareholder}]
-    "account": {account},	    
-}
+    	 "id": NT4edA,
+	 "status": "En attente de dépot de capital social",
+	 "companyCreationDatas": {
+	    "registeredName": "Rocket Startup",
+	    "registeredAddress": {
+		"street": "4 NEW YORK PLAZA, FLOOR 15",
+		"postCode": "75008",
+		"city": "Paris",
+		"country": "FR",
+	    },
+	    "activityType": 334B,
+	    "legalForm": "EURL",
+	    "sharesCapital": {
+		"value": 100000.00,
+		"currency": "EUR",
+	    }
+	    "sharesNumber": 100.00,
+	    "documents": {
+		"document": {
+		    "type": "openingAccountAgreement",
+		    "id": "Rocket Startup - Opening Account Agreement",
+		},
+		"document": {
+		    "type": "projectArticleOfAssociation",
+		    "id": "Rocket Startup - Projets de Statuts",
+		},
+	    },
+	    },
+	    "shareholdingStructure": {
+		"shareholder": {
+			"id": "XV4edA",
+			"sharesNumber": 50000.00,
+			"type": "Individual",
+			"isMainFounder": true,
+			"email": "mch@ibanfirst.com",
+			"registeredIndividualName": {
+			    "civility": "M",
+			    "firstName": "Maxime",
+			    "lastName": "Champoux",
+			},
+			"registeredIndividualCountry": FR,
+			"registeredIndivdualNationality": "France",
+			"birthDate": 25-06-1991,
+			"birthCountry": "France",
+			"isPep": true,
+			"documents": {
+			    "document": {
+				"type": "idProof",
+				"id": "Maxime Champoux - CNI",
+			    },
+			},
+	    	},
+		"shareholder": {
+			"id": "WZ4edA",
+			"sharesNumber": 10000.00,
+			"type": "Individual",
+			"isMainFounder": true,
+			"email": "mch@ibanfirst.com",
+			"registeredIndividualName": {
+			    "civility": "M",
+			    "firstName": "John",
+			    "lastName": "Doe",
+			},
+			"registeredIndividualCountry": FR,
+			"registeredIndivdualNationality": "France",
+			"birthDate": 25-06-1991,
+			"birthCountry": "France",
+			"isPep": true,
+			"documents": {
+			    "document": {
+				"type": "idProof",
+				"id": "John Doe - CNI",
+			    },
+			},
+		},
+	    	"shareholder": {
+			"id": "PK4edA",
+			"sharesNumber": 40000.00,
+			"type": "Corporate",
+			"legalForm": "EURL",
+			"isMainFounder": false,
+			"email": "myHolding@email.com",
+			"registeredCorporateAddress": {
+			    "street": "1 rue de l'université",
+			    "postCode": "75006",
+			    "city": "Paris",
+			    "country": "France",
+			},
+			"documents": {
+			    "document": {
+				"type": "certificateOfIncorporation",
+				"id": "KBIS - myHolding",
+			    },
+			    "document": {
+				"type": "articleOfAssociation",
+				"id": "KBIS - myHolding",
+			    },
+			},
+			"shareholdingStructure": {
+			    "shareholder": {
+				"id": "WE4edA",
+				"sharespercentage": 100%,
+				"registeredIndividualName": {
+				    "civility": "M",
+				    "firstName": "Maxime",
+				    "lastName": "Champoux",
+				},
+				"registeredIndividualCountry": FR,
+				"registeredIndivdualNationality": "France",
+				"birthDate": 25-06-1991,
+				"birthCountry": "France",
+				"isPep": true,
+				"documents": {
+				    "document": {
+					"type": "idProof",
+					"id": "Maxime Champoux - CNI",
+				    },
+				},
+			    },
+			},
+    		},
+	}
+	"account": {
+		"currency": EUR,
+		"accountNumber": "FR914516981638516313513",
+		"holderName": "Rocket Startup [En cours de création]",
+		"financialMovements": null,
+	},     
+},
 ```
 <hr />
 
