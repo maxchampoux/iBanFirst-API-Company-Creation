@@ -26,7 +26,7 @@ My object to follow where I am in the company creation process.
 | companyCreationDatas | [Company Creation Datas](#companyCreationDatas) | Specific data required for "attestation de dépôt du capital social" |
 | companyRegistrationDatas | [Company Registration Datas](#companyRegistrationDatas) | Specific data required for "libération du capital social" |
 | shareholdingStructures | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on the future company. |
-| accounts | [Account Object](#account_object) | The IBAN account that has been open for the purpose of creating the company. |
+| account | [Account Object](#account_object) | The IBAN account that has been open for the purpose of creating the company. |
 
 **Example:**
 ```js
