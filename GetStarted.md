@@ -17,7 +17,7 @@ We will require some mandatory documents and let you some time to gather the ful
 
 [`PUT /companies/-{id}/projectComplete`](/services/companies.md#put_companiesComplete)
 
-Until your project is not complete, the following service will return errors mentionning the missings information.
+Until your project is not complete, the following service will return errors mentioning the missing information.
 When your project is complete, the analysis of your project and the generation of the certificate can take up to 48 hours. In case you have implemented a webhook, you will be notified as soon as this certificate is available. In other cases, you may call our API to get the status and retrieve the document when available.
 
 #### 4. Retrieve your certificate of deposit ####
