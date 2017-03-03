@@ -11,7 +11,7 @@ Please use the following service to create your company project:
 [`PUT /companies/-{id}/iban`](/services/companies.md#put_companiesIban)
 
 This service will return an IBAN for the deposit of the "Share Capital" of your future company.
-We will require some mandatory documents and let you some time to gather the full KYC when needed.
+We will require some mandatory documents and let you some time to gather the full KYC until next step.
 
 #### 3. Ask for a certificate of deposit ####
 
