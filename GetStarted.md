@@ -22,7 +22,7 @@ When your project is complete, the analysis of your project and the generation o
 
 #### 4. Retrieve your certificate of deposit ####
 
- [`GET /companies/-{id}/document/certificateDeposit/`](/services/companies.md#getDocuments_certificateIncorporation)
+ [`GET /companies/-{id}/certificateDeposit/`](/services/companies.md#getDocuments_certificateIncorporation)
  
 You can use either this API service, a FTP server or a tailor-made webhook to retrieve your certificate of deposit.
 
