@@ -30,7 +30,7 @@ You can use either this API service, a FTP server or a tailor-made webhook to re
 
  [`POST /companies/-{id}/certificateIncorporation`](/services/companies.md#post_companiesCertificateIncorporation) 
  
-You have you certificate of Incorporation, that's great! It means that you company now exist and that you can enjoy you account after a quick verification from our side.
+You have your certificate of Incorporation, that's great! It means that you company now exist and that you can enjoy you account after a quick verification from our side.
 
 #### 6. Release the deposit and enjoy your iBanFirst account  ####
 
