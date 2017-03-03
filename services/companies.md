@@ -5,7 +5,7 @@
 | [`POST /companies/`](#post_companies) | Start a company creation project |
 | [`PUT /companies/-{id}/iban`](#put_companiesIban) | Ask for an IBAN |
 | [`PUT /companies/-{id}/projectComplete`](#put_companiesComplete) | Ask for a certificate of deposit |
-| [`GET /companies/-{id}/document/certificateDeposit/`](#getDocuments_certificateIncorporation) | Retrieve your certificate of deposit |
+| [`GET /companies/-{id}/certificateDeposit/`](#getDocuments_certificateIncorporation) | Retrieve your certificate of deposit |
 | [`POST /companies/-{id}/certificateIncorporation`](#post_companiesCertificateIncorporation) | Upload your Kbis |
 | [`POST /companies/-{id}/releaseDeposit`](#post_companiesReleaseDeposit) |  Release the deposit and enjoy your iBanFirst account  |
 | [`PUT /companies/-{id}/`](#put_companies) | Update information relative to a company creation project|
