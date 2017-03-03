@@ -11,7 +11,7 @@ Please use the following service to create your company project:
 [`PUT /companies/-{id}/iban`](/services/companies.md#put_companiesIban)
 
 This service will return an IBAN for the deposit of the "Capital Social" of your future company.
-We will require the signature, ID and power of attorney of all founders at this stage. 
+We will require some mandatory documents and let you some time to gather the full KYC when needed.
 
 #### 3. Ask for a certificate of deposit ####
 
@@ -36,7 +36,7 @@ You have you certificate of Incorporation, that's great! It means that you compa
 
 [`POST /companies/-{id}/releaseDeposit`](/services/companies.md#post_companiesReleaseDeposit)
 
-You are there, use this call to have access to your account en enjoy your iBanFirst account!
+You are there! Use this call to have access to your account en enjoy your iBanFirst account!
 
 #### XX. Know where you are in your company creation project ####
 
