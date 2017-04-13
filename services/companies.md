@@ -544,11 +544,28 @@ POST /NT4edA/releaseDeposit
 
 | Field | Type | Description |
 |-------|------|-------------|
-| user | [User Object](../objects/objects.md#user_object) | The user access to your iBanFirst account |
+| user | [User Object](../objects/objects.md#user_object) | Submit documents relative to a company creation project |
 
 **Example:** 
 ```js
 "companies": {companies},
 ```
 <hr />
+
+### <a id="#putDocuments_transactions"></a> Attach a document to a transaction ###
+
+```
+Method: PUT 
+URL: /transaction/-{id}/proofOfTransaction
+```
+We may ask you to provide a proof of transaction under specific terms. You can anticipate our request and send us your invoice or the ID of the beneficiary to avoid any request from us and fully automate your payment process.
+
+**Parameters:**
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| documentType | [Document Type](../conventions/formattingConventions.md#type_document) | Required | The type of document to submit for a transaction |
+| tag | String (60) | Required | The name of the document to be attached. |
+| file | String (60) | Required | The name of the document to be attached. |
+
 
