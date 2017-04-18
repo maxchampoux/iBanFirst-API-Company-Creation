@@ -2,8 +2,8 @@
 
 * [Companies Object](#companies_object)
 * [Company Creation Datas Object](#companyCreationDatas_object)
-* [Company Submit Datas Object](#companySubmitDatas_object)
 * [Shareholder Object](#shareholder_object)
+* [Status Object](#status_object)
 * [Founders Object](#founder_object)
 * [Address Object](#address_object)
 * [Account Object](#account_object)
@@ -22,9 +22,8 @@ My object to follow where I am in the company creation process.
 | Field | Type | Description |
 |-------|------|-------------|
 | id | [ID](#type_id) | The IF code identifying the company to be created. |
-| status | [status](#status) | The status of the company file. |
+| status | [status](#status_project) | The status of the company file. |
 | companyCreationDatas | [Company Creation Datas](#companyCreationDatas) | Specific data required for "attestation de dépôt du capital social" |
-| companyRegistrationDatas | [Company Registration Datas](#companyRegistrationDatas) | Specific data required for "libération du capital social" |
 | shareholdingStructures | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on the future company. |
 | account | [Account Object](#account_object) | The IBAN account that has been open for the purpose of creating the company. |
 
@@ -171,14 +170,16 @@ Specific information required for opening a company creation file.
 
 | Field | Type | Description |
 |-------|------|-------------|
+| legalForm | [Legal Form](#legalForm) | The legal form of the company to be created. "SASU", "EURL"  |
 | registeredName | String(100) | The legal name of the company to be created. |
-| commercialName | String(100) | The commercial name of the company to be created. |
-| tag | String(100) | The customized name of the company to be created. (Will only be used internally). |
 | registeredAddress | [Address Object](#address_object) | The registered address of the company to be created. |
-| commercialAddress | [Address Object](#address_object) | The commercial address of the company to be created. |
 | activityCode | [NAFID](#NAF) | The code identifying the type of business of the company to be created. |
-| legalForm | [Legal Form](#legalForm) | The legal form of the company to be created.. |
-| authorizedCapital | [Amount Object](#amount_object)  | The amount in shareholding capital as mentionned in the status. |
+| sharesNumber | Value | The number of shares to be issued. |
+| sharesCapital | [Amount Object](#amount_object) | The amount in shareholding capital as mentionned in the status. |
+| liberatedPercentage | Value | The percentage of shareholding capital to be released when the company is created. "20", "50" or "100". |
+| commercialName | String(100) | The commercial name of the company to be created. |
+| commercialAddress | [Address Object](#address_object) | The commercial address of the company to be created. |
+| tag | String(100) | The customized name of the company to be created. (Will only be used internally). |
 | documents | Array<[Document Object](#document_object)> | The required documents for creating a company. |
 
 **Example:**
