@@ -5,13 +5,14 @@
 | [`POST /companies/`](#post_companies) | Start a company creation project |
 | [`PUT /companies/-{id}/iban`](#put_companiesIban) | Ask for an IBAN |
 | [`PUT /companies/-{id}/projectComplete`](#put_companiesComplete) | Ask for a certificate of deposit |
-| [`GET /companies/-{id}/certificateDeposit/`](#getDocuments_certificateIncorporation) | Retrieve your certificate of deposit |
+| [`GET /companies/-{id}/certificateDeposit/`](#getDocuments_certificateDeposit) | Retrieve your certificate of deposit |
 | [`POST /companies/-{id}/certificateIncorporation`](#post_companiesCertificateIncorporation) | Upload your Kbis |
 | [`POST /companies/-{id}/releaseDeposit`](#post_companiesReleaseDeposit) |  Release the deposit and enjoy your iBanFirst account  |
 | [`PUT /companies/-{id}/`](#put_companies) | Update information relative to a company creation project|
 | [`GET /companies/-{id}/`](#get_companies) | Retrieve infromation relative to a company creation project |
 | [`DELETE /companies/-{id}/`](#delete_companies) | Delete a company creation project |
-| [`POST /companies/-{id}/documents/`](#putDocuments_companies) | Submit documents relative to a company creation project |
+| [`POST /companies/-{id}/documents/`](#putDocuments_companies) | Submit documents related to a company creation project |
+| [`POST /transaction/-{id}/documents/`](#putDocuments_transaction) | Submit documents related to a transaction |
 | [`DELETE /companies/-{id}/documents/-{id}`](#putDocuments_companies) | Delete documents relative to a company creation project |
 | [`PUT /companies/-{id}/shareholder/-{id}/`](#put_companies) | Update information relative to a shareholder |
 | [`GET /companies/-{id}/shareholder/-{id}/`](#put_companies) | Retrieve information relative to a shareholder |
@@ -469,6 +470,39 @@ PUT /companies/NT4edA/projectComplete
 
 <hr />
 
+### <a id="getDocuments_certificateDeposit"></a> Retrieve your certificate of deposit ###
+
+```
+Method: GET 
+URL: /companies/-{id}/CertificateDeposit/
+```
+
+You can use either this API service, a FTP server or a tailor-made webhook to retrieve your certificate of deposit.
+
+**Parameters:**
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+
+**Example:**
+```js
+GET /companies/NT4edA/CertificateDeposit/
+```
+
+**Returns:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| documentType | [Document Type](../conventions/formattingConventions.md#type_document) | The type of document to retrieve. "certificateOfDeposit" |
+| file | String | The binary content of the file, encoded with a base64 algorithm. |
+
+**Example:** 
+```js
+TBD
+```
+<hr />
+
 ### <a id="post_companiesCertificateIncorporation"></a> Upload your Kbis ###
 
 ```
@@ -564,8 +598,8 @@ We may ask you to provide a proof of transaction under specific terms. You can a
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| documentType | [Document Type](../conventions/formattingConventions.md#type_document) | Required | The type of document to submit for a transaction |
+| documentType | [Document Type](../conventions/formattingConventions.md#type_document) | Required | The type of document to submit for a transaction. "invoice" |
 | tag | String (60) | Required | The name of the document to be attached. |
-| file | String (60) | Required | The name of the document to be attached. |
+| file | String | Required | The binary content of the file, encoded with a base64 algorithm. |
 
 
