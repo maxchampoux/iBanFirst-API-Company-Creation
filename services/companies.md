@@ -3,17 +3,17 @@
 | Route | Description |
 |-------|-------------|
 | [`POST /companies/`](#post_companies) | Start a company creation project |
-| [`PUT /companies/-{id}/iban`](#put_companiesIban) | Ask for an IBAN |
-| [`PUT /companies/-{id}/projectComplete`](#put_companiesComplete) | Ask for a certificate of deposit |
+| [`PUT /companies/-{id}/iban/`](#put_companiesIban) | Ask for an IBAN |
+| [`PUT /companies/-{id}/projectComplete/`](#put_companiesComplete) | Ask for a certificate of deposit |
 | [`GET /companies/-{id}/certificateDeposit/`](#getDocuments_certificateDeposit) | Retrieve your certificate of deposit |
-| [`POST /companies/-{id}/certificateIncorporation`](#post_companiesCertificateIncorporation) | Upload your Kbis |
-| [`POST /companies/-{id}/releaseDeposit`](#post_companiesReleaseDeposit) |  Release the deposit and enjoy your iBanFirst account  |
+| [`POST /companies/-{id}/certificateIncorporation/`](#post_companiesCertificateIncorporation) | Upload your Kbis |
+| [`POST /companies/-{id}/releaseDeposit/`](#post_companiesReleaseDeposit) |  Release the deposit and enjoy your iBanFirst account  |
 | [`PUT /companies/-{id}/`](#put_companies) | Update information relative to a company creation project|
 | [`GET /companies/-{id}/`](#get_companies) | Retrieve infromation relative to a company creation project |
 | [`DELETE /companies/-{id}/`](#delete_companies) | Delete a company creation project |
 | [`POST /companies/-{id}/documents/`](#putDocuments_companies) | Submit documents related to a company creation project |
 | [`POST /transaction/-{id}/documents/`](#putDocuments_transaction) | Submit documents related to a transaction |
-| [`DELETE /companies/-{id}/documents/-{id}`](#putDocuments_companies) | Delete documents relative to a company creation project |
+| [`DELETE /companies/-{id}/documents/-{id}/`](#putDocuments_companies) | Delete documents relative to a company creation project |
 | [`PUT /companies/-{id}/shareholder/-{id}/`](#put_companies) | Update information relative to a shareholder |
 | [`GET /companies/-{id}/shareholder/-{id}/`](#put_companies) | Retrieve information relative to a shareholder |
 | [`PUT /companies/-{id}/shareholder/-{id}/documents/`](#put_companies) | Update document relative to a shareholder |
@@ -93,7 +93,7 @@ POST /companies/
 
 ```
 Method: PUT 
-URL: /companies/-{id}/iban
+URL: /companies/-{id}/iban/
 ```
 Ok well, at this stage we will require the following datas & documents:
 
@@ -140,7 +140,7 @@ By submitting your project, you will have in return an IBAN that you can share w
 
 **Example of a Call containing anll required information at this stage:**
 ```js
-PUT /companies/NT4edA/iban
+PUT /companies/NT4edA/iban/
 {
     "companyCreationDatas": {
 	"registeredName": "Rocket Startup",
@@ -282,7 +282,7 @@ PUT /companies/NT4edA/iban
 
 ```
 Method: PUT 
-URL: /companies/-{id}/projectComplete
+URL: /companies/-{id}/projectComplete/
 ```
 At this stage, we will require additional data and documents:
 
@@ -331,7 +331,7 @@ By submitting your project, you consider that your project is complete and we wi
 
 **Example of a Call containing anll required information at this stage:**
 ```js
-PUT /companies/NT4edA/projectComplete
+PUT /companies/NT4edA/projectComplete/
 {
     "companyCreationDatas": {
 	"registeredName": "Rocket Startup",
@@ -507,7 +507,7 @@ TBD
 
 ```
 Method: POST 
-URL: /companies/-{id}/CertificateIncorporation
+URL: /companies/-{id}/CertificateIncorporation/
 ```
 
 At this stage, basically your company should be registered. Congratulation! Therefore, we will require the registration information on your company:
@@ -551,7 +551,7 @@ POST /companies/NT4edA/certificateIncorporation/
 
 ```
 Method: POST 
-URL: /companies/-{id}/releaseDeposit
+URL: /companies/-{id}/releaseDeposit/
 ```
 
 As soon as we have finalized the due diligence on your company, you can ask for the release of the deposit by signing and uploading your Opening account agreement. An iBanFirst user access to your account will be automatically created. The main founder will receive this user access by email.
@@ -567,7 +567,7 @@ As soon as we have finalized the due diligence on your company, you can ask for 
 
 **Example:**
 ```js
-POST /NT4edA/releaseDeposit
+POST /NT4edA/releaseDeposit/
 {
 	"documentType": "openingAccountAgreement",
 	"documentUrl": "https://ph-files.imgix.net/07d80ab9-a5e1-4d70-ae85-ddf51ff79e1f?auto=format&auto=compress&codec=mozjpeg&cs=strip&fit=crop&w=120&h=120",
@@ -590,7 +590,7 @@ POST /NT4edA/releaseDeposit
 
 ```
 Method: PUT 
-URL: /transaction/-{id}/proofOfTransaction
+URL: /transaction/-{id}/proofOfTransaction/
 ```
 We may ask you to provide a proof of transaction under specific terms. You can anticipate our request and send us your invoice or the ID of the beneficiary to avoid any request from us and fully automate your payment process.
 
