@@ -26,7 +26,7 @@
 Method: POST 
 URL: /companies/
 ```
-You want to create your company? That's great! Let's start you project now, only a minimum of information is needed to open a file:
+You want to create your company? That's great! Let's start your project now, only a minimum of information is needed to open a file:
 
 On your future company ([Company Creation Data Object](../objects/objects.md#companyCreationData_object)):
 * registeredName
