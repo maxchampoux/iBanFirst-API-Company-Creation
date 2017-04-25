@@ -8,7 +8,7 @@
 | [`GET /companies/-{id}/certificateDeposit/`](#getDocuments_certificateDeposit) | Retrieve your certificate of deposit |
 | [`POST /companies/-{id}/certificateIncorporation/`](#post_companiesCertificateIncorporation) | Upload your Kbis |
 | [`POST /companies/-{id}/releaseDeposit/`](#post_companiesReleaseDeposit) |  Release the deposit and enjoy your iBanFirst account  |
-| [`PUT /companies/-{id}/`](#put_companies) | Update information relative to a company creation project|
+| [`PUT /companies/-{id}/`](#put_companies) | Update information relative to a company creation project (not available)|
 | [`GET /companies/-{id}/`](#get_companies) | Retrieve information relative to a company creation project |
 | [`DELETE /companies/-{id}/`](#delete_companies) | Delete a company creation project |
 | [`POST /companies/-{id}/documents/`](#putDocuments_companies) | Submit documents related to a company creation project |
