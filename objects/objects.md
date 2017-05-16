@@ -33,98 +33,9 @@ My object to follow where I am in the company creation process.
     	 "id": NT4edA,
 	 "status": "awaitingFunds",
 	 "companyCreationDatas": {companyCreationDatas}
-    	"shareholdingStructure": {
-		"shareholder": {
-			"id": "XV4edA",
-			"sharesNumber": 50000.00,
-			"type": "Individual",
-			"isMainFounder": true,
-			"email": "mch@ibanfirst.com",
-			"registeredIndividualName": {
-			    "civility": "M",
-			    "firstName": "Maxime",
-			    "lastName": "Champoux",
-			},
-			"registeredIndividualCountry": FR,
-			"registeredIndivdualNationality": "France",
-			"birthDate": 25-06-1991,
-			"birthCountry": "France",
-			"isPep": true,
-			"documents": {
-			    "document": {
-				"type": "idProof",
-				"id": "Maxime Champoux - CNI",
-			    },
-			},
-		},
-		"shareholder": {
-			"id": "WZ4edA",
-			"sharesNumber": 10000.00,
-			"type": "Individual",
-			"isMainFounder": true,
-			"email": "mch@ibanfirst.com",
-			"registeredIndividualName": {
-			    "civility": "M",
-			    "firstName": "John",
-			    "lastName": "Doe",
-			},
-			"registeredIndividualCountry": FR,
-			"registeredIndivdualNationality": "France",
-			"birthDate": 25-06-1991,
-			"birthCountry": "France",
-			"isPep": true,
-			"documents": {
-			    "document": {
-				"type": "idProof",
-				"id": "John Doe - CNI",
-			    },
-			},
-		},
-		"shareholder": {
-			"id": "PK4edA",
-			"sharesNumber": 40000.00,
-			"type": "Corporate",
-			"legalForm": "EURL",
-			"isMainFounder": false,
-			"email": "myHolding@email.com",
-			"registeredCorporateAddress": {
-			    "street": "1 rue de l'université",
-			    "postCode": "75006",
-			    "city": "Paris",
-			    "country": "France",
-			},
-			"documents": {
-			    "document": {
-				"type": "certificateOfIncorporation",
-				"id": "KBIS - myHolding",
-			    },
-			    "document": {
-				"type": "articleOfAssociation",
-				"id": "KBIS - myHolding",
-			    },
-			},
-			"shareholdingStructure": {
-			    "shareholder": {
-				"id": "WE4edA",
-				"sharespercentage": 100%,
-				"registeredIndividualName": {
-				    "civility": "M",
-				    "firstName": "Maxime",
-				    "lastName": "Champoux",
-				},
-				"registeredIndividualCountry": FR,
-				"registeredIndivdualNationality": "France",
-				"birthDate": 25-06-1991,
-				"birthCountry": "France",
-				"isPep": true,
-				"documents": {
-				    "document": {
-					"type": "idProof",
-					"id": "Maxime Champoux - CNI",
-				    },
-				},
-			    },
-			},
+    	 "shareholdingStructure": [{shareholder},{shareholder}],
+	 	{
+		
 		},
 	"account": {
 		"currency": EUR,
@@ -264,7 +175,6 @@ This object shows the shareholder ownership and detailed information.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| ownership | Percentage | The pourcentage of ownership the shareholder has witha  direct company |
 | shareholder | [Company Shareholding Datas Object](#companyShareholdingDatas_object) or [Individual Shareholding Datas Object](#individualShareholdingDatas_object) | Specific data that is required on shareholder. |
 
 
@@ -272,15 +182,98 @@ This object shows the shareholder ownership and detailed information.
 
 ```js
 "shareholderStructures": [
-    "shareholder": {
-    	"ownership": 20%,
-	"shareholderData": {companyShareholdingDatas},
-    },
-    "shareholder": {
-    	"ownership": 80%,
-	"shareholderDatas": {individualShareholdingDatas},
-    },
-}
+   		"shareholder": {
+			"id": "XV4edA",
+			"sharesNumber": 50000.00,
+			"type": "Individual",
+			"isMainFounder": true,
+			"email": "mch@ibanfirst.com",
+			"registeredIndividualName": {
+			    "civility": "M",
+			    "firstName": "Maxime",
+			    "lastName": "Champoux",
+			},
+			"registeredIndividualCountry": FR,
+			"registeredIndivdualNationality": "France",
+			"birthDate": 25-06-1991,
+			"birthCountry": "France",
+			"isPep": true,
+			"documents": {
+			    "document": {
+				"type": "idProof",
+				"id": "Maxime Champoux - CNI",
+			    },
+			},
+		},
+		"shareholder": {
+			"id": "WZ4edA",
+			"sharesNumber": 10000.00,
+			"type": "Individual",
+			"isMainFounder": true,
+			"email": "mch@ibanfirst.com",
+			"registeredIndividualName": {
+			    "civility": "M",
+			    "firstName": "John",
+			    "lastName": "Doe",
+			},
+			"registeredIndividualCountry": FR,
+			"registeredIndivdualNationality": "France",
+			"birthDate": 25-06-1991,
+			"birthCountry": "France",
+			"isPep": true,
+			"documents": {
+			    "document": {
+				"type": "idProof",
+				"id": "John Doe - CNI",
+			    },
+			},
+		},
+		"shareholder": {
+			"id": "PK4edA",
+			"sharesNumber": 40000.00,
+			"type": "Corporate",
+			"legalForm": "EURL",
+			"isMainFounder": false,
+			"email": "myHolding@email.com",
+			"registeredCorporateAddress": {
+			    "street": "1 rue de l'université",
+			    "postCode": "75006",
+			    "city": "Paris",
+			    "country": "France",
+			},
+			"documents": {
+			    "document": {
+				"type": "certificateOfIncorporation",
+				"id": "KBIS - myHolding",
+			    },
+			    "document": {
+				"type": "articleOfAssociation",
+				"id": "KBIS - myHolding",
+			    },
+			},
+			"shareholdingStructure": {
+			    "shareholder": {
+				"id": "WE4edA",
+				"sharespercentage": 100%,
+				"registeredIndividualName": {
+				    "civility": "M",
+				    "firstName": "Maxime",
+				    "lastName": "Champoux",
+				},
+				"registeredIndividualCountry": FR,
+				"registeredIndivdualNationality": "France",
+				"birthDate": 25-06-1991,
+				"birthCountry": "France",
+				"isPep": true,
+				"documents": {
+				    "document": {
+					"type": "idProof",
+					"id": "Maxime Champoux - CNI",
+				    },
+				},
+			    },
+			},
+]
 ```
 
 <hr />
