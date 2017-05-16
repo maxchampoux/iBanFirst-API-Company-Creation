@@ -11,7 +11,7 @@
 | [`GET /companies/-{id}/`](#get_companies) | Retrieve information relative to a company creation project |
 | [`DELETE /companies/-{id}/`](#delete_companies) | Delete a company creation project |
 | [`PUT /companies/-{id}/documents/`](#putDocuments_companies) | Submit document related to a company creation project |
-| [`PUT /companies/-{id}/shareholder/-{id}/documents/`](#put_companies) | Submit document related to a shareholder |
+| [`PUT /companies/-{id}/shareholder/-{id}/documents/`](#putDocuments_shareholder) | Submit document related to a shareholder |
 
 ## <a id="post_companies"></a> Start a company creation project ##
 
@@ -595,7 +595,7 @@ We will threrefore require the following document :
 
 **Example:**
 ```js
-PUT /companies/NT4edA/certificateIncorporation/
+PUT /companies/NT4edA/releaseDeposit/
 {
 	"documents": {
 		"document": {
@@ -610,7 +610,7 @@ PUT /companies/NT4edA/certificateIncorporation/
 
 | Field | Type | Description |
 |-------|------|-------------|
-| user | [User Object](../objects/objects.md#user_object) | Submit documents relative to a company creation project |
+| companies | [Companies Object](../objects/objects.md#companies_object) | Your up-to-date company creation project description |
 
 **Example:** 
 ```js
@@ -618,6 +618,117 @@ PUT /companies/NT4edA/certificateIncorporation/
 ```
 <hr />
 
+### <a id="delete_companies"></a> Delete your company creation project ###
 
+```
+Method: DELETE 
+URL: /companies/-{id}/
+```
+**Parameters:**
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+
+**Example:**
+
+```js
+DELETE /companies/NT4edA/	
+```
+
+**Returns:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| companies | [Companies Object](../objects/objects.md#companies_object) | Your up-to-date company creation project description |
+
+**Example:** 
+
+```js
+"companies": {companies},
+```
+<hr />
+
+### <a id="putDocuments_companies"></a> Submit document related to a company creation project ###
+
+```
+Method: PUT 
+URL: /companies/-{id}/documents/
+```
+**Parameters:**
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+| documents | Array<[Document Object](../conventions/formattingConventions.md#type_document)> | Required | The type of document to reference with your company creation project |
+
+**Example:**
+
+```js
+PUT /companies/NT4edA/documents/
+{
+	"documents": {
+		"document": {
+			"documentType": "finalOpeningAccountContract",
+			"tag": "finalOpeningAccountContract.pdf",
+			"file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
+		},
+}
+```
+
+**Returns:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| companies | [Companies Object](../objects/objects.md#companies_object) | Your up-to-date company creation project description |
+
+**Example:** 
+
+```js
+"companies": {companies},
+```
+<hr />
+
+### <a id="putDocuments_shareholder"></a> Submit document related to a company creation project ###
+
+```
+Method: PUT 
+URL: /companies/-{id}/documents/
+```
+**Parameters:**
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+| documents | Array<[Document Object](../conventions/formattingConventions.md#type_document)> | Required | The type of document to reference with your company creation project |
+
+**Example:**
+
+```js
+PUT /companies/NT4edA/documents/
+{
+	"documents": {
+		"document": {
+			"documentType": "finalOpeningAccountContract",
+			"tag": "finalOpeningAccountContract.pdf",
+			"file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
+		},
+}
+```
+
+**Returns:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| companies | [Companies Object](../objects/objects.md#companies_object) | Your up-to-date company creation project description |
+
+**Example:** 
+
+```js
+"companies": {companies},
+```
+<hr />
+
+| [`PUT /companies/-{id}/shareholder/-{id}/documents/`](#putDocuments_shareholder) | Submit document related to a shareholder |
 
 
