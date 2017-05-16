@@ -4,7 +4,6 @@
 * [Company Creation Datas Object](#companyCreationDatas_object)
 * [Shareholder Object](#shareholder_object)
 * [Status List](#status_list)
-* [Founders Object](#founder_object)
 * [Address Object](#address_object)
 * [Account Object](#account_object)
 * [Phone Object](#phone_object)
@@ -310,59 +309,6 @@ This object shows the shareholder ownership and detailed information.
 
 <hr />
 
-#### <a id="individualShareholdingdataDatas_object"></a> Individual Shareholding Datas Object ####
-
-This object shows the shareholder ownership and detailed information.
-
-**Object resources:**
-
-| Field | Type | Description |
-|-------|------|-------------|
-| registeredNumber | String(100) | The unique legal identifier of the contact. |
-| registeredCountry| String(100) | The registering country of the contact. |
-| registeredName | [Individual Name Object](#individual_name_object) | The individual name of the contact. |
-| tag | String(100) | The customized name of the contact. |
-| address | [Address Object](#address_object) | The contact address. |
-| birthDate | [Date](#type_date) | The birthdate of the contact. |
-| phoneNumber | [Phone Object](#phone_object)  | The phone number of the entity. |
-| position | [Position Object](#position_object)  | The position of the entity. |
-
-
-**Example:**
-
-```js
-"contact": {
-    "id": ND4ue2,
-    "registeredNumber": "81445561400010",
-    "registeredName": {individualName},
-    "tag":"null",
-    "address": {address},
-    "birthDate":"1980-11-04",
-    "phoneNumber":{phone},
-    "position":{position},
-}
-```
-<hr />
-
-#### <a id="founder_object"></a> Founder Object ####
-
-The Founder object.
-
-**Object resources:**
-
-| Field | Type | Description |
-|-------|------|-------------|
-| registeredNumber | String(100) | The unique legal identifier of the contact. |
-| registeredCountry| String(100) | The registering country of the contact. |
-| registeredName | [Individual Name Object](#individual_name_object) | The individual name of the contact. |
-| tag | String(100) | The customized name of the contact. |
-| address | [Address Object](#address_object) | The contact address. |
-| birthDate | [Date](#type_date) | The birthdate of the contact. |
-| phoneNumber | [Phone Object](#phone_object)  | The phone number of the entity. |
-| position | [Position Object](#position_object)  | The position of the entity. |
-
-<hr />
-
 #### <a id="account_object"></a> Account Object ####
 
 When an Account is specified as part of a JSON body, it is encoded as an object with the following fields:
@@ -391,7 +337,6 @@ When an Account is specified as part of a JSON body, it is encoded as an object 
 ```
 
 <hr />
-
 
 #### <a id="address_object"></a> Address Object ####
 
