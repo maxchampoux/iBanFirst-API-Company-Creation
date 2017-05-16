@@ -111,6 +111,7 @@ This object shows the shareholder ownership and detailed information. We gave yo
 | isPep | Binary | You indicates if the shareholder is legally recognized as a [PEP](https://en.wikipedia.org/wiki/Politically_exposed_person). `true` or `false`. |
 | documents | Array<[Document Object](#document_object)> | The required documents related to this shareholder. |
 | legalForm | String(60) | The legal Form of the shareholder when type is `corporate`. `sas` |
+| sharesPercentage | String(5) | Percentage of shares a shareholder level 2 own from a shareholder level 1 with type `corporate`. |
 
 **Example 1: individual shareholder**
 
@@ -366,17 +367,18 @@ Here is the list of documents you may encounter while using the iBanFirst APi.
 
 | Name | Description |
 |-------|-------------|
-| prooOfIdentity | An official document confirming your identity. |
+| proofOfIdentity | An official document confirming your identity. |
+| mandateShareholder | A mandate that deleguate powers of attorney from all shareholders to the main one : `mainShareholder`. |
 
 **Document resources for corporates:**
 
 | Name | Description |
 |-------|-------------|
 | articleOfAssociationDraft | Draft article of association as set-out in your company creation project. |
-| articleOfAssociationDraft | Signed article of association when registered at the local authorities. |
+| articleOfAssociationDSigned | Signed article of association when registered at the local authorities. |
 | certicicateOfIncorporation | Proof of incorporation of the company when registered at the local authorities. |
 | certificateOfDeposit | Proof of fund deposit we deliver when receiving the full amount of expected capital. |
-| partnerContract | A contract with our partner that delivers the certificate of deposit of funds. |
+| openingAccountContract | A contract with our partner that delivers the certificate of deposit of funds. |
 | mandateShareholder | A mandate that deleguate powers of attorney from all shareholders to the main one : `mainShareholder`. |
 
 <hr />
