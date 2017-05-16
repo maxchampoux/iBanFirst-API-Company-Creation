@@ -23,7 +23,7 @@ My object to follow where I am in the company creation process.
 |-------|------|-------------|
 | id | [ID](#type_id) | The IF code identifying the company to be created. |
 | status | String (60) | The status of your company creation project. The full list of status is accessible in the [Status List](#status_list)  |
-| companyCreationDatas | [Company Creation Datas Object](#companyCreationDatas_object) | Specific data required to obtain your "certificate of deposit". |
+| companyCreationDatas | [Company Creation Datas Object](#companyCreationDatas_object) | Information, documents regarding the company you want to create. |
 | shareholdingStructures | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on your company creation project. |
 | account | [Account Object](#account_object) | The IBAN account that has been opened for the purpose of your company creation project. |
 
