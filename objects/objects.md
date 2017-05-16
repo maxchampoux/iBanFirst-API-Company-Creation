@@ -22,7 +22,7 @@ My object to follow where I am in the company creation process.
 | Field | Type | Description |
 |-------|------|-------------|
 | id | [ID](#type_id) | The IF code identifying the company to be created. |
-| status | [status](#status_project) | The status of the company file. |
+| status | String (60) | The status of the company file. The full list is accessible in the [Status List](#status_list)  |
 | companyCreationDatas | [Company Creation Datas](#companyCreationDatas) | Specific data required for "attestation de dépôt du capital social" |
 | shareholdingStructures | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on the future company. |
 | account | [Account Object](#account_object) | The IBAN account that has been open for the purpose of creating the company. |
@@ -31,7 +31,7 @@ My object to follow where I am in the company creation process.
 ```js
 "companies": {
     	 "id": NT4edA,
-	 "status": "En attente de dépot de capital social",
+	 "status": "awaitingFunds",
 	 "companyCreationDatas": {
 	    "registeredName": "Rocket Startup",
 	    "registeredAddress": {
