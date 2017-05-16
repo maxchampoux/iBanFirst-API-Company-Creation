@@ -376,7 +376,7 @@ Here is the list of documents you may encounter while using the iBanFirst APi.
 |-------|-------------|
 | articleOfAssociationDraft | Draft article of association as set-out in your company creation project. |
 | articleOfAssociationSigned | Signed article of association when registered at the local authorities. |
-| certicicateOfIncorporation | Proof of incorporation of the company when registered at the local authorities. |
+| certificateOfIncorporation | Proof of incorporation of the company when registered at the local authorities. |
 | certificateOfDeposit | Proof of fund deposit we deliver when receiving the full amount of expected capital. |
 | openingAccountContract | A contract with our partner that delivers the certificate of deposit of funds. |
 | mandateShareholder | A mandate that deleguate powers of attorney from all shareholders to the main one : `mainShareholder`. |
