@@ -9,12 +9,14 @@
 * [Phone Object](#phone_object)
 * [Registered_Individual Name Object](#registeredIndividualName_object)
 * [Amount Object](#amount_object)
+* [Document Object](#document_object)
+* [Document List](#document_list)
 
 ## Details ##
 
 #### <a id="companies_object"></a> Companies Object ####
 
-My object to follow where I am in the company creation process.
+The main object in my company creation project. Status is automatically updated when there is a progress in my project.
 
 **Object resources:**
 
@@ -40,7 +42,7 @@ My object to follow where I am in the company creation process.
 
 #### <a id="companyCreationDatas_object"></a> Company Creation Datas Object ####
 
-Specific information required for opening a company creation file.
+Specific information required for opening a company creation project.
 
 **Object resources:**
 
@@ -86,59 +88,6 @@ Specific information required for opening a company creation file.
 ```
 
 <hr />
-
-
-#### <a id="companyCreationDatas_object"></a> Company Creation Datas Object ####
-
-Specific information required for submitting a company creation file.
-
-**Object resources:**
-
-| Field | Type | Description |
-|-------|------|-------------|
-| registeredName | String(100) | The legal name of the company to be created. |
-| commercialName | String(100) | The commercial name of the company to be created. |
-| tag | String(100) | The customized name of the company to be created. (Will only be used internally). |
-| registeredAddress | [Address Object](#address_object) | The registered address of the company to be created. |
-| commercialAddress | [Address Object](#address_object) | The commercial address of the company to be created. |
-| activityCode | String (5) | Your business activity as registered with local authorities. To see a full list of state code, please refer to [this site](https://www.insee.fr/fr/information/2406147). |
-| legalForm | [Legal Form](#legalForm) | The legal form of the company to be created.. |
-| authorizedCapital | [Amount Object](#amount_object)  | The amount in shareholding capital as mentionned in the status. |
-| documents | Array<[Document Object](#document_object)> | The required documents for creating a company. |
-
-**Example:**
-
-```js
-"companyCreationDatas": {
-	"registeredName": "Rocket Startup",
-	"registeredAddress": {
-		"street": "4 NEW YORK PLAZA, FLOOR 15",
-		"postCode": "75008",
-		"city": "Paris",
-		"country": "FR",
-	},
-	"activityType": 334B,
-	"legalForm": "EURL",
-	"sharesCapital": {
-		"value": 100000.00,
-		"currency": "EUR",
-	}
-	"sharesNumber": 100.00,
-	"documents": {
-		"document": {
-		    "type": "openingAccountAgreement",
-		    "id": "Rocket Startup - Opening Account Agreement",
-		},
-		"document": {
-		    "type": "projectArticleOfAssociation",
-		    "id": "Rocket Startup - Projets de Statuts",
-		},
-	},
-},
-```
-
-<hr />
-
 
 #### <a id="shareholder_object"></a> Shareholder Object ####
 
@@ -248,7 +197,7 @@ This object shows the shareholder ownership and detailed information. We gave yo
 
 Here is the list of status you may encounter while using the iBanFirst APi.
 
-**Object resources:**
+**Document resources:**
 
 | Status | Description |
 |-------|-------------|
@@ -387,22 +336,53 @@ When an amount of currency is specified as part of a JSON body, it is encoded as
 
 <hr />
 
-
 #### <a id="document_object"></a> Document Object ####
 
 The list of document that can be submitted for a shareholder/ individual.
-
 
 **Object resources:**
 
 | Field | Type | Description |
 |-------|------|-------------|
-| idProof | [Id Types](#idTypes_object)  | The url where the file is stored. |
-| addressProof | [Proof of Address Object](#addressProof_object)  | The url where the file is stored. |
+| tag | String (60) | The name of your document as you must used it with the corresponding `POST /document` calls. |
+| documentType | String (60) | The document that may belong to a `corporate` (i.e. your company) or an `individual` (i.e. a shareholder). The full list of document is accessible in the [Document List](#document_list)  |
 
 **Example:**
 
 ```js
-TBD
+{
+    "documentType": "invoice",
+    "tag": "invoicePiedPieper.png",
+}
 ```
+
+<hr />
+
+#### <a id="document_list"></a> Document List ####
+
+Here is the list of documents you may encounter while using the iBanFirst APi.
+
+**Document resources for individuals:**
+
+| Name | Description |
+|-------|-------------|
+| prooOfIdentity | An official document confirming your identity. |
+
+**Document resources for corporates:**
+
+| Name | Description |
+|-------|-------------|
+| articleOfAssociationDraft | Draft article of association as set-out in your company creation project. |
+| articleOfAssociationDraft | Signed article of association when registered at the local authorities. |
+| certicicateOfIncorporation | Proof of incorporation of the company when registered at the local authorities. |
+| certificateOfDeposit | Proof of fund deposit we deliver when receiving the full amount of expected capital. |
+| partnerContract | A contract with our partner that delivers the certificate of deposit of funds. |
+| mandateShareholder | A mandate that deleguate powers of attorney from all shareholders to the main one : `mainShareholder`. |
+
+<hr />
+
+
+
+
+
 
