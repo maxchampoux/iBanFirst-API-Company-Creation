@@ -135,7 +135,7 @@ By submitting your project, you will have in return an IBAN that you can share w
 
 **Example of a Call containing all required information at this stage:**
 ```js
-PUT /companies/NT4edA/iban/
+PUT /companies/-NT4edA/iban/
 {
     "companyCreationDatas": {
 	"registeredName": "Pied Pieper Paris",
@@ -315,7 +315,7 @@ By submitting your project, you consider that your project is complete and we wi
 
 **Example of a Call containing all required information at this stage:**
 ```js
-PUT /companies/NT4edA/iban/
+PUT /companies/-NT4edA/iban/
 {
     "companyCreationDatas": {
 	"registeredName": "Pied Pieper Paris",
@@ -497,7 +497,7 @@ You can use either this API service, a FTP server or a tailor-made webhook to re
 
 **Example:**
 ```js
-GET /companies/NT4edA/certificateOfDeposit/
+GET /companies/-NT4edA/certificateOfDeposit/
 ```
 
 **Returns:**
@@ -542,7 +542,7 @@ At this stage, basically your company should be registered. Congratulation! Ther
 
 **Example:**
 ```js
-PUT /companies/NT4edA/certificateIncorporation/
+PUT /companies/-NT4edA/certificateIncorporation/
 {
 	"regitrationNumber": 814455614,
 	"regitrationDate": 25-06-2017,
@@ -595,7 +595,7 @@ We will threrefore require the following document :
 
 **Example:**
 ```js
-PUT /companies/NT4edA/releaseDeposit/
+PUT /companies/-NT4edA/releaseDeposit/
 {
 	"documents": {
 		"document": {
@@ -633,7 +633,7 @@ URL: /companies/-{id}/
 **Example:**
 
 ```js
-DELETE /companies/NT4edA/	
+DELETE /companies/-NT4edA/	
 ```
 
 **Returns:**
@@ -665,7 +665,7 @@ URL: /companies/-{id}/documents/
 **Example:**
 
 ```js
-PUT /companies/NT4edA/documents/
+PUT /companies/-NT4edA/documents/
 {
 	"documents": {
 		"document": {
@@ -689,11 +689,11 @@ PUT /companies/NT4edA/documents/
 ```
 <hr />
 
-### <a id="putDocuments_shareholder"></a> Submit document related to a company creation project ###
+### <a id="putDocuments_shareholder"></a> Submit document related to a shareholder ###
 
 ```
 Method: PUT 
-URL: /companies/-{id}/documents/
+URL: /companies/-{id}/shareholder/-{id}/documents
 ```
 **Parameters:**
 
@@ -705,7 +705,7 @@ URL: /companies/-{id}/documents/
 **Example:**
 
 ```js
-PUT /companies/NT4edA/documents/
+PUT /companies/-NT4edA/shareholder/-AB48eD5/documents
 {
 	"documents": {
 		"document": {
