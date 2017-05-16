@@ -11,7 +11,6 @@
 | [`GET /companies/-{id}/`](#get_companies) | Retrieve information relative to a company creation project |
 | [`DELETE /companies/-{id}/`](#delete_companies) | Delete a company creation project |
 | [`PUT /companies/-{id}/documents/`](#putDocuments_companies) | Submit document related to a company creation project |
-| [`PUT /transaction/-{id}/documents/`](#putDocuments_transaction) | Submit document related to a transaction |
 | [`PUT /companies/-{id}/shareholder/-{id}/documents/`](#put_companies) | Submit document related to a shareholder |
 
 ## <a id="post_companies"></a> Start a company creation project ##
@@ -512,8 +511,8 @@ GET /companies/NT4edA/certificateOfDeposit/
 **Example:** 
 ```js
 {
-    "documentType": "invoice",
-    "tag": "invoicePiedPieper.png",
+    "documentType": "certificateOfDeposit",
+    "tag": "certificateOfDeposit.pdf",
     "file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
 
 }
@@ -523,14 +522,14 @@ GET /companies/NT4edA/certificateOfDeposit/
 ### <a id="post_companiesCertificateIncorporation"></a> Upload your Kbis ###
 
 ```
-Method: POST 
-URL: /companies/-{id}/CertificateIncorporation/
+Method: PUT
+URL: /companies/-{id}/certificateIncorporation/
 ```
 
 At this stage, basically your company should be registered. Congratulation! Therefore, we will require the registration information on your company:
-* Document: certificate of incorporation, signed article of association, status: uploaded.
-* Registration number
-* Registration date
+* Document = "certificateOfIncorporation", "articleOfAssociationSigned"
+* registrationNumber
+* registrationDate
 
 **Parameters:**
 
@@ -538,18 +537,28 @@ At this stage, basically your company should be registered. Congratulation! Ther
 |-------|------|----------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
 | registrationNumber | String (20) | Required | The registration number of the company created. |
-| documentType | [Document Type](../conventions/formattingConventions.md#type_document) | Required | The type of document to reference with your company creation project |
-| documentUrl | [Document Url](../conventions/formattingConventions.md#type_url) | Required | The url of document to reference with your company creation project |
+| registrationDate | Date | Required | The registration date of the company created. |
+| documents | Array<[Document Object](../conventions/formattingConventions.md#type_document)> | Required | The type of document to reference with your company creation project |
 
 **Example:**
 ```js
-POST /companies/NT4edA/certificateIncorporation/
+PUT /companies/NT4edA/certificateIncorporation/
 {
 	"regitrationNumber": 814455614,
 	"regitrationDate": 25-06-2017,
-	"documentType": "certificateIncorporation",
-	"documentUrl": "https://ph-files.imgix.net/07d80ab9-a5e1-4d70-ae85-ddf51ff79e1f?auto=format&auto=compress&codec=mozjpeg&cs=strip&fit=crop&w=120&h=120",
-	
+	"documents": {
+		"document": {
+			"documentType": "certificateOfDeposit",
+			"tag": "certificateOfDeposit.pdf",
+			"file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
+		},
+		"document": {
+			"documentType": "articleOfAssociationSigned",
+			"tag": "articleOfAssociationSigned.pdf",
+			"file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
+		},
+	},
+}	
 ```
 
 **Returns:**
@@ -567,28 +576,34 @@ POST /companies/NT4edA/certificateIncorporation/
 ### <a id="post_companiesReleaseDeposit"></a> Release the deposit and enjoy your iBanFirst account ###
 
 ```
-Method: POST 
+Method: PUT 
 URL: /companies/-{id}/releaseDeposit/
 ```
 
-As soon as we have finalized the due diligence on your company, you can ask for the release of the deposit by signing and uploading your Opening account agreement. An iBanFirst user access to your account will be automatically created. The main founder will receive this user access by email.
+As soon as we have finalized the due diligence on your company, you can ask for the release of the deposit by signing and uploading your Opening account agreement. An iBanFirst user access to your account will be automatically created. The main founder will receive his user access by email.
+
+We will threrefore require the following document :
+* Document = "finalOpeningAccountContract"
 
 **Parameters:**
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
-| documentType | [Document Type](../conventions/formattingConventions.md#type_document) | Required | The type of document to reference with your company creation project |
-| documentUrl | [Document Url](../conventions/formattingConventions.md#type_url) | Required | The url of document to reference with your company creation project |
+| documents | Array<[Document Object](../conventions/formattingConventions.md#type_document)> | Required | The type of document to reference with your company creation project |
 
 
 **Example:**
 ```js
-POST /NT4edA/releaseDeposit/
+PUT /companies/NT4edA/certificateIncorporation/
 {
-	"documentType": "openingAccountAgreement",
-	"documentUrl": "https://ph-files.imgix.net/07d80ab9-a5e1-4d70-ae85-ddf51ff79e1f?auto=format&auto=compress&codec=mozjpeg&cs=strip&fit=crop&w=120&h=120",
-}
+	"documents": {
+		"document": {
+			"documentType": "finalOpeningAccountContract",
+			"tag": "finalOpeningAccountContract.pdf",
+			"file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
+		},
+}	
 ```
 
 **Returns:**
@@ -603,20 +618,6 @@ POST /NT4edA/releaseDeposit/
 ```
 <hr />
 
-### <a id="#putDocuments_transactions"></a> Attach a document to a transaction ###
 
-```
-Method: PUT 
-URL: /transaction/-{id}/proofOfTransaction/
-```
-We may ask you to provide a proof of transaction under specific terms. You can anticipate our request and send us your invoice or the ID of the beneficiary to avoid any request from us and fully automate your payment process.
-
-**Parameters:**
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| documentType | [Document Type](../conventions/formattingConventions.md#type_document) | Required | The type of document to submit for a transaction. "invoice" |
-| tag | String (60) | Required | The name of the document to be attached. |
-| file | String | Required | The binary content of the file, encoded with a base64 algorithm. |
 
 
