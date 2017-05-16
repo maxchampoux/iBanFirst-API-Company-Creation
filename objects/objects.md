@@ -1,9 +1,9 @@
-# API Objects  
+# API Objects & Lists
 
 * [Companies Object](#companies_object)
 * [Company Creation Datas Object](#companyCreationDatas_object)
 * [Shareholder Object](#shareholder_object)
-* [Status Object](#status_object)
+* [Status List](#status_list)
 * [Founders Object](#founder_object)
 * [Address Object](#address_object)
 * [Account Object](#account_object)
@@ -304,6 +304,23 @@ This object shows the shareholder ownership and detailed information.
 ```
 
 <hr />
+
+#### <a id="status_list"></a> Status List ####
+
+Here is the list of status you may encounter while using the iBanFirst APi.
+
+**Object resources:**
+
+| Status | Description |
+|-------|-------------|
+| awaitingFunds | When your project is ready and all required document has been filled and signed, we return you this status. |
+| pendingKyc | When all funds has been collected and matched, you may ask for your certificate of deposit. This call triggered a KYC process on our side. |
+| pendingInformation | While we are making our KYC process and reviewing your projects. We may ask you some more documents or information. Your project will not move to the enxt step until you provide the required document or information. |
+| rejectedKyc | Something went wrong with your application, you are not compliant with our acceptance criterion. Please apply again or contact your account manager. |
+| awaitingIncorporation | When certificate of deposit is available, you can use it to incorporate your company with the appropriate local authorities. |
+| checkKbis | When certificate of deposit is available, you can use it to incorporate your company with the appropriate local authorities. |
+| finalized | Here we are, you company is created and you capital has just been released to the bank account you just opened. Congrats! |
+
 
 #### <a id="companyShareholdingDatas_object"></a> Company Shareholding Datas Object ####
 
