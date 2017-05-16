@@ -23,7 +23,7 @@ My object to follow where I am in the company creation process.
 |-------|------|-------------|
 | id | [ID](#type_id) | The IF code identifying the company to be created. |
 | status | String (60) | The status of your company creation project. The full list of status is accessible in the [Status List](#status_list)  |
-| companyCreationDatas | [Company Creation Datas](#companyCreationDatas) | Specific data required to obtain your "certificate of deposit". |
+| companyCreationDatas | [Company Creation Datas Object](#companyCreationDatas_object) | Specific data required to obtain your "certificate of deposit". |
 | shareholdingStructures | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on your company creation project. |
 | account | [Account Object](#account_object) | The IBAN account that has been opened for the purpose of your company creation project. |
 
@@ -196,7 +196,7 @@ Specific information required for submitting a company creation file.
 | tag | String(100) | The customized name of the company to be created. (Will only be used internally). |
 | registeredAddress | [Address Object](#address_object) | The registered address of the company to be created. |
 | commercialAddress | [Address Object](#address_object) | The commercial address of the company to be created. |
-| activityCode | [NAFID](#NAF) | The code identifying the type of business of the company to be created. |
+| activityCode | String (5) | Your business activity as registered with local authorities. To see a full list of state code, please refer to [this site](https://www.insee.fr/fr/information/2406147). |
 | legalForm | [Legal Form](#legalForm) | The legal form of the company to be created.. |
 | authorizedCapital | [Amount Object](#amount_object)  | The amount in shareholding capital as mentionned in the status. |
 | documents | Array<[Document Object](#document_object)> | The required documents for creating a company. |
@@ -215,18 +215,19 @@ Specific information required for submitting a company creation file.
 	"activityType": 334B,
 	"legalForm": "EURL",
 	"sharesCapital": {
-	"value": 100000.00,
-	"currency": "EUR",
+		"value": 100000.00,
+		"currency": "EUR",
 	}
 	"sharesNumber": 100.00,
 	"documents": {
-	"document": {
-	    "type": "openingAccountAgreement",
-	    "id": "Rocket Startup - Opening Account Agreement",
-	},
-	"document": {
-	    "type": "projectArticleOfAssociation",
-	    "id": "Rocket Startup - Projets de Statuts",
+		"document": {
+		    "type": "openingAccountAgreement",
+		    "id": "Rocket Startup - Opening Account Agreement",
+		},
+		"document": {
+		    "type": "projectArticleOfAssociation",
+		    "id": "Rocket Startup - Projets de Statuts",
+		},
 	},
 },
 ```
