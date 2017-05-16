@@ -313,6 +313,7 @@ Here is the list of status you may encounter while using the iBanFirst APi.
 
 | Status | Description |
 |-------|-------------|
+| subscribing | Welcome to your company creation journey! A few document will be required to go to the next step and obtain you IBAN. |
 | awaitingFunds | When your project is ready and all required document has been filled and signed, we return you this status. |
 | pendingKyc | When all funds has been collected and matched, you may ask for your certificate of deposit. This call triggered a KYC process on our side. |
 | pendingInformation | While we are making our KYC process and reviewing your projects. We may ask you some more documents or information. Your project will not move to the enxt step until you provide the required document or information. |
