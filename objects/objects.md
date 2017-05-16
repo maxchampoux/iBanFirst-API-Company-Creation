@@ -8,7 +8,7 @@
 * [Address Object](#address_object)
 * [Account Object](#account_object)
 * [Phone Object](#phone_object)
-* [Individual Name Object](#individualName_object)
+* [Registered_Individual Name Object](#registeredIndividualName_object)
 * [Amount Object](#amount_object)
 
 ## Details ##
@@ -169,110 +169,105 @@ Additional information required for releasing "capital social".
 
 #### <a id="shareholder_object"></a> Shareholder Object ####
 
-This object shows the shareholder ownership and detailed information.
+This object shows the shareholder ownership and detailed information. We gave you below two detailed examples in case you have a corporate or an individual as shareholder.
 
 **Object resources:**
 
 | Field | Type | Description |
 |-------|------|-------------|
-| shareholder | [Company Shareholding Datas Object](#companyShareholdingDatas_object) or [Individual Shareholding Datas Object](#individualShareholdingDatas_object) | Specific data that is required on shareholder. |
+| id | [ID](#type_id) | The IF code identifying in a unique way the shareholder. |
+| sharesNumber | Value | The number of shares that belong to the shareholder. |
+| type | String (10) | It can be `individual` or `corporate`. |
+| isMainFounder | Binary | Indicates who is introducing the project among the project. It can be `true` or `false`. You can only have on Main Founder. |
+| email | string (60) | Dedicated email of the shareholder. We may use this email to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have an email format. |
+| registeredIndividualName | [Registered_Individual Name Object](#registeredIndividualName_object) | The registered name of the shareholder when type is `individual`. |
+| registeredIndividualCountry | String (2) | The two-letters abbreviation for the country where the shareholder is registered if type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166) for the address described. |
+| registeredIndivdualNationality | String (2) | The two-letters abbreviation for the country where the shareholder is XXX if type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166) for the address described. |
+| birthDate | Date | The birth date of the shareholder when type is `individual`. `YYYY-MM-DD` |
+| birthCountry | String (2) | The two-letters abbreviation for the country where the shareholder is born when type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166) for the address described. |
+| isPep | Binary | You indicates if the shareholder is legally recognized as a [PEP](https://en.wikipedia.org/wiki/Politically_exposed_person). `true` or `false`. |
+| documents | Array<[Document Object](#document_object)> | The required documents related to this shareholder. |
+| legalForm | String(60) | The legal Form of the shareholder when type is `corporate`. `sas` |
+| registeredCorporateAddress | [Address Object](#address_object) | The registered address of the shareholder when type is `corporate`. `sas` |
 
 
-**Example:**
+
+**Example 1: individual shareholder**
 
 ```js
-"shareholderStructures": [
-   		"shareholder": {
-			"id": "XV4edA",
-			"sharesNumber": 50000.00,
-			"type": "Individual",
-			"isMainFounder": true,
-			"email": "mch@ibanfirst.com",
-			"registeredIndividualName": {
-			    "civility": "M",
-			    "firstName": "Maxime",
-			    "lastName": "Champoux",
-			},
-			"registeredIndividualCountry": FR,
-			"registeredIndivdualNationality": "France",
-			"birthDate": 25-06-1991,
-			"birthCountry": "France",
-			"isPep": true,
-			"documents": {
-			    "document": {
-				"type": "idProof",
-				"id": "Maxime Champoux - CNI",
-			    },
-			},
+"shareholder": {
+	"id": "XV4edA",
+	"sharesNumber": 50000.00,
+	"type": "Individual",
+	"isMainFounder": true,
+	"email": "mch@ibanfirst.com",
+	"registeredIndividualName": {
+	    "civility": "M",
+	    "firstName": "Maxime",
+	    "lastName": "Champoux",
+	},
+	"registeredIndividualCountry": FR,
+	"registeredIndivdualNationality": "FR",
+	"birthDate": 25-06-1991,
+	"birthCountry": "FR",
+	"isPep": true,
+	"documents": {
+	    "document": {
+		"type": "idProof",
+		"id": "Maxime Champoux - CNI",
+	    },
+	},
+},
+```
+
+**Example 2: corporate shareholder**
+
+```js
+"shareholder": {
+	"id": "PK4edA",
+	"sharesNumber": 40000.00,
+	"type": "Corporate",
+	"legalForm": "EURL",
+	"isMainFounder": false,
+	"email": "myHolding@email.com",
+	"registeredCorporateAddress": {
+	    "street": "1 rue de l'université",
+	    "postCode": "75006",
+	    "city": "Paris",
+	    "country": "France",
+	},
+	"documents": {
+	    "document": {
+		"type": "certificateOfIncorporation",
+		"id": "KBIS - myHolding",
+	    },
+	    "document": {
+		"type": "articleOfAssociation",
+		"id": "KBIS - myHolding",
+	    },
+	},
+	"shareholdingStructure": {
+	    "shareholder": {
+		"id": "WE4edA",
+		"sharespercentage": 100%,
+		"registeredIndividualName": {
+		    "civility": "M",
+		    "firstName": "Maxime",
+		    "lastName": "Champoux",
 		},
-		"shareholder": {
-			"id": "WZ4edA",
-			"sharesNumber": 10000.00,
-			"type": "Individual",
-			"isMainFounder": true,
-			"email": "mch@ibanfirst.com",
-			"registeredIndividualName": {
-			    "civility": "M",
-			    "firstName": "John",
-			    "lastName": "Doe",
-			},
-			"registeredIndividualCountry": FR,
-			"registeredIndivdualNationality": "France",
-			"birthDate": 25-06-1991,
-			"birthCountry": "France",
-			"isPep": true,
-			"documents": {
-			    "document": {
-				"type": "idProof",
-				"id": "John Doe - CNI",
-			    },
-			},
+		"registeredIndividualCountry": FR,
+		"registeredIndivdualNationality": "France",
+		"birthDate": 25-06-1991,
+		"birthCountry": "France",
+		"isPep": true,
+		"documents": {
+		    "document": {
+			"type": "idProof",
+			"id": "Maxime Champoux - CNI",
+		    },
 		},
-		"shareholder": {
-			"id": "PK4edA",
-			"sharesNumber": 40000.00,
-			"type": "Corporate",
-			"legalForm": "EURL",
-			"isMainFounder": false,
-			"email": "myHolding@email.com",
-			"registeredCorporateAddress": {
-			    "street": "1 rue de l'université",
-			    "postCode": "75006",
-			    "city": "Paris",
-			    "country": "France",
-			},
-			"documents": {
-			    "document": {
-				"type": "certificateOfIncorporation",
-				"id": "KBIS - myHolding",
-			    },
-			    "document": {
-				"type": "articleOfAssociation",
-				"id": "KBIS - myHolding",
-			    },
-			},
-			"shareholdingStructure": {
-			    "shareholder": {
-				"id": "WE4edA",
-				"sharespercentage": 100%,
-				"registeredIndividualName": {
-				    "civility": "M",
-				    "firstName": "Maxime",
-				    "lastName": "Champoux",
-				},
-				"registeredIndividualCountry": FR,
-				"registeredIndivdualNationality": "France",
-				"birthDate": 25-06-1991,
-				"birthCountry": "France",
-				"isPep": true,
-				"documents": {
-				    "document": {
-					"type": "idProof",
-					"id": "Maxime Champoux - CNI",
-				    },
-				},
-			    },
-			},
+	    },
+	},
 ]
 ```
 
@@ -295,6 +290,7 @@ Here is the list of status you may encounter while using the iBanFirst APi.
 | checkKbis | When certificate of deposit is available, you can use it to incorporate your company with the appropriate local authorities. |
 | finalized | Here we are, you company is created and you capital has just been released to the bank account you just opened. Congrats! |
 
+<hr />
 
 #### <a id="companyShareholdingDatas_object"></a> Company Shareholding Datas Object ####
 
