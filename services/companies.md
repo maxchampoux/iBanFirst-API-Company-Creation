@@ -275,7 +275,7 @@ On your future company ([Company Creation Data Object](../objects/objects.md#com
 * liberatedPercentage
 * document = "openingAccountAgreement", "projectArticleOfAssociation", "articleOfAssociation, "businessPlan"
 
-On the main founder ([Shareholding Structure Object](../objects/objects.md#shareholdingStructure_object)):
+On the main founder ([Shareholder Object](../objects/objects.md#shareholder_object)):
 * type
 * isMainFounder = true
 * sharesNumber
@@ -290,7 +290,7 @@ On the main founder ([Shareholding Structure Object](../objects/objects.md#share
 * is Pep (if type = "individual")
 * shareholdingStructure (if type = "corporate" and for all shareholder on the 2 level owning +25%)
 
-On the other founders ([Shareholding Structure Object](../objects/objects.md#shareholdingStructure_object)):
+On the other founders ([Shareholder Object](../objects/objects.md#shareholder_object)):
 * type
 * isMainFounder = true
 * sharesNumber
