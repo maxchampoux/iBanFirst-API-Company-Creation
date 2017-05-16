@@ -29,19 +29,11 @@ My object to follow where I am in the company creation process.
 **Example:**
 ```js
 "companies": {
-    	 "id": NT4edA,
+    	 "id": "NT4edA",
 	 "status": "awaitingFunds",
-	 "companyCreationDatas": {companyCreationDatas}
+	 "companyCreationDatas": {companyCreationDatas},
     	 "shareholdingStructure": [{shareholder},{shareholder}],
-	 	{
-		
-		},
-	"account": {
-		"currency": EUR,
-		"accountNumber": "FR914516981638516313513",
-		"holderName": "Rocket Startup [En cours de création]",
-		"financialMovements": null,
-	},     
+	 "account": {account},
 },
 ```
 <hr />
@@ -54,13 +46,13 @@ Specific information required for opening a company creation file.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| legalForm | [Legal Form](#legalForm) | The legal form of the company to be created. "SASU", "EURL"  |
-| registeredName | String(100) | The legal name of the company to be created. |
+| registeredName | String (100) | The legal name of the company to be created. |
+| legalForm | String (5) | The legal form of the company to be created. It can be one of those 4 forms: `sasu`,`sarl`,`sas` and `eurl` |
 | registeredAddress | [Address Object](#address_object) | The registered address of the company to be created. |
 | activityCode | [NAFID](#NAF) | The code identifying the type of business of the company to be created. |
 | sharesNumber | Value | The number of shares to be issued. |
-| sharesCapital | [Amount Object](#amount_object) | The amount in shareholding capital as mentionned in the status. |
-| liberatedPercentage | Value | The percentage of shareholding capital to be released when the company is created. "20", "50" or "100". |
+| sharesCapital | [Amount Object](#amount_object) | The amount in shareholding capital as mentionned in the articles of association. |
+| liberatedPercentage | Value (5) | The percentage of shareholding capital to be released when the company is created. "20.00", "50.00" or "100.00". |
 | commercialName | String(100) | The commercial name of the company to be created. |
 | commercialAddress | [Address Object](#address_object) | The commercial address of the company to be created. |
 | tag | String(100) | The customized name of the company to be created. (Will only be used internally). |
@@ -70,20 +62,23 @@ Specific information required for opening a company creation file.
 
 ```js
 "companyCreationDatas": {
-    "registeredName": "DJPAD",
-    "tag":"null",
+    "registeredName": "Pied Pieper",
+    "legalForm":"sas",
     "registeredAddress": {address},
-    "commercialAddress": {address},
     "activityCode":"6201Z",
-    "legalForm":"SARL unipersonnelle",
     "authorizedCapital":{amount},
+    "sharesNumber": 100000.00,
+    "liberatedPercentage": 100.00,
+    "commercialName": "Pied Pieper",
+    "commercialAddress": {address},
+    "tag":"null",
     "documents": [
     	"document": {
-		"type": "article of association",
+		"type": "articleOfAssociationDraft",
 		"tag": "NameOfTheDocument",
 	}
 	"document": {
-		"type": "kbis",
+		"type": "certificateOfIncorporation",
 		"tag": "NameOfTheDocument",
 	}
     ]
@@ -144,27 +139,6 @@ Specific information required for submitting a company creation file.
 
 <hr />
 
-#### <a id="companyRegistrationDatas_object"></a> Company Registration Datas Object ####
-
-Additional information required for releasing "capital social".
-
-**Object resources:**
-
-| Field | Type | Description |
-|-------|------|-------------|
-| registeredNumber | String(100) | The unique legal identifier of the entity opening the account. |
-| registrationDate | [Date](#type_date) | The legal date of creation of the entity. |
-
-**Example:**
-
-```js
-"companyRegistrationDatas": {
-    "registeredParentNumber": "	814455614",
-    "registrationDate":"2015-11-04",
-}
-```
-
-<hr />
 
 #### <a id="shareholder_object"></a> Shareholder Object ####
 
