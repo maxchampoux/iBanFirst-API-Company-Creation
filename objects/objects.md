@@ -32,33 +32,8 @@ My object to follow where I am in the company creation process.
 "companies": {
     	 "id": NT4edA,
 	 "status": "awaitingFunds",
-	 "companyCreationDatas": {
-	    "registeredName": "Rocket Startup",
-	    "registeredAddress": {
-		"street": "4 NEW YORK PLAZA, FLOOR 15",
-		"postCode": "75008",
-		"city": "Paris",
-		"country": "FR",
-	    },
-	    "activityType": 334B,
-	    "legalForm": "EURL",
-	    "sharesCapital": {
-		"value": 100000.00,
-		"currency": "EUR",
-	    }
-	    "sharesNumber": 100.00,
-	    "documents": {
-		"document": {
-		    "type": "openingAccountAgreement",
-		    "id": "Rocket Startup - Opening Account Agreement",
-		},
-		"document": {
-		    "type": "projectArticleOfAssociation",
-		    "id": "Rocket Startup - Projets de Statuts",
-		},
-	    },
-	    },
-	    "shareholdingStructure": {
+	 "companyCreationDatas": {companyCreationDatas}
+    	"shareholdingStructure": {
 		"shareholder": {
 			"id": "XV4edA",
 			"sharesNumber": 50000.00,
@@ -81,7 +56,7 @@ My object to follow where I am in the company creation process.
 				"id": "Maxime Champoux - CNI",
 			    },
 			},
-	    	},
+		},
 		"shareholder": {
 			"id": "WZ4edA",
 			"sharesNumber": 10000.00,
@@ -105,7 +80,7 @@ My object to follow where I am in the company creation process.
 			    },
 			},
 		},
-	    	"shareholder": {
+		"shareholder": {
 			"id": "PK4edA",
 			"sharesNumber": 40000.00,
 			"type": "Corporate",
@@ -150,8 +125,7 @@ My object to follow where I am in the company creation process.
 				},
 			    },
 			},
-    		},
-	}
+		},
 	"account": {
 		"currency": EUR,
 		"accountNumber": "FR914516981638516313513",
@@ -209,7 +183,7 @@ Specific information required for opening a company creation file.
 <hr />
 
 
-#### <a id="companySubmitDatas_object"></a> Company Creation Datas Object ####
+#### <a id="companyCreationDatas_object"></a> Company Creation Datas Object ####
 
 Specific information required for submitting a company creation file.
 
@@ -231,25 +205,30 @@ Specific information required for submitting a company creation file.
 
 ```js
 "companyCreationDatas": {
-    "registeredName": "DJPAD",
-    "registeredAddress": {address},
-    "activityCode": "6201Z",
-    "legalForm": "SARL unipersonnelle",
-    "authorizedCapital": {
-    	"value": 1000.00,
-	"curency": EUR,
-    }	
-    "documents": [
-    	"document": {
-		"type": "article of association",
-		"tag": "NameOfTheDocument",
+	"registeredName": "Rocket Startup",
+	"registeredAddress": {
+		"street": "4 NEW YORK PLAZA, FLOOR 15",
+		"postCode": "75008",
+		"city": "Paris",
+		"country": "FR",
+	},
+	"activityType": 334B,
+	"legalForm": "EURL",
+	"sharesCapital": {
+	"value": 100000.00,
+	"currency": "EUR",
 	}
+	"sharesNumber": 100.00,
+	"documents": {
 	"document": {
-		"type": "kbis",
-		"tag": "NameOfTheDocument",
-	}
-    ]
-}
+	    "type": "openingAccountAgreement",
+	    "id": "Rocket Startup - Opening Account Agreement",
+	},
+	"document": {
+	    "type": "projectArticleOfAssociation",
+	    "id": "Rocket Startup - Projets de Statuts",
+	},
+},
 ```
 
 <hr />
@@ -314,7 +293,7 @@ Here is the list of status you may encounter while using the iBanFirst APi.
 | Status | Description |
 |-------|-------------|
 | subscribing | Welcome to your company creation journey! A few document will be required to go to the next step and obtain you IBAN. |
-| awaitingFunds | When your project is ready and all required document has been filled and signed, we return you this status. |
+| awaitingFunds | When your project is ready and all required document has been filled and signed, we return you this status together with you IBAN. |
 | pendingKyc | When all funds has been collected and matched, you may ask for your certificate of deposit. This call triggered a KYC process on our side. |
 | pendingInformation | While we are making our KYC process and reviewing your projects. We may ask you some more documents or information. Your project will not move to the enxt step until you provide the required document or information. |
 | rejectedKyc | Something went wrong with your application, you are not compliant with our acceptance criterion. Please apply again or contact your account manager. |
