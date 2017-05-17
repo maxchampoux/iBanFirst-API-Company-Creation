@@ -3,8 +3,9 @@
 | Route | Description |
 |-------|-------------|
 | [`POST /companies/`](#post_companies) | Start your company creation project. You get an IBAN in return. |
-| [`PUT /companies/-{id}/releaseDeposit/`](#pout_companiesReleaseDeposit) | Ask for your capital to be released. Let's make business now. |
-| [`GET /companies/-{id}/`](#get_companies) | Retrieve information relative to a company creation project |
+| [`PUT /companies/-{id}/releaseDeposit/`](#put_companiesReleaseDeposit) | Ask for your capital to be released. Let's make business now. |
+| [`PUT /companies/-{id}/document/`](#out_document) | Upload documents to your project. |
+| [`GET /companies/-{id}/`](#get_companies) | Retrieve information related to a company creation project |
 | [`GET /companies/-{id}/certificateOfDeposit/`](#getDocuments_certificateDeposit) | Retrieve your certificate of deposit |
 
 ## <a id="post_companies"></a> Start a company creation project ##
@@ -231,7 +232,8 @@ POST /companies/
 ```
 
 <hr />
-### <a id="get_companies"></a> Retrieve information relative to a company creation project ###
+
+### <a id="get_companies"></a> Retrieve information related to a company creation project ###
 
 ```
 Method: GET 
@@ -301,17 +303,18 @@ GET /companies/-NT4edA/certificateOfDeposit/
 ```
 <hr />
 
-### <a id="put_companiesCertificateIncorporation"></a> Upload your Kbis ###
+### <a id="put_companiesReleaseDeposit"></a> Ask for your capital to be released. Let's make business now. ###
 
 ```
 Method: PUT
-URL: /companies/-{id}/certificateIncorporation/
+URL: /companies/-{id}/releaseDeposit/
 ```
 
-At this stage, basically your company should be registered. Congratulation! Therefore, we will require the registration information on your company:
-* Document = "certificateOfIncorporation", "articleOfAssociationSigned"
+Congrats! At this stage, basically your company should be registered and you should have opened an IBAN account for this company. Maybe using our [Onboarding Service](../toto). Congratulation! Therefore, we will require the registration information on your company:
+* accountNumber
 * registrationNumber
 * registrationDate
+* Documents : "articleOfAssociationSigned", 
 
 **Parameters:**
 
@@ -326,12 +329,13 @@ At this stage, basically your company should be registered. Congratulation! Ther
 ```js
 PUT /companies/-NT4edA/certificateIncorporation/
 {
-	"regitrationNumber": 814455614,
-	"regitrationDate": 25-06-2017,
+	"regitrationNumber": "814455614",
+	"regitrationDate": 2017-06-25,
+	"accountNumber": "R76 3000 3009 9500 0503 4076 086",
 	"documents": {
 		"document": {
-			"documentType": "certificateOfDeposit",
-			"tag": "certificateOfDeposit.pdf",
+			"documentType": "certificateOfIncoraporation",
+			"tag": "certificateOfIncorporation.pdf",
 			"file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
 		},
 		"document": {
