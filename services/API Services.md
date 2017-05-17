@@ -264,6 +264,7 @@ GET /companies/-NT4edA/
 "companies": {companies},
 ```
 <hr />
+
 ### <a id="getDocuments_certificateDeposit"></a> Retrieve your certificate of deposit ###
 
 ```
