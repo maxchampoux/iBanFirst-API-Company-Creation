@@ -7,7 +7,7 @@
 * [Address Object](#address_object)
 * [Account Object](#account_object)
 * [Phone Object](#phone_object)
-* [Registered_Individual Name Object](#registeredIndividualName_object)
+* [Registered Individual Name Object](#registeredIndividualName_object)
 * [Amount Object](#amount_object)
 * [Document Object](#document_object)
 * [Document List](#document_list)
@@ -97,7 +97,7 @@ This object shows the shareholder ownership and detailed information. We gave yo
 
 | Field | Type | Description |
 |-------|------|-------------|
-| id | [ID](#type_id) | The IF code identifying in a unique way the shareholder. |
+| id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying in a unique way the shareholder. |
 | sharesNumber | Value | The number of shares that belong to the shareholder. |
 | type | String (10) | It can be `individual` or `corporate`. |
 | isMainFounder | Binary | Indicates who is introducing the project among the project. It can be `true` or `false`. You can only have on Main Founder. |
@@ -345,15 +345,20 @@ The list of document that can be submitted for a shareholder/ individual.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| tag | String (60) | The name of your document as you must used it with the corresponding `POST /document` calls. |
+| id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the document. |
+| tag | String (60) | The name of your document as you must used it with the corresponding `PUT /companies/-{id}/document/` calls. |
 | documentType | String (60) | The document that may belong to a `corporate` (i.e. your company) or an `individual` (i.e. a shareholder). The full list of document is accessible in the [Document List](#document_list)  |
+| file | String | The binary content of the file, encoded with a base64 algorithm. |
 
 **Example:**
 
 ```js
 {
+    "id": "aB4edA",
     "documentType": "invoice",
     "tag": "invoicePiedPieper.png",
+    "file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
+},
 }
 ```
 
