@@ -13,7 +13,7 @@
 Method: POST 
 URL: /companies/
 ```
-You want to create your company? That's great! Let's start your project now, the following data is required to open a file:
+You want to create your company? That's great! Let's start your project now, the following data is required to retrieve an IBAN:
 
 On your future company ([Company Creation Data Object](../objects/objects.md#companyCreationData_object)):
 * legalForm
