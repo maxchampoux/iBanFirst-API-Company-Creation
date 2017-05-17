@@ -2,7 +2,7 @@
 
 | Route | Description |
 |-------|-------------|
-| [`POST /companies/`](#post_companies) | Start your company creation project |
+| [`POST /companies/`](#post_companies) | Start your company creation project. You get an IBAN in return. |
 | [`PUT /companies/-{id}/releaseDeposit/`](#pout_companiesReleaseDeposit) | Ask for your capital to be released and enjoy your iBanFirst account |
 | [`GET /companies/-{id}/`](#get_companies) | Retrieve information relative to a company creation project |
 | [`GET /companies/-{id}/certificateOfDeposit/`](#getDocuments_certificateDeposit) | Retrieve your certificate of deposit |
