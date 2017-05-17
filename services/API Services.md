@@ -55,9 +55,9 @@ On the other founders ([Shareholder Object](../objects/objects.md#shareholder_ob
 * shareholdingStructure (if type = "corporate" and for all shareholder on the 2 level owning +25%)
 
 By submitting your project, you consider that your project is complete and all documents properly signed.
-We will return an IBAN that each shareholder can use to send their capital deposit. Status is `awaitingFunds` until all funds from shareholder has been correctly collected and matched.
-We will proceed a due diligence review of your project, the shareholders and the presence of the right deposits. When we are fine, your project status will be updated automatically to `pendingKyc` that means that your certificate of deposit has been generated and is ready to be retrieved using the API Route: [`GET /companies/-{id}/certificateOfDeposit/`](#getDocuments_certificateDeposit) or the Webhook:[`toto`](#webhook).
-Next step will be to upload your kbis and ask for the release of the deposit.
+* We will return an IBAN that each shareholder can use to send their capital deposit. Status is `awaitingFunds` until all funds from shareholder has been correctly collected and matched.
+* We will proceed a due diligence review of your project, the shareholders and the presence of the right deposits. When we are fine, your project status will be updated automatically to `pendingKyc` that means that your certificate of deposit has been generated and is ready to be retrieved using the API Route: [`GET /companies/-{id}/certificateOfDeposit/`](#getDocuments_certificateDeposit) or the Webhook:[`toto`](#webhook).
+* Next step will be to upload your kbis and ask for the release of the deposit.
 
 **Parameters:**
 
