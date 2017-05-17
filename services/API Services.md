@@ -39,7 +39,7 @@ On the main founder ([Shareholder Object](../objects/objects.md#shareholder_obje
 * birthCountry (if type = "individual")
 * phoneNumber
 * is Pep (if type = "individual")
-* shareholdingStructure (if type = "corporate" and for all shareholder on the 2 level owning +25%)
+* shareholdingStructure (if type = "corporate" and for all shareholder on the 2 level owning 25% and +)
 
 On the other founders ([Shareholder Object](../objects/objects.md#shareholder_object)):
 * type
