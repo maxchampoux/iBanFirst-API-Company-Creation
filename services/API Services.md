@@ -315,7 +315,7 @@ Congrats! At this stage, basically your company should be registered and you sho
 * accountNumber
 * registrationNumber
 * registrationDate
-* Documents : "articleOfAssociationSigned", 
+* Documents : "articleOfAssociationSigned", "proofOfIncorporation", 
 
 **Parameters:**
 
