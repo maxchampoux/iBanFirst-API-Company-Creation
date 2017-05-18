@@ -32,7 +32,7 @@ On the main founder ([Shareholder Object](../objects/objects.md#shareholder_obje
 * sharesNumber
 * email
 * registeredAddress:
-	* street
+	** street
 	* postCode
 	* city
 	* country
