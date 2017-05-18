@@ -31,9 +31,21 @@ On the main founder ([Shareholder Object](../objects/objects.md#shareholder_obje
 * isMainFounder = true
 * sharesNumber
 * email
-* registeredAddress
-* registeredIndividual (or registeredCorporate if type = "corporate")
-	* registeredIndividualNationality (if type = "individual")
+* registeredAddress:
+	* street
+	* postCode
+	* city
+	* country
+* registeredIndividual (if type = "individual"):
+	* civility
+	* firstName
+	* lastName
+	* nationality
+	* birthDate
+	* birthCity
+	* birthCountry
+* registeredCorporate (if type = "corporate"):
+
 * document = "proofOfIdentity" (or "certificateOfIncorporation" if type = "corporate")
 * birthDate (if type = "individual")
 * birthCountry (if type = "individual")
