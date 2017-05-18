@@ -43,7 +43,7 @@ On the main founder ([Shareholder Object](../objects/objects.md#shareholder_obje
 
 On the other founders ([Shareholder Object](../objects/objects.md#shareholder_object)):
 * type
-* isMainFounder = true
+* isMainFounder = false
 * sharesNumber
 * email
 * registeredAddress 
