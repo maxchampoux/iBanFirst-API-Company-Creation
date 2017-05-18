@@ -17,55 +17,28 @@ URL: /companies/
 You want to create your company? That's great! Let's start your project now, the following data is required to retrieve an IBAN:
 
 On your future company ([Company Creation Data Object](../objects/objects.md#companyCreationData_object)):
-* legalForm
 * registeredName
-* registeredAddress
+* registeredAddress (street, postCode, city, country)
+* legalForm
 * activityCode
 * sharesNumber
-* sharesCapital
+* sharesCapital (value, currency)
 * liberatedPercentage
-* document = "openingAccountAgreement", "articleOfAssociationDraft".
+* documents ("openingAccountAgreement", "articleOfAssociationDraft").
 
-On the main founder ([Shareholder Object](../objects/objects.md#shareholder_object)):
+On all founders ([Shareholder Object](../objects/objects.md#shareholder_object)):
 * type
-* isMainFounder = true
+* isMainFounder 
 * sharesNumber
 * email
-* registeredAddress:
-	** street
-	* postCode
-	* city
-	* country
-* registeredIndividual (if type = "individual"):
-	* civility
-	* firstName
-	* lastName
-	* nationality
-	* birthDate
-	* birthCity
-	* birthCountry
+* is Pep (if type = "individual")
+* registeredAddress (street, postCode, city, country)
+* registeredIndividual (if type = "individual") (civility, firstName, lastName, nationality, birthDate, birthCity, birthCountry)
 * registeredCorporate (if type = "corporate"):
-
-* document = "proofOfIdentity" (or "certificateOfIncorporation" if type = "corporate")
-* birthDate (if type = "individual")
-* birthCountry (if type = "individual")
+* documents = "proofOfIdentity" (if type = "individual")
+* documents = "certificateOfIncorporation", "articleOfAssociationSigned" (if type = "corporate")
 * phoneNumber
-* is Pep (if type = "individual")
-* shareholdingStructure (if type = "corporate" and for all shareholder on the 2 level owning 25% and +)
-
-On the other founders ([Shareholder Object](../objects/objects.md#shareholder_object)):
-* type
-* isMainFounder = false
-* sharesNumber
-* email
-* registeredAddress 
-* registeredIndividualName (or registeredCorporateName depending on the type)
-* registeredIndividualNationality (if type = "individual")
-* birthDate (if type = "individual")
-* birthCountry (if type = "individual")
-* is Pep (if type = "individual")
-* document = "proofOfIdentity" (or "certificateOfIncorporation" and "articleOfAssociationSigned" if type = "corporate") and "mandateShareholder"
-* shareholdingStructure (if type = "corporate" and for all shareholder on the 2 level owning +25%)
+* shareholdingStructure (if type = "corporate" and for all shareholder on the level 2 owning 25% and +)
 
 By submitting your project, you consider that your project is complete and all documents properly signed.
 * We will return an IBAN that each shareholder can use to send their capital deposit. Status is `awaitingFunds` until all funds from shareholder has been correctly collected and matched.
