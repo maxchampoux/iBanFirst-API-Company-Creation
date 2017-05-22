@@ -21,15 +21,15 @@ On your future company ([Company Creation Data Object](../objects/objects.md#com
 * registeredAddress (street, postCode, city, country)
 * legalForm
 * activityCode
-* sharesNumber
+* shares
 * sharesCapital (value, currency)
-* liberatedPercentage
+* liberated
 * documents ("openingAccountAgreement", "articleOfAssociationDraft").
 
 On all founders ([Shareholder Object](../objects/objects.md#shareholder_object)):
 * type
 * isMainFounder 
-* sharesNumber
+* shares
 * email
 * is Pep (if type = "individual")
 * registeredAddress (street, postCode, city, country)
@@ -69,10 +69,10 @@ POST /companies/
 	"sharesCapital": {
 		"value": 100000.00,
 		"currency": "EUR",
-	}
-	"sharesNumber": 100.00,
-	"liberatedPercentage": 100.00,
-	"documents": {
+	},
+	"shares": 100,
+	"liberated": 100.00,
+	"documents": [
 		"document": {
 			"type": "openingAccountContract",
 			"tag": "Pied Pieper - openingAccountContract.pdf",
@@ -81,11 +81,11 @@ POST /companies/
 			"type": "articleOfAssociationDraft",
 			"tag": "Pied Pieper - articleOfAssociationDraft.pdf",
 		},
-	},
+	],
     },
     "shareholdingStructure": {
     	"shareholder": {
-		"sharesNumber": 50000.00,
+		"shares": 50000,
 		"type": "individual",
 		"isMainFounder": true,
 		"birthDate": 1991-06-25,
@@ -93,7 +93,7 @@ POST /companies/
 		"phoneNumber": {
 		    "countryCode": "+33",
 		    "phoneNumber": "671738257",
-		}
+		},
 		"email": "test@ibanfirst.com",
 		"registeredIndividualName": {
 			"civility": "M",
@@ -105,19 +105,19 @@ POST /companies/
 			"postCode": "75017",
 			"city": "Paris",
 			"country": "FR"
-		}
+		},
 		"registeredIndividualNationality": "FR",
 		"isPep": false,
-		"documents": {
+		"documents": [
 			"document": {
 				"type": "proofOfIdentity",
 				"tag": "Maxime Champoux - CNI.png",
-			},
+			],
 		},
 	},
 	"shareholder": {
 		"id": "WZ4edA",
-		"sharesNumber": 10000.00,
+		"shares": 10000,
 		"type": "individual",
 		"isMainFounder": false,
 		"birthDate": 1991-06-25,
@@ -125,7 +125,7 @@ POST /companies/
 		"phoneNumber": {
 		    "countryCode": "+33",
 		    "phoneNumber": "671738257",
-		}
+		},
 		"email": "test@ibanfirst.com",
 		"registeredIndividualName": {
 			"civility": "M",
@@ -134,7 +134,7 @@ POST /companies/
 		},
 		"registeredIndividualNationality": "FR",
 		"isPep": false,
-		"documents": {
+		"documents": [
 			"document": {
 				"type": "proofOfIdentity",
 				"tag": "John Doe - CNI.png",
@@ -143,19 +143,19 @@ POST /companies/
 				"type": "mandateShareholder",
 				"tag": "John Doe - PowerOfAttorney.png",
 			},
-		},
+		],
 	},
 	"shareholder": {
 		"id": "XY4edA",
 		"type": "corporate",
-		"sharesNumber": 40000.00,
+		"shares": 40000,
 		"legalForm": "EURL",
 		"registeredCorporateAddress": "My Holding",
 		"isMainFounder": false,
 		"phoneNumber": {
 		    "countryCode": "+33",
 		    "phoneNumber": "671738257",
-		}
+		},
 		"email": "myHolding@email.com",
 		"registeredAddress": {
 			"street": "1 rue de l'université",
@@ -163,7 +163,7 @@ POST /companies/
 			"city": "Paris",
 			"country": "France",
 		},
-		"documents": {
+		"documents": [
 			"document": {
 				"type": "certificateOfIncorporation",
 				"tag": "KBIS - myHolding.pdf",
@@ -176,14 +176,14 @@ POST /companies/
 				"type": "mandateShareholder",
 				"tag": "myHolding - PowerOfAttorney.png",
 			},
-		},
-		 "shareholdingStructure": {
+		],
+		 "shareholdingStructure": [
 			"shareholder": {
 				"id": "WE4edA",
 				"type": "individual",
 				"birthDate": 1991-06-25,
 				"birthCountry": "FR",
-				"sharespercentage": 100.00,
+				"ownership": 100.00,
 				"registeredIndividualName": {
 					"civility": "M",
 					"firstName": "Maxime",
@@ -191,14 +191,14 @@ POST /companies/
 				},
 				"registeredIndividualNationality": "FR",
 				"isPep": true,
-				"documents": {
+				"documents": [
 					"document": {
 						"type": "idProof",
 						"tag": "Maxime Champoux - CNI",
 					},
-				},
+				],
 			},
-		},
+		],
 	},
     },		
 },
@@ -318,7 +318,7 @@ PUT /companies/-NT4edA/certificateIncorporation/
 	"regitrationNumber": "814455614",
 	"regitrationDate": 2017-06-25,
 	"accountNumber": "R76 3000 3009 9500 0503 4076 086",
-	"documents": {
+	"documents": [
 		"document": {
 			"documentType": "certificateOfIncoraporation",
 			"tag": "certificateOfIncorporation.pdf",
@@ -329,7 +329,7 @@ PUT /companies/-NT4edA/certificateIncorporation/
 			"tag": "articleOfAssociationSigned.pdf",
 			"file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
 		},
-	},
+	],
 }	
 ```
 
