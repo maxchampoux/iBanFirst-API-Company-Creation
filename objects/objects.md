@@ -34,7 +34,7 @@ The main object in my company creation project. Status is automatically updated 
     	 "id": "NT4edA",
 	 "status": "awaitingFunds",
 	 "companyCreationDatas": {companyCreationDatas},
-    	 "shareholdingStructure": {{shareholder},{shareholder}},
+    	 "shareholdingStructure": [{shareholder},{shareholder}],
 	 "account": {account},
 },
 ```
@@ -52,9 +52,9 @@ Specific information required for opening a company creation project.
 | legalForm | String (5) | The legal form of the company to be created. It can be one of those 4 forms: `sasu`,`sarl`,`sas` and `eurl` |
 | registeredAddress | [Address Object](#address_object) | The registered address of the company to be created. |
 | activityCode | [NAFID](#NAF) | The code identifying the type of business of the company to be created. |
-| sharesNumber | Value | The number of shares to be issued. |
+| shares | Integer | The number of shares to be issued. |
 | sharesCapital | [Amount Object](#amount_object) | The amount in shareholding capital as mentionned in the articles of association. |
-| liberatedPercentage | Value (5) | The percentage of shareholding capital to be released when the company is created. "20.00", "50.00" or "100.00". |
+| liberated | Float (5) | The percentage of shareholding capital to be released when the company is created. "20.00", "50.00" or "100.00". |
 | commercialName | String(100) | The commercial name of the company to be created. |
 | commercialAddress | [Address Object](#address_object) | The commercial address of the company to be created. |
 | tag | String(100) | The customized name of the company to be created. (Will only be used internally). |
@@ -69,21 +69,12 @@ Specific information required for opening a company creation project.
     "registeredAddress": {address},
     "activityCode":"6201Z",
     "authorizedCapital":{amount},
-    "sharesNumber": 100000.00,
-    "liberatedPercentage": 100.00,
+    "shares": 100000,
+    "liberated": 100.00,
     "commercialName": "Pied Pieper",
     "commercialAddress": {address},
     "tag":"null",
-    "documents": [
-    	"document": {
-		"type": "articleOfAssociationDraft",
-		"tag": "NameOfTheDocument",
-	}
-	"document": {
-		"type": "certificateOfIncorporation",
-		"tag": "NameOfTheDocument",
-	}
-    ]
+    "documents": [{document},{document}]
 }
 ```
 
@@ -98,9 +89,9 @@ This object shows the shareholder ownership and detailed information. We gave yo
 | Field | Type | Description |
 |-------|------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying in a unique way the shareholder. |
-| sharesNumber | Value | The number of shares that belong to the shareholder. |
+| shares | Integer | The number of shares that belong to the shareholder. |
 | type | String (10) | It can be `individual` or `corporate`. |
-| isMainFounder | Binary | Indicates who is introducing the project among the project. It can be `true` or `false`. You can only have on Main Founder. |
+| isMainFounder | Boolean | Indicates who is introducing the project among the project. It can be `true` or `false`. You can only have on Main Founder. |
 | email | string (60) | Dedicated email of the shareholder. We may use this email to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have an email format. |
 | phoneNumber | [Phone Object](#phone_object) | Dedicated phone number of the shareholder. We may use this number to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have the right format. |
 | registeredIndividualName | [Registered_Individual Name Object](#registeredIndividualName_object) | The registered name of the shareholder when type is `individual`. |
@@ -108,36 +99,27 @@ This object shows the shareholder ownership and detailed information. We gave yo
 | registeredIndividualNationality | String (2) | The two-letters abbreviation for the country where the shareholder is registered if type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166).|
 | birthDate | Date | The birth date of the shareholder when type is `individual`. `YYYY-MM-DD` |
 | birthCountry | String (2) | The two-letters abbreviation for the country where the shareholder is born when type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166). |
-| isPep | Binary | You indicates if the shareholder is legally recognized as a [PEP](https://en.wikipedia.org/wiki/Politically_exposed_person). `true` or `false`. |
+| isPep | Boolean | You indicates if the shareholder is legally recognized as a [PEP](https://en.wikipedia.org/wiki/Politically_exposed_person). `true` or `false`. |
 | documents | Array<[Document Object](#document_object)> | The required documents related to this shareholder. |
 | legalForm | String(60) | The legal Form of the shareholder when type is `corporate`. `sas` |
-| sharesPercentage | String(5) | Percentage of shares a shareholder level 2 own from a shareholder level 1 with type `corporate`. |
+| ownership | Float (5) | Percentage of shares a shareholder level 2 own from a shareholder level 1 with type `corporate`. |
 
 **Example 1: individual shareholder**
 
 ```js
 "shareholder": {
 	"id": "XV4edA",
-	"sharesNumber": 50000.00,
+	"shares": 50000,
 	"type": "Individual",
 	"isMainFounder": true,
 	"email": "mch@ibanfirst.com",
-	"registeredIndividualName": {
-	    "civility": "M",
-	    "firstName": "Maxime",
-	    "lastName": "Champoux",
-	},
+	"registeredIndividualName": {registeredIndividualName},
 	"registeredAddress": {registeredAddress},
 	"registeredIndivdualNationality": "FR",
 	"birthDate": 1991-06-25,
 	"birthCountry": "FR",
 	"isPep": true,
-	"documents": {
-	    "document": {
-		"type": "idProof",
-		"id": "Maxime Champoux - CNI",
-	    },
-	},
+	"documents": [{document},{document}],
 },
 ```
 
@@ -146,49 +128,14 @@ This object shows the shareholder ownership and detailed information. We gave yo
 ```js
 "shareholder": {
 	"id": "PK4edA",
-	"sharesNumber": 40000.00,
+	"shares": 40000,
 	"type": "Corporate",
 	"legalForm": "EURL",
 	"isMainFounder": false,
 	"email": "myHolding@email.com",
-	"registeredAddress": {
-	    "street": "1 rue de l'université",
-	    "postCode": "75006",
-	    "city": "Paris",
-	    "country": "FR",
-	},
-	"documents": {
-	    "document": {
-		"type": "certificateOfIncorporation",
-		"id": "KBIS - myHolding",
-	    },
-	    "document": {
-		"type": "articleOfAssociation",
-		"id": "KBIS - myHolding",
-	    },
-	},
-	"shareholdingStructure": {
-	    "shareholder": {
-		"id": "WE4edA",
-		"sharespercentage": 100%,
-		"registeredIndividualName": {
-		    "civility": "M",
-		    "firstName": "Maxime",
-		    "lastName": "Champoux",
-		},
-		"registeredAddress": {registeredAddress},
-		"registeredIndivdualNationality": "FR",
-		"birthDate": 25-06-1991,
-		"birthCountry": "FR",
-		"isPep": true,
-		"documents": {
-		    "document": {
-			"type": "idProof",
-			"id": "Maxime Champoux - CNI",
-		    },
-		},
-	    },
-	},
+	"registeredAddress": {address},
+	"documents": [{document}...],
+	"shareholdingStructure": [{shareholder},{...}],
 ]
 ```
 
@@ -196,7 +143,7 @@ This object shows the shareholder ownership and detailed information. We gave yo
 
 #### <a id="status_list"></a> Status List ####
 
-Here is the list of status you may encounter while using the iBanFirst APi.
+Here is the list of status you may encounter while using the iBanFirst API.
 
 **Document resources:**
 
@@ -307,10 +254,9 @@ When a phone number is specified as part of a JSON body, it is encoded as an obj
 
 ```js
 "registeredIndividualName": {
-	"civility": "M",
-    	"first": "John",
-   	"last": "Doe",
+TBD
 }
+	
 ```
 
 <hr />
