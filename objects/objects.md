@@ -168,8 +168,8 @@ When an Account is specified as part of a JSON body, it is encoded as an object 
 |-------|------|-------------|
 | currency | [Currency](../conventions/formattingConventions.md#type_currency) | The three-digit code specifying the currency of the account. |
 | tag |  String(50) | Custom reference of the account. |
-| accountNumber | String(40) | The code specifying the account (can be either an Iban or an account number). |
-| holderBank | [ID](#type_id) | The recipient bank details, holding the account. |
+| accountNumber | String(40) | The code specifying the account - will be an IBAN. |
+| holderBank | String (11) | The code identifying iBanFirst or BIC/SWIFT code. |
 | holder | [Holder Object](#holder_object) | The recipient details, owner of the account. If the company is in pending creation, then [pending creation] will be added aside the owner name. |
 
 **Example:**
@@ -177,11 +177,10 @@ When an Account is specified as part of a JSON body, it is encoded as an object 
 ```js
 "account": {
     "currency": "EUR",
-    "tag": "My wallet account EUR",
-    "accountNumber": "516981638516313513",
-    "correspondantBank":{correspondentBank}
-    "holderBank":{beneficiaryBank}
-    "holder":{beneficiary}
+    "tag": "My payment account EUR",
+    "accountNumber": "BE169816385163133",
+    "holderBank": "FXBBBEBBXXX",
+    "holderName": "Pied Pieper Paris [société en cours de formation",
 }
 ```
 
