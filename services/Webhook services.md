@@ -1,14 +1,39 @@
+# Using webhooks #
 
 The Webhooks APIs provide realtime access to account data. After configuring a destination URL, iBanFirst will begin POSTing data directly to the URL when relevant activities occur.
 
-# Configuring you webhook settings #
+Interacting with a third-party API like iBanFirst can introduce two problems: 
+* Services not directly responsible for making an API request may still need to know the response of that request
+* Some events, like credit of accounts and many status event, are not the result of a direct API request
 
-Webhoks are configured in the [Webhhoks settings] section of the [API Supervisor Dashboard]. Clicking Add endpoint releals to add a new URL for receiving webhooks.
+Webhooks solve these problems by letting you register a URL that we will notify anytime an event happens in your account. When the event occurs - for example, when a successful payment is allocated on a company creation project, iBanFirst creates an 'event' object. This object contains all relevant information about what just happened, including the type of event and the data associated with that event. iBanFirst then send the 'event' object to any URLs in your account's webhooks settings via an HTTP POST request. You can fin a full list of all event types in the [API doc].
 
+## Configuring you webhook settings ##
+
+Webhooks are configured in the [Webhooks settings] section of the [API Supervisor Dashboard]. Clicking Add endpoint releals to add a new URL for receiving webhooks.
+
+1. Create a web app with an endpoint to use as your webhook to receive events (e.g. https://mydomain.com/webhook/twitter).
+2. Make sure you webhook supports POST requests for incoming events and GET requests for XWSSE authentication
+3. Register you webhook URL with your app using 'POST accountActivity/webhooks'
 You can enter any URL you'd like to have events sent to, but this should be a dedicated page on you server, coded per the instructions below. 
+4. Use the returned 'webhookId' to add user subscriptions with 'POST accountActivity/webhooks/-{id}/subscriptions
 
+## Receiving Webhook Events ##
 
+# Routes and Lists #
 
+## Types of events ##
+
+This is a list of all the types of events we currently send. we may add more at any time, so you shouldn't rely on only these types existing in your code.
+You'll notice that these events follow a pattern: 'accountUpdate'. our goal is to design a consistent system that makes things easier to anticipate and code against. 
+
+| Route | Description |
+|-------|-------------|
+| [`entityCreated`](#entityUpdated) | Occurs whenever an new entity is created. |
+| [`entityUpdated`](#entityUpdated) | Occurs whenever an entity status has changed. |
+| [`transferCreated`](#transferCreated) | Occurs whenever a new transfer is created and allocated to your account. |
+| [`transferReversed`](#transferReversed) | Occurs whenever a transfer is allocated to your account but has been rejected for compliance reason or upon your request. |
+| [`transferUpdated`](#entityUpdated) | Occurs when a transfer has been allocated to your account and is now allocated to the right shareholder. |
 
 ## Transaction  webhooks ##
 
