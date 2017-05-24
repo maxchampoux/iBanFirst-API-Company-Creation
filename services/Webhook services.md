@@ -6,7 +6,15 @@ Interacting with a third-party API like iBanFirst can introduce two problems:
 * Services not directly responsible for making an API request may still need to know the response of that request
 * Some events, like credit of accounts and many status event, are not the result of a direct API request
 
-Webhooks solve these problems by letting you register a URL that we will notify anytime an event happens in your account. When the event occurs - for example, when a successful payment is allocated on a company creation project, iBanFirst creates an 'event' object. This object contains all relevant information about what just happened, including the type of event and the data associated with that event. iBanFirst then send the 'event' object to any URLs in your account's webhooks settings via an HTTP POST request. You can fin a full list of all event types in the [API doc].
+Webhooks solve these problems by letting you register a URL that we will notify anytime an event happens in your account. When the event occurs - for example, when a successful payment is allocated on a company creation project, iBanFirst creates an 'event' object. This object contains all relevant information about what just happened, including the type of event and the data associated with that event. iBanFirst then send the 'event' object to any URLs in your account's webhooks settings via an HTTP POST request. You can fin a full list of all event types in the [Types of events list](#events).
+
+You might use webhooks as the basis to:
+* Update a customer record in your database when a transfer is allocated to its account
+* Email a customer when a transfer has failed to be allocated to a shareholder and has been rejected
+* Update a customer record in your database when the status of its project is updated
+* Email a customer when the 'certificate of deposit' has been provided
+* Update a customer record in your database when the status of a document sent is updated
+* Email a customent when a document provided is rejected and a new one must be uploaded again
 
 ## Configuring you webhook settings ##
 
@@ -22,7 +30,7 @@ You can enter any URL you'd like to have events sent to, but this should be a de
 
 # Routes and Lists #
 
-## Types of events ##
+## <a id="events"></a> Types of events ##
 
 This is a list of all the types of events we currently send. we may add more at any time, so you shouldn't rely on only these types existing in your code.
 You'll notice that these events follow a pattern: 'accountUpdate'. our goal is to design a consistent system that makes things easier to anticipate and code against. 
