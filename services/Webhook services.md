@@ -43,6 +43,10 @@ If a webhook is not successfully received for any reason, iBanFirst will continu
 
 In the API supervisor interface, you can check how many times we've attempted to send an event to an endpoint by clicking on that endpoint URL in the Webhook details section. This will shoiw you the latest response we received from you endpoint, along with a list of all attempted webhooks and the respective HTTP status codes we received.
 
+## Best practices ##
+
+Before going live, test that your webhook is working properly. You can do so by sending dummy test events
+
 # Routes and Lists #
 
 ## <a id="events"></a> Types of events ##
