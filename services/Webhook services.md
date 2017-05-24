@@ -20,13 +20,28 @@ You might use webhooks as the basis to:
 
 Webhooks are configured in the [Webhooks settings] section of the [API Supervisor Dashboard]. Clicking Add endpoint releals to add a new URL for receiving webhooks.
 
-1. Create a web app with an endpoint to use as your webhook to receive events (e.g. https://mydomain.com/webhook/twitter).
+1. Create a web app with an endpoint to use as your webhook to receive events (e.g. https://mydomain.com/webhook/ibanfirst).
 2. Make sure you webhook supports POST requests for incoming events and GET requests for XWSSE authentication
 3. Register you webhook URL with your app using 'POST accountActivity/webhooks'
 You can enter any URL you'd like to have events sent to, but this should be a dedicated page on you server, coded per the instructions below. 
 4. Use the returned 'webhookId' to add user subscriptions with 'POST accountActivity/webhooks/-{id}/subscriptions
 
 ## Receiving Webhook Events ##
+
+Creating a webhook endpoint on your server is no different from creating any page on your website. With PHP, you might create a new .php file on your server; with a framework like symphony, you would add a new route with the desired URL.
+
+Webhok data is sent as JSON in the POST request body. The full event details are included and can be used directly, after parsing the JSON into an [event object](#events).
+
+* Receiving webhooks with a CSRF-protected server
+* Receiving webhooks with an HTTPS server
+
+## Responding to a webhook ##
+
+To acknowledge receipt of a webhook, your endpoint should return a '2xx' HTTP status code. Any other information returned in the request headers or request body is ignored. All response codes outside this range, including '3xx' codes will indicate to iBanFirstthat you did not receive the webhook. This does mean that a URL redirection or a 'Not Modified' response will be treated as a failure.
+
+If a webhook is not successfully received for any reason, iBanFirst will continue trying to send the webhook once an hour for up to 3 days. Webhooks cannot be manually retried after this time, though you can [query for the event = TBD](#eventsObject) to reconcile your data with any missed events.
+
+In the API supervisor interface, you can check how many times we've attempted to send an event to an endpoint by clicking on that endpoint URL in the Webhook details section. This will shoiw you the latest response we received from you endpoint, along with a list of all attempted webhooks and the respective HTTP status codes we received.
 
 # Routes and Lists #
 
