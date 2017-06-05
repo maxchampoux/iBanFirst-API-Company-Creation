@@ -6,52 +6,37 @@ Please use the following service to create your company project:
 
 [`POST /companies/`](/services/companies.md#post_companies)
 
-#### 2. Ask for an IBAN ####
-
-[`PUT /companies/-{id}/iban`](/services/companies.md#put_companiesIban)
-
 This service will return an IBAN for the deposit of the "Share Capital" of your future company.
 We will require some mandatory documents and let you some time to gather the full KYC until next step.
 
-#### 3. Ask for a certificate of deposit ####
+When your project is complete, i.e. we have received all transfers, documents and information needed, we will proceed to the analysis of your project. This can take up to 48 hours before your certificate of deposit can be generated. In case you have implemented a webhook, you will be notified as soon as this certificate is available. In other cases, you may call our API to get the status and retrieve the document when available.
 
-[`PUT /companies/-{id}/projectComplete`](/services/companies.md#put_companiesComplete)
+PS: documents file must be provided with a specific call : | [`PUT /companies/-{id}/document/`](/services/companies.md#out_document) | Upload a document already declared in your project. |
 
-Until your project is not complete, the following service will return errors mentioning the missing information.
-When your project is complete, the analysis of your project and the generation of the certificate can take up to 48 hours. In case you have implemented a webhook, you will be notified as soon as this certificate is available. In other cases, you may call our API to get the status and retrieve the document when available.
-
-#### 4. Retrieve your certificate of deposit ####
+#### 2. Retrieve your certificate of deposit ####
 
  [`GET /companies/-{id}/certificateDeposit/`](/services/companies.md#getDocuments_certificateIncorporation)
  
-You can use either this API service, a FTP server or a tailor-made webhook to retrieve your certificate of deposit.
+You can use either this API service or a tailor-made webhook to retrieve your certificate of deposit.
 
-#### 5. Upload your Kbis ####
+#### 3. 	Open a Pro account  ####
 
- [`POST /companies/-{id}/certificateIncorporation`](/services/companies.md#post_companiesCertificateIncorporation) 
- 
-You have your certificate of Incorporation, that's great! It means that you company now exist and that you can enjoy you account after a quick verification from our side.
+You now have your certificate of incorporation, that's great! It means that your company now exists and that you will be able to open a Pro account and start your activity. 
 
-#### 6. Release the deposit and enjoy your iBanFirst account  ####
+Please use the following service to open a Pro account :
 
-[`POST /companies/-{id}/releaseDeposit`](/services/companies.md#post_companiesReleaseDeposit)
+[`POST /onboard/`](/services/companies.md#post_onboard)
+
+#### 4. 	Ask for your capital to be released  ####
 
 You are there! Use this call to have access to your account en enjoy your iBanFirst account!
+
+can enjoy you account after a quick verification from our side.
+ [`PUT /companies/-{id}/releaseDeposit/`](#put_companiesReleaseDeposit)
+ 
 
 #### XX. Know where you are in your company creation project ####
 
 [`GET /companies/-{id}/`](/services/companies.md#get_companies) 
 
 You want to know if all shareholders has deposited funds to the IBAN? You can use this service for having more information on the status of your project.
-
-#### XX. Update information in your project ####
-
- [`PUT /companies/-{id}/`](/services/companies.md#put_companies)
- 
-You have new information you want to share with us. That's great! Updating your project shall move it to the next step.
-
-#### XX. Delete your project ####
-
-[`DELETE /companies/-{id}/`](/services/companies.md#delete_companies)
-
-We are so sad you are doing that. See you next time!
