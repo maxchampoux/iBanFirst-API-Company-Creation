@@ -34,10 +34,10 @@ On all founders ([Shareholder Object](../objects/objects.md#shareholder_object))
 * phoneNumber
 * registeredAddress (street, postCode, city, country)
 * registeredIndividual (if type = "individual") (civility, firstName, lastName, nationality, birthDate, birthCity, birthCountry, isPep)
-* registeredCorporate (if type = "corporate"):
-* documents => documentToComplete "proofOfIdentity" (if type = "individual")
-* documents => documentToComplete "certificateOfIncorporation", "articleOfAssociationSigned" (if type = "corporate")
-* shareholdingStructure (if type = "corporate" and for all shareholder on the level 2 owning 25% and +)
+* registeredCorporate (if type = "corporate") (legalName, legalForm)
+* documents => documentToComplete (if type = "individual") ("proofOfIdentity" ); (if type = "corporate") ("certificateOfIncorporation", "articleOfAssociationSigned")
+* shareholdingStructure (if type = "corporate" and for all shareholder on the level 2 with ownership equal to 25% and +)
+* ownership (for level 2 shareholder)
 
 By submitting your project, you consider that your project is complete and all documents properly signed.
 * We will return an IBAN that each shareholder can use to send their capital deposit. Status is `awaitingFunds` until all funds from shareholder has been correctly collected and matched.
@@ -46,9 +46,10 @@ By submitting your project, you consider that your project is complete and all d
 
 **Parameters:**
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+| Field | In | Type | Required | Description |
+|-------|------|------|----------|-------------|
+| companyCreationDatas | Body | array<[Company Creation Data Object](../objects/objects.md#companyCreationData_object)> | Required | Data regarding your company creation project |
+| shareholders | Body | array<[Shareholder Object](../objects/objects.md#shareholder_object)> | Required | Data regarding your company creation project |
 
 **Example of a Call containing all required information at this stage:**
 ```js
