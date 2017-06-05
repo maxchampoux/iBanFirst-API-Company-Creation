@@ -20,11 +20,11 @@ You might use webhooks as the basis to:
 
 Webhooks are configured in the [Webhooks settings] section of the [API Supervisor Dashboard]. Clicking Add endpoint releals to add a new URL for receiving webhooks.
 
-1.1. Create a web app with an endpoint to use as your webhook to receive events (e.g. https://mydomain.com/webhook/ibanfirst).
-1.2. Make sure your webhook supports POST requests for incoming events and GET requests for XWSSE authentication
-1.3. Register you webhook URL with your app using [`POST /webhooks/`](#post_webhooks)
+1. Create a web app with an endpoint to use as your webhook to receive events (e.g. https://mydomain.com/webhook/ibanfirst).
+2. Make sure your webhook supports POST requests for incoming events and GET requests for XWSSE authentication
+3. Register your webhook URL with your app using [`POST /webhooks/`](#post_webhooks)
 You can enter any URL you'd like to have events sent to, but this should be a dedicated page on your server, coded per the instructions below. 
-1.4. Use the returned 'webhookId' to sync your company with ['POST companies/-{id}/webhooks/-{id}/](#post_webhooksSubscription)
+4. Use the returned 'webhookId' to sync your company with ['POST companies/-{id}/webhooks/-{id}/](#post_webhooksSubscription)
 
 ## 2. Receiving Webhook Events ##
 
@@ -49,14 +49,35 @@ In the API supervisor interface, you can check how many times we've attempted to
 | Route | Description |
 |-------|-------------|
 | [`POST /webhooks/`](#post_webhooks) | Post your endpoint and get your webhook ID in return |
-| [`POST /companies/-{id}/webhooks/-{id}/`](#post_webhooksSubscription) | Sync your webhook ID returned with an entity. |
+| [`POST /companies/-{id}/webhooks/-{id}/`](#post_webhooksSubscription) | Sync your webhook ID returned with an entity |
 
-## <a id="post_webhooks"></a> Post your endpoint and get your webhook ID in return ##
+### <a id="post_webhooks"></a> Post your endpoint and get your webhook ID in return ###
 
 ```
 Method: POST 
 URL: /webhooks/
 ```
+
+Use this service to register your webhook URL (endpoint) and get your webhook ID in return.
+
+**Parameters:**
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| endpoint | String | Required | Your webhook URL (endpoint). |
+
+<hr />
+
+### <a id="post_webhooksSubscription"></a> Sync your webhook ID returned with an entity ###
+
+```
+Method: POST 
+URL: /companies/-{id}/webhooks/-{id}/
+```
+
+Use the returned 'webhookId' to sync your company with a specific endpoint.
+
+<hr />
 
 ## <a id="events"></a> Lists of events ##
 
