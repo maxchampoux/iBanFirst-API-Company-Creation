@@ -94,8 +94,8 @@ This object shows the shareholder ownership and detailed information. We gave yo
 | shares | Integer | The number of shares that belong to the shareholder. |
 | email | string (60) | Dedicated email of the shareholder. We may use this email to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have an email format. |
 | registeredAddress | [Address Object](#address_object) | The registered address of the shareholder. |
-| registeredIndividual | [Registered_Individual Object](#registeredIndividual_object) | The registered information of the shareholder when type is `individual`. |
-| registeredCorporate | [Registered_Individual Object](#registeredIndividual_object) | The registered information of the shareholder when type is `corporate`. |
+| registeredIndividual | [Registered Individual Object](#registeredIndividual_object) | The registered information of the shareholder when type is `individual`. |
+| registeredCorporate | [Registered Corporate Object](#registeredIndividual_object) | The registered information of the shareholder when type is `corporate`. |
 | documents | Array<[Document Object](#document_object)> | The required documents related to this shareholder. |
 | phoneNumber | [Phone](../conventions/formattingConventions.md#type_phone) | Dedicated phone number of the shareholder. We may use this number to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have the right format. |
 | ownership | Float (5) | Percentage of shares a shareholder level 2 owns from a shareholder level 1 with type `corporate`. |
