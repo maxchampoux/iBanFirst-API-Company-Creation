@@ -9,7 +9,7 @@ We will require some mandatory documents and let you some time to gather the ful
 
 When your project is complete, i.e. we have received all transfers, documents and information needed, we will proceed to the analysis of your project. This can take up to 48 hours before your certificate of deposit can be generated. In case you have implemented a webhook, you will be notified as soon as this certificate is available. In other cases, you may call our API to get the status and retrieve the document when available.
 
-PS: documents file must be provided with a specific call : [`PUT /companies/-{id}/document/`](/services/companies.md#out_document)
+PS: documents file must be completed using a specific API call : [`PUT /companies/-{id}/document/`](/services/companies.md#out_document)
 
 #### 2. Retrieve your certificate of deposit ####
 
