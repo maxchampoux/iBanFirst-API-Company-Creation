@@ -1,5 +1,7 @@
 ## GETTING STARTED WITH IBANFIRST REST COMPANY CREATION API ##
 
+3 easy steps to get your company up!
+
 #### 1. Create your company project ####
 
 Please use the following service to create your company project: [`POST /companies/`](/services/companies.md#post_companies)
@@ -15,19 +17,13 @@ PS: documents file must be completed using a specific API call : [`PUT /companie
 
 You can use either this API service [`GET /companies/-{id}/certificateDeposit/`](/services/companies.md#getDocuments_certificateIncorporation) or a tailor-made webhook to retrieve your certificate of deposit.
 
-#### 3. 	Open a Pro account  ####
+#### 3. 	Ask for your capital to be released  ####
 
-You now have your certificate of incorporation, that's great! It means that your company now exists and that you will be able to open a Pro account and start your activity. 
+You now have your certificate of incorporation, that's great! It means that your company now exists and that you will be able to open a Pro account with us and start your activity after a quick verification of your document from our side.
 
-Please use the following service to open a Pro account : [`POST /onboards/`](/services/companies.md#post_onboards)
-
-#### 4. 	Ask for your capital to be released  ####
-
-You are there! Use this call to have access to your account en enjoy your iBanFirst account!
-
-can enjoy you account after a quick verification from our side.
- [`PUT /companies/-{id}/releaseDeposit/`](#put_companiesReleaseDeposit)
+You can use this API service to send us the ultimate documents and data we will need from you: [`PUT /companies/-{id}/releaseDeposit/`](#put_companiesReleaseDeposit)
  
+Using this call, you may also indicate where to release your capital. 
 
 #### XX. Know where you are in your company creation project ####
 
