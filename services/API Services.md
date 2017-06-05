@@ -4,7 +4,7 @@
 |-------|-------------|
 | [`POST /companies/`](#post_companies) | Start your company creation project. You get an IBAN in return. |
 | [`PUT /companies/-{id}/releaseDeposit/`](#put_companiesReleaseDeposit) | Ask for your capital to be released. Let's make business now. |
-| [`PUT /companies/-{id}/document/`](#out_document) | Upload a document already declared in your project. |
+| [`PUT /companies/-{id}/document/`](#put_document) | Upload a document already declared in your project. |
 | [`GET /companies/-{id}/`](#get_companies) | Retrieve information related to a company creation project |
 | [`GET /companies/-{id}/certificateOfDeposit/`](#getDocuments_certificateDeposit) | Retrieve your certificate of deposit |
 
