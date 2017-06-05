@@ -20,11 +20,11 @@ You might use webhooks as the basis to:
 
 Webhooks are configured in the [Webhooks settings] section of the [API Supervisor Dashboard]. Clicking Add endpoint releals to add a new URL for receiving webhooks.
 
-1. Create a web app with an endpoint to use as your webhook to receive events (e.g. https://mydomain.com/webhook/ibanfirst).
-2. Make sure your webhook supports POST requests for incoming events and GET requests for XWSSE authentication
-3. Register you webhook URL with your app using [`POST /webhooks/`](#post_webhooks)
+1.1. Create a web app with an endpoint to use as your webhook to receive events (e.g. https://mydomain.com/webhook/ibanfirst).
+1.2. Make sure your webhook supports POST requests for incoming events and GET requests for XWSSE authentication
+1.3. Register you webhook URL with your app using [`POST /webhooks/`](#post_webhooks)
 You can enter any URL you'd like to have events sent to, but this should be a dedicated page on your server, coded per the instructions below. 
-4. Use the returned 'webhookId' to sync your company with ['POST companies/-{id}/webhooks/-{id}/](#post_webhooksSubscription)
+1.4. Use the returned 'webhookId' to sync your company with ['POST companies/-{id}/webhooks/-{id}/](#post_webhooksSubscription)
 
 ## 2. Receiving Webhook Events ##
 
@@ -48,9 +48,17 @@ In the API supervisor interface, you can check how many times we've attempted to
 
 | Route | Description |
 |-------|-------------|
-| [`POST /webhooks/`](#post_webhooks) | Start your company creation project. You get an IBAN in return. |
+| [`POST /webhooks/`](#post_webhooks) | Post your endpoint and get your webhook ID in return |
+| [`POST /companies/-{id}/webhooks/-{id}/`](#post_webhooksSubscription) | Sync your webhook ID returned with an entity. |
 
-## <a id="events"></a> Types of events ##
+## <a id="post_webhooks"></a> Post your endpoint and get your webhook ID in return ##
+
+```
+Method: POST 
+URL: /webhooks/
+```
+
+## <a id="events"></a> Lists of events ##
 
 This is a list of all the types of events we currently send. we may add more at any time, so you shouldn't rely on only these types existing in your code.
 You'll notice that these events follow a pattern: 'accountUpdate'. our goal is to design a consistent system that makes things easier to anticipate and code against. 
