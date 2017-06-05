@@ -31,13 +31,12 @@ On all founders ([Shareholder Object](../objects/objects.md#shareholder_object))
 * isMainFounder 
 * shares
 * email
-* is Pep (if type = "individual")
-* registeredAddress (street, postCode, city, country)
-* registeredIndividual (if type = "individual") (civility, firstName, lastName, nationality, birthDate, birthCity, birthCountry)
-* registeredCorporate (if type = "corporate"):
-* documents = "proofOfIdentity" (if type = "individual")
-* documents = "certificateOfIncorporation", "articleOfAssociationSigned" (if type = "corporate")
 * phoneNumber
+* registeredAddress (street, postCode, city, country)
+* registeredIndividual (if type = "individual") (civility, firstName, lastName, nationality, birthDate, birthCity, birthCountry, isPep)
+* registeredCorporate (if type = "corporate"):
+* documents => documentToComplete "proofOfIdentity" (if type = "individual")
+* documents => documentToComplete "certificateOfIncorporation", "articleOfAssociationSigned" (if type = "corporate")
 * shareholdingStructure (if type = "corporate" and for all shareholder on the level 2 owning 25% and +)
 
 By submitting your project, you consider that your project is complete and all documents properly signed.
@@ -50,7 +49,6 @@ By submitting your project, you consider that your project is complete and all d
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
-
 
 **Example of a Call containing all required information at this stage:**
 ```js
@@ -71,13 +69,13 @@ POST /companies/
 		"currency": "EUR",
 	},
 	"shares": 100,
-	"liberated": 100.00,
+	"liberated": 100,
 	"documents": [
-		"document": {
+		"documentToComplete": {
 			"type": "openingAccountContract",
 			"tag": "Pied Pieper - openingAccountContract.pdf",
 		},
-		"document": {
+		"documentToComplete": {
 			"type": "articleOfAssociationDraft",
 			"tag": "Pied Pieper - articleOfAssociationDraft.pdf",
 		},
@@ -88,17 +86,17 @@ POST /companies/
 		"shares": 50000,
 		"type": "individual",
 		"isMainFounder": true,
-		"birthDate": 1991-06-25,
-		"birthCountry": "FR",
-		"phoneNumber": {
-		    "countryCode": "+33",
-		    "phoneNumber": "671738257",
-		},
 		"email": "test@ibanfirst.com",
-		"registeredIndividualName": {
+		"phoneNumber": "+33671738257",
+		"registeredIndividual": {
 			"civility": "M",
 			"firstName": "Maxime",
 			"lastName": "Champoux",
+			"nationality": "FR",
+			"birthDate": 1991-06-25,
+			"birthCity": "Pessac",
+			"birthCountry": "FR",
+			"isPep": false,
 		},
 		"registeredAddress": {
 			"street": "7 rue barye",
@@ -107,56 +105,50 @@ POST /companies/
 			"country": "FR"
 		},
 		"registeredIndividualNationality": "FR",
-		"isPep": false,
 		"documents": [
-			"document": {
+			"documentToComplete": {
 				"type": "proofOfIdentity",
 				"tag": "Maxime Champoux - CNI.png",
-			],
-		},
+			},
+		],
 	},
 	"shareholder": {
-		"id": "WZ4edA",
 		"shares": 10000,
 		"type": "individual",
 		"isMainFounder": false,
-		"birthDate": 1991-06-25,
-		"birthCountry": "FR",
-		"phoneNumber": {
-		    "countryCode": "+33",
-		    "phoneNumber": "671738257",
-		},
 		"email": "test@ibanfirst.com",
-		"registeredIndividualName": {
+		"phoneNumber": "+33671738257",
+		"registeredIndividual": {
 			"civility": "M",
 			"firstName": "John",
 			"lastName": "Doe",
+			"nationality": "FR",
+			"birthDate": 1991-06-25,
+			"birthCity": "Paris",
+			"birthCountry": "FR",
+			"isPep": false,
 		},
-		"registeredIndividualNationality": "FR",
-		"isPep": false,
 		"documents": [
-			"document": {
+			"documentToComplete": {
 				"type": "proofOfIdentity",
 				"tag": "John Doe - CNI.png",
 			},
-			"document": {
+			"documentToComplete": {
 				"type": "mandateShareholder",
 				"tag": "John Doe - PowerOfAttorney.png",
 			},
 		],
 	},
 	"shareholder": {
-		"id": "XY4edA",
-		"type": "corporate",
 		"shares": 40000,
-		"legalForm": "EURL",
-		"registeredCorporateAddress": "My Holding",
+		"type": "corporate",
 		"isMainFounder": false,
-		"phoneNumber": {
-		    "countryCode": "+33",
-		    "phoneNumber": "671738257",
-		},
 		"email": "myHolding@email.com",
+		"phoneNumber": "+33671738257",
+		"registeredCorporate": {
+			"legalName": "My Holding",
+			"legalForm": "EURL",
+		},		
 		"registeredAddress": {
 			"street": "1 rue de l'université",
 			"postCode": "75006",
@@ -164,35 +156,37 @@ POST /companies/
 			"country": "France",
 		},
 		"documents": [
-			"document": {
+			"documentToComplete": {
 				"type": "certificateOfIncorporation",
 				"tag": "KBIS - myHolding.pdf",
 			},
-			"document": {
+			"documentToComplete": {
 				"type": "articleOfAssociationSigned",
 				"tag": "KBIS - myHolding.pdf",
 			},
-			"document": {
+			"documentToComplete": {
 				"type": "mandateShareholder",
 				"tag": "myHolding - PowerOfAttorney.png",
 			},
 		],
 		 "shareholdingStructure": [
 			"shareholder": {
-				"id": "WE4edA",
 				"type": "individual",
 				"birthDate": 1991-06-25,
 				"birthCountry": "FR",
 				"ownership": 100.00,
 				"registeredIndividualName": {
 					"civility": "M",
-					"firstName": "Maxime",
-					"lastName": "Champoux",
+					"firstName": "John",
+					"lastName": "Doe",
+					"nationality": "FR",
+					"birthDate": 1991-06-25,
+					"birthCity": "Paris",
+					"birthCountry": "FR",
+					"isPep": false,
 				},
-				"registeredIndividualNationality": "FR",
-				"isPep": true,
 				"documents": [
-					"document": {
+					"documentToComplete": {
 						"type": "idProof",
 						"tag": "Maxime Champoux - CNI",
 					},
