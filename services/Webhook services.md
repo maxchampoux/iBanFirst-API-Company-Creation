@@ -16,7 +16,7 @@ You might use webhooks as the basis to:
 * Update a customer record in your database when the status of a document sent is updated
 * Email a customent when a document provided is rejected and a new one must be uploaded again
 
-## Configuring you webhook settings ##
+## 1. Configuring you webhook settings ##
 
 Webhooks are configured in the [Webhooks settings] section of the [API Supervisor Dashboard]. Clicking Add endpoint releals to add a new URL for receiving webhooks.
 
@@ -26,7 +26,7 @@ Webhooks are configured in the [Webhooks settings] section of the [API Superviso
 You can enter any URL you'd like to have events sent to, but this should be a dedicated page on your server, coded per the instructions below. 
 4. Use the returned 'webhookId' to sync your company with ['POST companies/-{id}/webhooks/-{id}/](#post_webhooksSubscription)
 
-## Receiving Webhook Events ##
+## 2. Receiving Webhook Events ##
 
 Creating a webhook endpoint on your server is no different from creating any page on your website. With PHP, you might create a new .php file on your server; with a framework like symphony, you would add a new route with the desired URL.
 
