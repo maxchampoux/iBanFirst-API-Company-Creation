@@ -311,7 +311,7 @@ PUT /companies/-NT4edA/certificateIncorporation/
 {
 	"regitrationNumber": "814455614",
 	"regitrationDate": 2017-06-25,
-	"accountNumber": "R76 3000 3009 9500 0503 4076 086",
+	"accountNumber": "FR76 3000 3009 9500 0503 4076 086",
 	"documents": [
 		"document": {
 			"documentType": "certificateOfIncoraporation",
