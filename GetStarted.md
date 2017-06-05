@@ -19,9 +19,7 @@ You can use either this API service [`GET /companies/-{id}/certificateDeposit/`]
 
 You now have your certificate of incorporation, that's great! It means that your company now exists and that you will be able to open a Pro account and start your activity. 
 
-Please use the following service to open a Pro account :
-
-[`POST /onboard/`](/services/companies.md#post_onboard)
+Please use the following service to open a Pro account : [`POST /onboards/`](/services/companies.md#post_onboards)
 
 #### 4. 	Ask for your capital to be released  ####
 
