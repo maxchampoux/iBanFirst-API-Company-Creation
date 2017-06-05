@@ -22,7 +22,7 @@ The main object in my company creation project. Status is automatically updated 
 
 | Field | Type | Description |
 |-------|------|-------------|
-| id | [ID]../conventions/formattingConventions.md#type_id) | The IF code identifying the company to be created. |
+| id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the company to be created. |
 | status | String (60) | The status of your company creation project. The full list of status is accessible in the [Status List](#status_list)  |
 | companyCreationDatas | [Company Creation Datas Object](#companyCreationDatas_object) | Information, documents regarding the company you want to create. |
 | shareholdingStructures | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on your company creation project. |
