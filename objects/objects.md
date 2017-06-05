@@ -245,8 +245,7 @@ When an address is specified as part of a JSON body, it is encoded as an object 
 
 | Field | Type | Description |
 |-------|------|-------------|
-| street1 | String(255) | The street for the address described. |
-| street2 | String(255) | The continuation street for the address described. |
+| street | String(255) | The street for the address described. |
 | postCode | String(15) | The ZIP/Post code for the address described. |
 | city | String(35) | The city for the address described. |
 | state | String(2) | The state code for the address described. This field could be required if the country use a state system, like United States or Canada. To see a full list of state code, please refer to [this site](http://www.mapability.com/ei8ic/contest/states.php). |
@@ -265,7 +264,6 @@ When an address is specified as part of a JSON body, it is encoded as an object 
 ```
 
 <hr />
-
 
 
 #### <a id="amount_object"></a> Amount Object ####
