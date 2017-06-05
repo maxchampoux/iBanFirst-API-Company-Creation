@@ -19,9 +19,9 @@ You can use either this API service [`GET /companies/-{id}/certificateDeposit/`]
 
 #### 3. 	Ask for your capital to be released  ####
 
-You now have your certificate of incorporation, that's great! It means that your company now exists and that you will be able to open a Pro account with us and start your activity after a quick verification of your document from our side.
+You now have your certificate of incorporation, that's great! It means that your company now exists and that you will be able to open a Pro account with us and start your activity after a quick verification of your documents and datas from our side.
 
-You can use this API service to send us the ultimate documents and data we will need from you: [`PUT /companies/-{id}/releaseDeposit/`](#put_companiesReleaseDeposit)
+You can use this API service to send us the ultimate documents and datas we will need from you: [`PUT /companies/-{id}/releaseDeposit/`](#put_companiesReleaseDeposit)
  
 Using this call, you may also indicate where to release your capital. 
 
