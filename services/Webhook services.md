@@ -32,7 +32,7 @@ Creating a webhook endpoint on your server is no different from creating any pag
 
 Webhok data is sent as JSON in the POST request body. The full event details are included and can be used directly, after parsing the JSON into an [event object](#events).
 
-## Responding to a webhook ##
+## 3. Responding to a webhook ##
 
 To acknowledge receipt of a webhook, your endpoint should return a '2xx' HTTP status code. Any other information returned in the request header or request body is ignored. All response codes outside this range, including '3xx' codes will indicate to iBanFirst that you did not receive the webhook. This does mean that a URL redirection or a 'Not Modified' response will be treated as a failure.
 
