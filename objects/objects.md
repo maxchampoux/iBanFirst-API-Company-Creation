@@ -55,7 +55,7 @@ Specific information required for opening a company creation project.
 | shares | Integer | The number of shares to be issued. |
 | sharesCapital | [Amount Object](#amount_object) | The amount in shareholding capital as mentionned in the articles of association. |
 | liberated | Integer (3) | The percentage of shareholding capital to be released when the company is created. "20", "50" or "100". |
-| documents | Array<[Document Object](#document_object)> | The required documents for creating a company. |
+| documents | Array<[Document Object](#document_object)> | The required documents for creating a company. Value for document object can take documentToComplete if your are posting a project and we will return documentCompleted when the document has been updated. |
 | commercialName | String(100) | The commercial name of the company to be created. |
 | commercialAddress | [Address Object](#address_object) | The commercial address of the company to be created. |
 | tag | String(100) | The customized name of the company to be created. (Will only be used internally). |
