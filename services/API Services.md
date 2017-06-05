@@ -49,7 +49,7 @@ By submitting your project, you consider that your project is complete and all d
 | Field | In | Type | Required | Description |
 |-------|------|------|----------|-------------|
 | companyCreationDatas | Body | array<[Company Creation Data Object](../objects/objects.md#companyCreationData_object)> | Required | Data regarding your company creation project |
-| shareholders | Body | array<[Shareholder Object](../objects/objects.md#shareholder_object)> | Required | Data regarding your company creation project |
+| shareholders | Body | array<[Shareholder Object](../objects/objects.md#shareholder_object)> | Required | Data regarding the shareholding structure behind your company creation project |
 
 **Example of a Call containing all required information at this stage:**
 ```js
