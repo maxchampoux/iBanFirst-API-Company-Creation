@@ -10,34 +10,16 @@ The iBanFirst Company Creation API conforms to the following general behavior fo
 
 As an additional convention, all responses from iBanFirst-REST contain a `"success"` field with a boolean value indicating whether or not the success
 
-
-* [Cut-Off Times](#cut_off_times)
 * [Errors](#errors_conventions)
-* [Pagination](#pagination)
 * [normalized Types](#anonymous_object)
 	* [ID type](#type_id)
 	* [Date type](#type_date)
 	* [DateTime type](#type_datetime)
 	* [Currency type](#type_currency)
-	* [CurrencyPair type](#type_currencypair)
+	* [Phone type](#type_phone)
 	* [QuotedDecimal type](#type_quoteddecimal)
 * [anonymous Objects](#anonymous_object)
 * [Versioning](#versioning)
-
-
-## <a id="cut_off_times"></a> Cut-Off Times ##
-
-| Same day value Currencies | Cut Off Time |
-|------|------|
-| CHF | 8:30 |
-| GBP | 10:30 |
-| EUR | 16:00 |
-| USD | 16:30 |
-
-| Next day value Currencies (Times stated are for the day prior to the Value Date) | Cut Off Time |
-|-------|------|
-| AOA, ARS, BIF, BRL, CDF, CLP, COP, CRC, DJF, DOP, GHS, HNL, KES, MAD, NPR, PEN, PHP, RUB, TND, TRY, TZS, UGX, XOF/XAF | 10:00 |
-| AED, AUD, CAD, CZK, DKK, HKD, HUF, JPY, NOK, NZD, PLN, SEK, SGD, ZAR | 10:30 |
 
 ## <a id="errors_conventions"></a> Errors ##
 
@@ -78,18 +60,6 @@ Our API libraries can raise exceptions for many reasons, such as failed trade, i
 
 You can see a full list of errors and error details <a href="http://wonderfullmalus.fr/RestError/all/" target="_blank">here</a>.
 
-## <a id="pagination"></a> Pagination ##
-
-All top-level iBanFirst API resources have support for bulk fetches - "list" API methods. For instance you can [list accounts`](#get-account-list), [list transfers`](#get-transfers-list), etc... These list API methods share a common structure.
-
-**Parameters:**
-
-| Field | Type | Description |
-|-------|------|-------------|
-| page | String | index of the page (start to 1) Default value: `1` |
-| per_page | String | number of items returned. Default value: `50` |
-
-
 ## <a id="normalized_types"></a> Normalized Types ##
 
 The iBanFirst API uses a set of types that describe a particular parameters and values.<br />
@@ -127,13 +97,15 @@ The Currency type represents a currency trigram.
 |------|-----------|--------|-------------|---------|
 | Currency | String | `^[A-Z]{3}$` | A String representing the Three-digit [ISO 4217 Currency Code](http://www.xe.com/iso4217.php) of a currency. This String only contains capitalized letters. | `USD` |
 
-### <a id="type_currencypair"></a> CurrencyPair Type ###
+### <a id="type_phone"></a> Phone Type ###
 
-The CurrencyPair type represents a currency pair, used for currency change operation.
+When a phone number is specified as part of a JSON body, it must be formated using [E.164](https://en.wikipedia.org/wiki/E.164) number formatting. This format is the internationally-standardized format for all phone numbers, and it includes all the relevant information to route calls and SMS messages globally. E.164 numbers can have a maximum of fifiteen digits and are usually written as follows [+][country code][subscriber number including area code]. 
+
+A good reference to find a country's calling code is this Wikipedia page that [lists countries and their calling codes](https://en.wikipedia.org/wiki/List_of_country_calling_codes#Alphabetical_listing_by_country_or_region) .
 
 | Type | Real type | format | description | example |
 |------|-----------|--------|-------------|---------|
-| CurrencyPair | String | `^[A-Z]{6}$` | A String representing two concatenated Three-digit [ISO 4217 Currency Code](http://www.xe.com/iso4217.php) of a currency. This String only contains capitalized letters. | `EURGBP` |
+| phone | String | `^[A-Z]{6}$` | A String representing a phone number formated using  [E.164](https://en.wikipedia.org/wiki/E.164) number formatting. | `+33671738257` |
 
 ### <a id="type_quoteddecimal"></a> QuotedDecimal Type ###
 
@@ -142,33 +114,6 @@ The QuotedDecimal type describe an formatted floating number.
 | Type | Real type | format | description | example |
 |------|-----------|--------|-------------|---------|
 | QuotedDecimal | String | `^((\-){?})[0-9]{12}((\.[0-9]{1-7}){?})$` | A String representing a formatted floating number. | `"1.11723"` |
-
-## <a id="anonymous_object"></a> Anonymous objects ##
-
-Some request of the iBanFirst REST API send, as a response, anomymous objects, or arrays of anonymous objects.  
-Here is an example to understand the notation of these objects :
-
-| Field | Type | Description |
-|-------|------|-------------|
-| foo | Array[Object] | `foo` is an Array containing anonymous objects |
-| Object.bar | String | `bar` is a String typed property of the anonymous object `Object`. <br /> In a [DOM](http://fr.wikipedia.org/wiki/Document_Object_Model) representation, you can access `bar` via `foo[].bar`
-
-Here is the JSON corresponding the description above : 
-
-```js
-{
-	...
-	"foo" [
-		{
-			"bar":"something"
-		},
-		{
-			"bar":"somethingElse"
-		}
-	]
-	...
-}
-```
 
 ## <a id="versioning"></a> Versioning ##
 
