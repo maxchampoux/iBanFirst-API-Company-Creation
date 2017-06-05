@@ -224,9 +224,9 @@ If you have not implemented our Webhook, you can use this service either this AP
 
 **Parameters:**
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+| Field | In | Type | Required | Description |
+|-------|------|------|----------|-------------|
+| id | URL |[ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for your company creation project. |
 
 **Example:**
 ```js
@@ -256,9 +256,9 @@ You can use either this API service, a FTP server or a tailor-made webhook to re
 
 **Parameters:**
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+| Field | In | Type | Required | Description |
+|-------|------|------|----------|-------------|
+| id | URL | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for your company creation project. |
 
 **Example:**
 ```js
@@ -299,12 +299,12 @@ Congrats! At this stage, basically your company should be registered and you sho
 
 **Parameters:**
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
-| registrationNumber | String (20) | Required | The registration number of the company created. |
-| registrationDate | Date | Required | The registration date of the company created. |
-| documents | Array<[Document Object](../conventions/formattingConventions.md#type_document)> | Required | The type of document to reference with your company creation project |
+| Field | In | Type | Required | Description |
+|-------|------|------|----------|-------------|
+| id | URL | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+| registrationNumber | Body | String (20) | Required | The registration number of the company created. |
+| registrationDate | Body | Date | Required | The registration date of the company created. |
+| documents | Body | Array<[Document Object](../conventions/formattingConventions.md#type_document)> | Required | The type of document to reference with your company creation project |
 
 **Example:**
 ```js
@@ -353,11 +353,11 @@ You can upload those document one by one using this service and must use the ID 
 
 **Parameters:**
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| id | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
-| documentType | String (60) | Required | The type of document to reference with your company creation project |
-| file | String | Required | The binary content of the file, encoded with a base64 algorithm. |
+| Field | In | Type | Required | Description |
+|-------|------|------|----------|-------------|
+| id | URL | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
+| documentType | Body | String (60) | Required | The type of document to reference with your company creation project |
+| file | Body | String | Required | The binary content of the file, encoded with a base64 algorithm. |
 
 **Example:**
 ```js
