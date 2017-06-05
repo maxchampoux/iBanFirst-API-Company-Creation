@@ -5,7 +5,6 @@
 | [`POST /companies/`](#post_companies) | Start your company creation project. You get an IBAN in return. |
 | [`PUT /companies/-{id}/document/`](#put_document) | Upload a document already declared in your project. |
 | [`GET /companies/-{id}/certificateOfDeposit/`](#getDocuments_certificateDeposit) | Retrieve your certificate of deposit. |
-| [`POST /onboards/`](#post_conboards) | Open a Pro account, using information you have already gathered. |
 | [`PUT /companies/-{id}/releaseDeposit/`](#put_companiesReleaseDeposit) | Ask for your capital to be released. Let's make business now! |
 | [`GET /companies/-{id}/`](#get_companies) | Retrieve information and status on your company creation project |
 
@@ -292,11 +291,15 @@ Method: PUT
 URL: /companies/-{id}/releaseDeposit/
 ```
 
-Congrats! At this stage, basically your company should be registered and you should have opened an IBAN account for this company. Maybe using our [Onboarding Service](../toto). Congratulation! Therefore, we will require the registration information on your company:
+Congrats! At this stage, basically your company should be registered. You may use this service to automatically convert your company creation account into a Pro account. Otherwise, just send us the IBAN of the account you want to release your capital (it must be an account at your company's name). 
+
+The following data will be required:
 * accountNumber
 * registrationNumber
 * registrationDate
 * Documents : "articleOfAssociationSigned", "proofOfIncorporation", 
+
+Our team will need a quick analysis of the documents you sent before you can enjoy our Pro services. The liberation of your funds must follow in the next 48 hours.
 
 **Parameters:**
 
@@ -305,6 +308,7 @@ Congrats! At this stage, basically your company should be registered and you sho
 | id | URL | [ID](../conventions/formattingConventions.md#type_id) | Required | The internal reference for this company creation project. |
 | registrationNumber | Body | String (20) | Required | The registration number of the company created. |
 | registrationDate | Body | Date | Required | The registration date of the company created. |
+| accountNumber | Body | String (20) | Optional | You may use this field if you don't want to release your capital in your iBanFirst Pro account. |
 | documents | Body | Array<[Document Object](../conventions/formattingConventions.md#type_document)> | Required | The type of document to reference with your company creation project |
 
 **Example:**
