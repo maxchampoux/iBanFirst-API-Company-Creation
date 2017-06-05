@@ -6,8 +6,8 @@
 * [Status List](#status_list)
 * [Address Object](#address_object)
 * [Account Object](#account_object)
-* [Phone Object](#phone_object)
-* [Registered Individual Name Object](#registeredIndividualName_object)
+* [Registered Individual Object](#registeredIndividual_object)
+* [Registered Corporate Object](#registeredCorporate_object)
 * [Amount Object](#amount_object)
 * [Document Object](#document_object)
 * [Document List](#document_list)
@@ -22,7 +22,7 @@ The main object in my company creation project. Status is automatically updated 
 
 | Field | Type | Description |
 |-------|------|-------------|
-| id | [ID](#type_id) | The IF code identifying the company to be created. |
+| id | [ID]../conventions/formattingConventions.md#type_id) | The IF code identifying the company to be created. |
 | status | String (60) | The status of your company creation project. The full list of status is accessible in the [Status List](#status_list)  |
 | companyCreationDatas | [Company Creation Datas Object](#companyCreationDatas_object) | Information, documents regarding the company you want to create. |
 | shareholdingStructures | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on your company creation project. |
@@ -49,28 +49,28 @@ Specific information required for opening a company creation project.
 | Field | Type | Description |
 |-------|------|-------------|
 | registeredName | String (100) | The legal name of the company to be created. |
-| legalForm | String (5) | The legal form of the company to be created. It can be one of those 4 forms: `sasu`,`sarl`,`sas` and `eurl` |
 | registeredAddress | [Address Object](#address_object) | The registered address of the company to be created. |
-| activityCode | [NAFID](#NAF) | The code identifying the type of business of the company to be created. |
+| legalForm | String (5) | The legal form of the company to be created. It can be one of those 4 forms: `sasu`,`sarl`,`sas` and `eurl` |
+| activityCode | [NAF ID](../conventions/formattingConventions.md#NAF) | The code identifying the type of business of the company to be created. |
 | shares | Integer | The number of shares to be issued. |
 | sharesCapital | [Amount Object](#amount_object) | The amount in shareholding capital as mentionned in the articles of association. |
-| liberated | Float (5) | The percentage of shareholding capital to be released when the company is created. "20.00", "50.00" or "100.00". |
+| liberated | Integer (3) | The percentage of shareholding capital to be released when the company is created. "20", "50" or "100". |
+| documents | Array<[Document Object](#document_object)> | The required documents for creating a company. |
 | commercialName | String(100) | The commercial name of the company to be created. |
 | commercialAddress | [Address Object](#address_object) | The commercial address of the company to be created. |
 | tag | String(100) | The customized name of the company to be created. (Will only be used internally). |
-| documents | Array<[Document Object](#document_object)> | The required documents for creating a company. |
 
 **Example:**
 
 ```js
 "companyCreationDatas": {
     "registeredName": "Pied Pieper",
-    "legalForm":"sas",
     "registeredAddress": {address},
+    "legalForm":"sas",
     "activityCode":"6201Z",
     "authorizedCapital":{amount},
     "shares": 100000,
-    "liberated": 100.00,
+    "liberated": 100,
     "commercialName": "Pied Pieper",
     "commercialAddress": {address},
     "tag":"null",
@@ -89,36 +89,29 @@ This object shows the shareholder ownership and detailed information. We gave yo
 | Field | Type | Description |
 |-------|------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying in a unique way the shareholder. |
-| shares | Integer | The number of shares that belong to the shareholder. |
 | type | String (10) | It can be `individual` or `corporate`. |
 | isMainFounder | Boolean | Indicates who is introducing the project among the project. It can be `true` or `false`. You can only have on Main Founder. |
+| shares | Integer | The number of shares that belong to the shareholder. |
 | email | string (60) | Dedicated email of the shareholder. We may use this email to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have an email format. |
-| phoneNumber | [Phone Object](#phone_object) | Dedicated phone number of the shareholder. We may use this number to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have the right format. |
-| registeredIndividualName | [Registered_Individual Name Object](#registeredIndividualName_object) | The registered name of the shareholder when type is `individual`. |
 | registeredAddress | [Address Object](#address_object) | The registered address of the shareholder. |
-| registeredIndividualNationality | String (2) | The two-letters abbreviation for the country where the shareholder is registered if type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166).|
-| birthDate | Date | The birth date of the shareholder when type is `individual`. `YYYY-MM-DD` |
-| birthCountry | String (2) | The two-letters abbreviation for the country where the shareholder is born when type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166). |
-| isPep | Boolean | You indicates if the shareholder is legally recognized as a [PEP](https://en.wikipedia.org/wiki/Politically_exposed_person). `true` or `false`. |
+| registeredIndividual | [Registered_Individual Object](#registeredIndividual_object) | The registered information of the shareholder when type is `individual`. |
+| registeredCorporate | [Registered_Individual Object](#registeredIndividual_object) | The registered information of the shareholder when type is `corporate`. |
 | documents | Array<[Document Object](#document_object)> | The required documents related to this shareholder. |
-| legalForm | String(60) | The legal Form of the shareholder when type is `corporate`. `sas` |
-| ownership | Float (5) | Percentage of shares a shareholder level 2 own from a shareholder level 1 with type `corporate`. |
+| phoneNumber | [Phone](../conventions/formattingConventions.md#type_phone) | Dedicated phone number of the shareholder. We may use this number to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have the right format. |
+| ownership | Float (5) | Percentage of shares a shareholder level 2 owns from a shareholder level 1 with type `corporate`. |
 
 **Example 1: individual shareholder**
 
 ```js
 "shareholder": {
 	"id": "XV4edA",
+	"type": "individual",
 	"shares": 50000,
-	"type": "Individual",
 	"isMainFounder": true,
+	"phoneNumber": "+33671738257",
 	"email": "mch@ibanfirst.com",
-	"registeredIndividualName": {registeredIndividualName},
+	"registeredIndividual": {registeredIndividual},
 	"registeredAddress": {registeredAddress},
-	"registeredIndivdualNationality": "FR",
-	"birthDate": 1991-06-25,
-	"birthCountry": "FR",
-	"isPep": true,
 	"documents": [{document},{document}],
 },
 ```
@@ -128,15 +121,71 @@ This object shows the shareholder ownership and detailed information. We gave yo
 ```js
 "shareholder": {
 	"id": "PK4edA",
-	"shares": 40000,
 	"type": "Corporate",
-	"legalForm": "EURL",
+	"shares": 40000,
 	"isMainFounder": false,
+	"phoneNumber": "+33671738257",
 	"email": "myHolding@email.com",
+	"registeredCorporate": {registeredCorporate},
 	"registeredAddress": {address},
 	"documents": [{document}...],
 	"shareholdingStructure": [{shareholder},{...}],
 ]
+```
+
+<hr />
+
+#### <a id="registeredIndividual_object"></a> Registered Individual Object ####
+
+TBD.
+
+**Object resources:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| civility | String(3) | It can be `M` or `Mme`. |
+| firstName | String(35) | The individual's first name. Truncated after the first 35 characters. |
+| lastName | String(35) | The individual's last name. Truncated after the first 35 characters. |
+| nationality | String (2) | The two-letters abbreviation for the country where the shareholder is registered if type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166).|
+| birthDate | Date | The birth date of the shareholder when type is `individual`. `YYYY-MM-DD` |
+| birthCity | String(35) | The indidual's birth city. Truncated after the first 35 characters. |
+| birthCountry | String (2) | The two-letters abbreviation for the country where the shareholder is born when type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166). |
+| isPep | Boolean | You indicates if the shareholder is legally recognized as a [PEP](https://en.wikipedia.org/wiki/Politically_exposed_person). `true` or `false`. |
+
+**Example:**
+
+```js
+"registeredIndividual": {
+	"civility": "M",
+	"firstName": "Maxime",
+	"lastName": "Champoux",
+	"nationality": "FR",
+	"birthDate": 1991-06-25,
+	"birthCity": "Pessac",
+	"birthCountry": "FR",
+	"isPep": false,
+},	
+```
+<hr />
+
+#### <a id="registeredCorporateobject"></a> Registered Corporate Object ####
+
+TBD.
+
+**Object resources:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| legalName | String(35) | The corporate's legal name. Truncated after the first 35 characters. |
+| legalForm | String(60) | The legal Form of the shareholder when type is `corporate`. `sas` |
+
+**Example:**
+
+```js
+"registeredCorporate": {
+	"legalName": "Pied Pieper France",
+	"legalForm": "SAS",
+}
 ```
 
 <hr />
@@ -158,6 +207,8 @@ Here is the list of status you may encounter while using the iBanFirst API.
 | checkKbis | When certificate of deposit is available, you can use it to incorporate your company with the appropriate local authorities. |
 | finalized | Here we are, you company is created and you capital has just been released to the bank account you just opened. Congrats! |
 
+<hr />
+
 #### <a id="account_object"></a> Account Object ####
 
 When an Account is specified as part of a JSON body, it is encoded as an object with the following fields:
@@ -170,7 +221,7 @@ When an Account is specified as part of a JSON body, it is encoded as an object 
 | tag |  String(50) | Custom reference of the account. |
 | accountNumber | String(40) | The code specifying the account - will be an IBAN. |
 | holderBank | String (11) | The code identifying iBanFirst or BIC/SWIFT code. |
-| holder | [Holder Object](#holder_object) | The recipient details, owner of the account. If the company is in pending creation, then [pending creation] will be added aside the owner name. |
+| holder | String(50) | The recipient details, owner of the account. If the company is in pending creation, then [pending creation] will be added aside the owner name. |
 
 **Example:**
 
@@ -180,7 +231,7 @@ When an Account is specified as part of a JSON body, it is encoded as an object 
     "tag": "My payment account EUR",
     "accountNumber": "BE169816385163133",
     "holderBank": "FXBBBEBBXXX",
-    "holderName": "Pied Pieper Paris [société en cours de formation",
+    "holderName": "Pied Pieper Paris [société en cours de formation]",
 }
 ```
 
@@ -215,50 +266,7 @@ When an address is specified as part of a JSON body, it is encoded as an object 
 
 <hr />
 
-#### <a id="phone_object"></a> Phone Object ####
 
-When a phone number is specified as part of a JSON body, it is encoded as an object with the following fields:
-
-**Object resources:**
-
-| Field | Type | Description |
-|-------|------|-------------|
-| countryCode | String(4) | Numeric country code. Optional +, followed by 1-3 digits. |
-| phoneNumber | String(15) | Country code and phone number. |
-
-**Example:**
-
-```js
-"phone": {
-    "countryCode": "+33",
-    "phoneNumber": "81445561400010",
-}
-```
-
-<hr />
-
-#### <a id="registeredIndividualName_object"></a> Registered Individual Name Object ####
-
-When a phone number is specified as part of a JSON body, it is encoded as an object with the following fields:
-
-**Object resources:**
-
-| Field | Type | Description |
-|-------|------|-------------|
-| civility | String(3) | It can be `M` or `Mme`. |
-| first | String(35) | The individual's first name. Truncated after the first 35 characters. |
-| last | String(35) | The individual's last name. Truncated after the first 35 characters. |
-
-**Example:**
-
-```js
-"registeredIndividualName": {
-TBD
-}
-	
-```
-
-<hr />
 
 #### <a id="amount_object"></a> Amount Object ####
 
