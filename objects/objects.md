@@ -137,7 +137,7 @@ This object shows the shareholder ownership and detailed information. We gave yo
 
 #### <a id="registeredIndividual_object"></a> Registered Individual Object ####
 
-TBD.
+Specific information when the shareholder is an individual.
 
 **Object resources:**
 
@@ -170,7 +170,7 @@ TBD.
 
 #### <a id="registeredCorporate_object"></a> Registered Corporate Object ####
 
-TBD.
+Specific information when the shareholder is a corporate.
 
 **Object resources:**
 
