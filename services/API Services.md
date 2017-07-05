@@ -21,7 +21,7 @@ On your future company ([Company Creation Data Object](../objects/objects.md#com
 * registeredAddress (street, postCode, city, country)
 * legalForm
 * activityCode
-* shares
+* sharesNumber
 * sharesCapital (value, currency)
 * percentageRelease
 
