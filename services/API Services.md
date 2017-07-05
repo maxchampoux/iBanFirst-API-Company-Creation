@@ -264,12 +264,12 @@ You can upload those document one by one using this service and must use the ID 
 
 **Example:**
 ```js
-PUT /companies/-NT4edA/document/-NT4edO
+PUT /companies/NDgzOTU/document/NTM5MTcx
 {
     "document": {
-        "documentType": "certificateOfIncoraporation",
-        "tag": "certificateOfIncorporation.pdf",
-        "file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
+        "documentType": "Identity",
+        "tag": "testIdentity.pdf",
+        "file": "DPcCUEQs1hrqSxB3giGY620kQJ1BujlG4rOh+jjvEeW79GpT.....5Oj8dj1wQiKoqyaNGi4cOH51LYvn37k08+WVpaah4"
     }
 }
 
@@ -283,7 +283,119 @@ PUT /companies/-NT4edA/document/-NT4edO
 
 **Example:** 
 ```js
-"companies": {companies},
+{
+    "id": "NDgzOTU",
+    "registredName": "Pied Pieper Paris",
+    "registredAddress": {
+        "street": "42 avenue de la grande arm\u00e9e",
+        "postCode": "75017",
+        "city": "Paris",
+        "country": "FR",
+        "state": null
+    },
+    "activityCode": "334B",
+    "legalForm": "SAS",
+    "authorizedCapital": null,
+    "sharesNumber": 100,
+    "documents": [],
+    "documentsToUpload": [
+        {
+            "id": "NTM5MTY5",
+            "typeName": "BuisnessPlan"
+        },
+        {
+            "id": "NTM5MTcw",
+            "typeName": "CompagnyStatusDraft"
+        },
+        {
+            "id": "NTM5MTc2",
+            "typeName": "ContractFunderCreasoc"
+        }
+    ],
+    "status": null,
+    "shareholdingStructures": [
+        {
+            "id": "MTgyNTgz",
+            "type": "Individual",
+            "isMainFounder": true,
+            "isPep": false,
+            "registeredName": {
+                "civility": "M",
+                "firstName": "Maxime",
+                "lastName": "Champoux",
+                "nationality": "FR",
+                "birthDate": "1991-06-25",
+                "birthCity": "Pessac",
+                "birthCountry": "FR"
+            },
+            "registeredCompagny": null,
+            "registeredIndividualCountry": "FR",
+            "email": "test@ibanfirst.com",
+            "percentage": null,
+            "numberOfParts": 50,
+            "regsiteredAddress": {
+                "street": "4 NEW YORK PLAZA, FLOOR 15",
+                "postCode": "75008",
+                "city": "Paris",
+                "country": "FR",
+                "state": null
+            },
+            "documents": [
+                {
+                    "id": "NTM5MTcx",
+                    "typeName": "Identity"
+                }
+            ],
+            "documentsToUpload": [
+                {
+                    "id": "NTM5MTcy",
+                    "typeName": "ProofOfAddress"
+                }
+            ],
+        },
+        {
+            "id": "MTgyNTg0",
+            "type": "Individual",
+            "isMainFounder": false,
+            "isPep": true,
+            "registeredName": {
+                "civility": "M",
+                "firstName": "Arnaud",
+                "lastName": "Ruppe",
+                "nationality": "FR,BE",
+                "birthDate": "1970-01-01",
+                "birthCity": "Paris",
+                "birthCountry": "FR"
+            },
+            "registeredCompagny": null,
+            "registeredIndividualCountry": "FR",
+            "email": "test@ibanfirst.com",
+            "percentage": null,
+            "numberOfParts": 50,
+            "regsiteredAddress": {
+                "street": "42 avenue de la grande arm\u00e9e",
+                "postCode": "75017",
+                "city": "Paris",
+                "country": "FR",
+                "state": null
+            },
+            "documents": [],
+            "documentsToUpload": [
+                {
+                    "id": "NTM5MTcz",
+                    "typeName": "Identity"
+                },
+                {
+                    "id": "NTM5MTc0",
+                    "typeName": "ProofOfAddress"
+                }
+            ],
+        }
+    ],
+    "accounts": {
+        "iban": "BE43914002356001"
+    }
+}
 ```
 <hr />
 
@@ -404,7 +516,7 @@ If you have not implemented our Webhook, you can use this service either this AP
 
 **Example:**
 ```js
-GET /companies/-NT4edA/
+GET /companies/NDgzOTU/
 ```
 
 **Returns:**
@@ -415,7 +527,118 @@ GET /companies/-NT4edA/
 
 **Example:** 
 ```js
-"companies": {companies},
+{
+    "id": "NDgzOTU",
+    "registredName": "Pied Pieper Paris",
+    "registredAddress": {
+        "street": "42 avenue de la grande arm\u00e9e",
+        "postCode": "75017",
+        "city": "Paris",
+        "country": "FR",
+        "state": null
+    },
+    "activityCode": "334B",
+    "legalForm": "SAS",
+    "authorizedCapital": null,
+    "sharesNumber": 100,
+    "documents": [],
+    "documentsToUpload": [
+        {
+            "id": "NTM5MTY5",
+            "typeName": "BuisnessPlan"
+        },
+        {
+            "id": "NTM5MTcw",
+            "typeName": "CompagnyStatusDraft"
+        },
+        {
+            "id": "NTM5MTc2",
+            "typeName": "ContractFunderCreasoc"
+        }
+    ],
+    "status": null,
+    "shareholdingStructures": [
+        {
+            "id": "MTgyNTgz",
+            "type": "Individual",
+            "isMainFounder": true,
+            "isPep": false,
+            "registeredName": {
+                "civility": "M",
+                "firstName": "Maxime",
+                "lastName": "Champoux",
+                "nationality": "FR",
+                "birthDate": "1991-06-25",
+                "birthCity": "Pessac",
+                "birthCountry": "FR"
+            },
+            "registeredCompagny": null,
+            "registeredIndividualCountry": "FR",
+            "email": "test@ibanfirst.com",
+            "percentage": null,
+            "numberOfParts": 50,
+            "regsiteredAddress": {
+                "street": "4 NEW YORK PLAZA, FLOOR 15",
+                "postCode": "75008",
+                "city": "Paris",
+                "country": "FR",
+                "state": null
+            },
+            "documents": [],
+            "documentsToUpload": [
+                {
+                    "id": "NTM5MTcx",
+                    "typeName": "Identity"
+                },
+                {
+                    "id": "NTM5MTcy",
+                    "typeName": "ProofOfAddress"
+                }
+            ],
+        },
+        {
+            "id": "MTgyNTg0",
+            "type": "Individual",
+            "isMainFounder": false,
+            "isPep": true,
+            "registeredName": {
+                "civility": "M",
+                "firstName": "Arnaud",
+                "lastName": "Ruppe",
+                "nationality": "FR,BE",
+                "birthDate": "1970-01-01",
+                "birthCity": "Paris",
+                "birthCountry": "FR"
+            },
+            "registeredCompagny": null,
+            "registeredIndividualCountry": "FR",
+            "email": "test@ibanfirst.com",
+            "percentage": null,
+            "numberOfParts": 50,
+            "regsiteredAddress": {
+                "street": "42 avenue de la grande arm\u00e9e",
+                "postCode": "75017",
+                "city": "Paris",
+                "country": "FR",
+                "state": null
+            },
+            "documents": [],
+            "documentsToUpload": [
+                {
+                    "id": "NTM5MTcz",
+                    "typeName": "Identity"
+                },
+                {
+                    "id": "NTM5MTc0",
+                    "typeName": "ProofOfAddress"
+                }
+            ],
+        }
+    ],
+    "accounts": {
+        "iban": "BE43914002356001"
+    }
+
 ```
 <hr />
 
