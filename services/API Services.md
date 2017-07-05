@@ -245,7 +245,7 @@ POST /companies/
 
 ```
 Method: PUT
-URL: /companies/-{id}/document/-{idDoc}
+URL: /companies/-{id}/document/-{idDoc}/
 ```
 
 You have already declared documents that you must submit in you company creation project. In return we have sent you and ID for each of those documents.
@@ -264,7 +264,7 @@ You can upload those document one by one using this service and must use the ID 
 
 **Example:**
 ```js
-PUT /companies/NDgzOTU/document/NTM5MTcx
+PUT /companies/NDgzOTU/document/NTM5MTcx/
 {
     "document": {
         "documentType": "Identity",
@@ -407,6 +407,7 @@ URL: /companies/-{id}/certificateOfDeposit/
 ```
 
 You can use either this API service, a FTP server or a tailor-made webhook to retrieve your certificate of deposit.
+This method return two files. It return the PDF file of the certificate of deposit and the audit file as proof of the legal signature
 
 **Parameters:**
 
@@ -416,24 +417,30 @@ You can use either this API service, a FTP server or a tailor-made webhook to re
 
 **Example:**
 ```js
-GET /companies/-NT4edA/certificateOfDeposit/
+GET /companies/NDgzOTU/certificateOfDeposit/
 ```
 
 **Returns:**
 
 | Field | Type | Description |
 |-------|------|-------------|
-| documentType | [Document Type](../conventions/formattingConventions.md#type_document) | The type of document to retrieve. `certificateOfDeposit` |
-| tag | String (60) | Will be `certificateOfDeposit.pdf` |
-| file | String | The binary content of the file, encoded with a base64 algorithm. |
+| documents | array<[Document Object]> | The array that contains the two documents you nedd to have a valid certificate deposit |
 
 **Example:** 
 ```js
 {
-    "documentType": "certificateOfDeposit",
-    "tag": "certificateOfDeposit.pdf",
-    "file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
-
+    documents:[
+        "document"{
+            "name": 'certificateOfDeposit.pdf',
+            "mimeType": "application/pdf" ,
+            "link": "http://www.domain.com/an/url/to/curl/file.pdf"
+        },
+        "document"{
+            "name": 'certificateOfDeposit_audit_trail.pdf',
+            "mimeType": "application/pdf" ,
+            "link": "http://www.domain.com/an/url/to/curl/file.pdf"
+        }        
+    ]   
 }
 ```
 <hr />
@@ -482,8 +489,8 @@ PUT /companies/-NT4edA/certificateIncorporation/
 			"documentType": "articleOfAssociationSigned",
 			"tag": "articleOfAssociationSigned.pdf",
 			"file": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGAUExURQxS1ISawgBGyebt+VZ6vmGK1miV58bO3O3u8gRJykV31E170brM7RNSyXuRukJ64jNkvl2H1Xmh6wFK0fT19+vw++rs8QFGxlt/xOLm7KOwylSB01l7urbB1LW/0lJ/0py25vDw8+ju+oucv9PZ4yJezUh40oOo7zJpzSljzV6I1lmE1Ep50e7z/PDx9Ky4zfb2+JOt3FF+0hlc2AlLxjxvzUFptEd406+60EZ73NTf9EhxvWGP5XeOuixm0z9x0HeQvSxlzVB90xZZ1h5d0unr7+7w85qx3s/V4Stgwo+x8bnC1b/I2Vp6tliC0ViD1H6ZzF6G0UyD6GSAtVB+1Chm2drf5yVgzZy68kh931F6xlR/zuDp+tbg9N/o+l6Bw8HJ2iFk4DRw4YCWv0p601KF5V6P6T9puW+Ku4qewnCIt3iOuE980WSL0iVk2Stfvixo1jlz3Vt9vl5+uk11wPPz9VyDzAhO0MnQ3S5lyYeg0FB90aG+80l40Nzg6P///xIhGr0AAACAdFJOU/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AOAVLZwAAAPdJREFUeNpiqAcBPRVvWQ8OMJMBiEXkbIvjJWSy9PUgAmLKRYFarKzafix8kiABA2UJQW1WHh5BeemobA6ggByLv7Q8a6yVIDc3d4lUPUMpX7SRUXUOqxa3jo5abbArQ5ivEze3jqCCQoiGo2Z4OjsDO0sKl72GuaiSpri4OFO+BQO7tSqvibgqM7MLExB4WjDUmXGKM3HaKSkVlAsLCwtUMIhk8HIyuFiKikbmGTMwyIgx1MsKOIcW2ujqsvEnJVZKgRzGaMqfKhQXo54WxOXgBnZ6ZhmbekSNl1BusiTUc7KMAYbuVYwWUM8BgaJKgo8KxPsAAQYAJwc98FQAQqUAAAAASUVORK5CYII=",
-		},
-	],
+		}
+	]
 }	
 ```
 
@@ -638,6 +645,7 @@ GET /companies/NDgzOTU/
     "accounts": {
         "iban": "BE43914002356001"
     }
+}
 
 ```
 <hr />
