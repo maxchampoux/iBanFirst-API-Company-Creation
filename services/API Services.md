@@ -3,10 +3,10 @@
 | Route | Description |
 |-------|-------------|
 | [`POST /companies/`](#post_companies) | Start your company creation project. You get an IBAN in return. |
-| [`PUT /companies/-{id}/document/-{idDoc}`](#put_document) | Upload a document already declared in your project. |
-| [`GET /companies/-{id}/certificateOfDeposit/`](#getDocuments_certificateDeposit) | Retrieve your certificate of deposit. |
-| [`PUT /companies/-{id}/releaseDeposit/`](#put_companiesReleaseDeposit) | Ask for your capital to be released. Let's make business now! |
-| [`GET /companies/-{id}/`](#get_companies) | Retrieve information and status on your company creation project |
+| [`PUT /companies/{id}/document/{idDoc}`](#put_document) | Upload a document already declared in your project. |
+| [`GET /companies/{id}/certificateOfDeposit/`](#getDocuments_certificateDeposit) | Retrieve your certificate of deposit. |
+| [`PUT /companies/{id}/releaseDeposit/`](#put_companiesReleaseDeposit) | Ask for your capital to be released. Let's make business now! |
+| [`GET /companies/{id}/`](#get_companies) | Retrieve information and status on your company creation project |
 
 ## <a id="post_companies"></a> Start a company creation project ##
 
