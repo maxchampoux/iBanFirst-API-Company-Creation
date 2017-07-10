@@ -30,4 +30,4 @@ Using this call, you may also indicate where to release your capital.
 
 #### XX. Know where you are in your company creation project ####
 
-You want to know if all shareholders has deposited funds to the IBAN? You can use this API service [`GET /companies/-{id}/`](/services/companies.md#get_companies) or a taylor-made webhook to retrieve information and update the status of your project.
+You want to know if all shareholders has deposited funds to the IBAN? You can use this API service [`GET /companies/-{id}/`](/services/API%20Services.md#get_companies) or a taylor-made webhook to retrieve information and update the status of your project.
