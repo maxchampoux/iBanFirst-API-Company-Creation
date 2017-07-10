@@ -7,7 +7,7 @@ Onboarding - Company Creation API
 
 #### 1. Create your company project ####
 
-Please use the following service to create your company project: [`POST /companies/`](/services/companies.md#post_companies)
+Please use the following service to create your company project: [`POST /companies/`](/services/API%20Services.md#post_companies)
 
 This service will return an IBAN for the deposit of the "Share Capital" of your future company.
 We will require some mandatory documents and let you some time to gather the full KYC until next step.
