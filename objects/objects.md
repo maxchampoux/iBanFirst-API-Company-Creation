@@ -24,15 +24,14 @@ The main object in my company creation project. Status is automatically updated 
 |-------|------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the company to be created. |
 | status | String (60) | The status of your company creation project. The full list of status is accessible in the [Status List](#status_list)  |
-| registredName | [Company Creation Datas Object](#companyCreationDatas_object) | Information, documents regarding the company you want to create. |
-| registredAddress | [Company Creation Datas Object](#companyCreationDatas_object) | Information, documents regarding the company you want to create. |
-| activityCode | String (6) | Information, documents regarding the company you want to create. |
-| legalForm | String | Information, documents regarding the company you want to create. |
-| activityCode | String (6) | Information, documents regarding the company you want to create. |
-| authorizedCapital | Float | Information, documents regarding the company you want to create. |
-| sharesNumber | Integer | Information, documents regarding the company you want to create. |
+| registredName | [Company Creation Datas Object](#companyCreationDatas_object) | The registered name of the compagny. |
+| registredAddress | [Company Creation Datas Object](#companyCreationDatas_object) | The registered address of the compagny. |
+| activityCode | String (6) | The activity code of the compagny. |
+| legalForm | String | The legalform of the compagny. |
+| authorizedCapital | Float | The authorized captial of the compagny. |
+| sharesNumber | Integer | The number of share for a compagny . |
 | documents | Array<Document> | Information, documents regarding the company you want to create. |
-| documentToUpload | Array<DocumentToUpload> | Information, documents regarding the company you want to create. |
+| documentToUpload | Array<DocumentToUpload> | Information, documents to upload regarding the company you want to create. |
 | shareholdingStructures | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on your company creation project. |
 | account | [Account Object](#account_object) | The IBAN account that has been opened for the purpose of your company creation project. |
 
