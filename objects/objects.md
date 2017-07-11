@@ -7,7 +7,6 @@
 * [Address Object](#address_object)
 * [Account Object](#account_object)
 * [Registered Individual Object](#registeredIndividual_object)
-* [Registered Corporate Object](#registeredCorporate_object)
 * [Amount Object](#amount_object)
 * [Document Object](#document_object)
 * [Document List](#document_list)
@@ -58,25 +57,20 @@ The main object in my company creation project. Status is automatically updated 
 
 #### <a id="shareholder_object"></a> Shareholder Object ####
 
-This object shows the shareholder ownership and detailed information. We gave you below two detailed examples in case you have a corporate or an individual as shareholder.
+This object shows the shareholder ownership and detailed information. 
 
 **Object resources:**
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | String (10) | It can be `Individual` or `Corporate`. |
-| isMainFounder | Boolean | Indicates who is introducing the project among the project. It can be `true` or `false`. You can only have on Main Founder. |
+| type | String (10) | It can only be `Individual`. |
+| isMainFounder | Boolean | Indicates who is introducing the project among the project. It can be `true` or `false`. You can only have one Main Founder. |
 | sharesNumber | Integer | The number of shares that belong to the shareholder. |
 | isPep | Boolean | True if the shareholder is politically exposed |
 | email | string (60) | Dedicated email of the shareholder. We may use this email to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have an email format. |
 | registeredAddress | [Address Object](#address_object) | The registered address of the shareholder. |
 | registeredIndividuaName | [Registered Individual Object](#registeredIndividual_object) | The registered information of the shareholder when type is `individual`. |
-| registeredCorporate | [Registered Corporate Object](#registeredIndividual_object) | The registered information of the shareholder when type is `corporate`. |
-| documents | Array<[Document Object](#document_object)> | The required documents related to this shareholder. |
-| phoneNumber | [Phone](../conventions/formattingConventions.md#type_phone) | Dedicated phone number of the shareholder. We may use this number to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have the right format. |
-| ownership | Float (5) | Percentage of shares a shareholder level 2 owns from a shareholder level 1 with type `corporate`. |
-
-**Example 1: individual shareholder**
+**Example : individual shareholder**
 
 ```js
 {
@@ -103,23 +97,6 @@ This object shows the shareholder ownership and detailed information. We gave yo
 }
 ```
 
-**Example 2: corporate shareholder**
-
-```js
-{
-	"id": "PK4edA",
-	"type": "Corporate",
-	"shares": 40000,
-	"isMainFounder": false,
-	"phoneNumber": "+33671738257",
-	"email": "myHolding@email.com",
-	"registeredCorporate": {registeredCorporate},
-	"registeredAddress": {address},
-	"documents": [{document}...],
-	"shareholdingStructure": [{shareholder},{...}],
-]
-```
-
 <hr />
 
 #### <a id="registeredIndividual_object"></a> Registered Individual Object ####
@@ -133,11 +110,10 @@ Specific information when the shareholder is an individual.
 | civility | String(3) | It can be `M` or `Mme`. |
 | firstName | String(35) | The individual's first name. Truncated after the first 35 characters. |
 | lastName | String(35) | The individual's last name. Truncated after the first 35 characters. |
-| nationality | String | The two-letters abbreviation for the country where the shareholder is registered if type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166).|
-| birthDate | Date | The birth date of the shareholder when type is `individual`. `YYYY-MM-DD` |
-| birthCity | String(35) | The indidual's birth city. Truncated after the first 35 characters. |
-| birthCountry | String (2) | The two-letters abbreviation for the country where the shareholder is born when type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166). |
-| isPep | Boolean | You indicates if the shareholder is legally recognized as a [PEP](https://en.wikipedia.org/wiki/Politically_exposed_person). `true` or `false`. |
+| nationality | String | The two-letters abbreviation for the country where the shareholder is registered, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166). If you have more than one nationality, separate the different nationality with a `,` for exemple : `FR,ES` |
+| birthDate | Date | The birth date of the shareholder. `YYYY-MM-DD` |
+| birthCity | String(35) | The individual's birth city. Truncated after the first 35 characters. |
+| birthCountry | String (2) | The two-letters abbreviation for the country where the shareholder is born, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166). |
 
 **Example:**
 
@@ -146,11 +122,10 @@ Specific information when the shareholder is an individual.
 	"civility": "M",
 	"firstName": "Maxime",
 	"lastName": "Champoux",
-	"nationality": "FR",
-	"birthDate": 1991-06-25,
+	"nationality": "FR,ES",
+	"birthDate": "1991-06-25",
 	"birthCity": "Pessac",
 	"birthCountry": "FR",
-	"isPep": false,
 },	
 ```
 <hr />
@@ -163,14 +138,15 @@ Here is the list of status you may encounter while using the iBanFirst API.
 
 | Status | Description |
 |-------|-------------|
-| subscribing | Welcome to your company creation journey! A few document will be required to go to the next step and obtain you IBAN. |
+| registration | Welcome to your company creation journey! A few document will be required to go to the next step and obtain you IBAN. |
 | awaitingFunds | When your project is ready and all required document has been filled and signed, we return you this status together with you IBAN. |
-| pendingKyc | When all funds has been collected and matched, you may ask for your certificate of deposit. This call triggered a KYC process on our side. |
-| pendingInformation | While we are making our KYC process and reviewing your projects. We may ask you some more documents or information. Your project will not move to the enxt step until you provide the required document or information. |
-| rejectedKyc | Something went wrong with your application, you are not compliant with our acceptance criterion. Please apply again or contact your account manager. |
+| iBanFirstAnalysis | When all funds has been collected and matched, you may ask for your certificate of deposit. This call triggered a KYC process on our side. |
+| refusedKyc | Something went wrong with your application, you are not compliant with our acceptance criterion. |
+| rejectedKyc | We need more information from this compagny. |
 | awaitingIncorporation | When certificate of deposit is available, you can use it to incorporate your company with the appropriate local authorities. |
 | checkKbis | When certificate of deposit is available, you can use it to incorporate your company with the appropriate local authorities. |
-| finalized | Here we are, you company is created and you capital has just been released to the bank account you just opened. Congrats! |
+| releaseOfFunds | You'rte in process to releasing of the funds |
+| fundsReleased | The funds has been released. | 
 
 <hr />
 
@@ -253,14 +229,33 @@ When an amount of currency is specified as part of a JSON body, it is encoded as
 
 #### <a id="document_object"></a> Document Object ####
 
-The list of document that can be submitted for a shareholder/ individual.
-
 **Object resources:**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the document. |
-| typeName | String | The type of your document as you must used it with the corresponding `PUT /companies/-{id}/document/` calls. |
+| typeName | String | The type of your document  |
+
+**Example:**
+
+```js
+{
+    "id": "aB4edA",
+    "typeName": "Identity"
+}
+```
+
+<hr />
+
+
+#### <a id="document_object"></a> DocumentToUpload Object ####
+
+**Object resources:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the documentToUpload. |
+| typeName | String | The type of your document as you must used it with the corresponding `PUT /companies/{id}/document/{idDoc}` calls. |
 
 **Example:**
 
@@ -296,7 +291,52 @@ Here is the list of documents you may encounter while using the iBanFirst APi.
 <hr />
 
 
+#### <a id="account_object"></a> Account Object ####
+
+This object contain all the financial part for comapgny creation serivce
+
+**Object resources:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| iban | String | The iban you must transfer the capital |
+| financialMouvments | Array<financialMouvment> | An array of the different financial mouvement linked to this iban. |
+
+**Example:**
+
+```js
+{
+	"iban": "BE43914002356001" ,
+	"financialMouvments":[ {financialMouvment},{financialMouvment} ]
+},	
+```
+<hr />
 
 
+#### <a id="account_object"></a> Financial movement Object ####
+
+This object contain all the detail for a financial movement.
+
+**Object resources:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the documentToUpload. |
+| amount | [Amount Object](#amount_object) | The amount of the movement |
+| communicatonCode | String | The communciation code give with the wire |
+| status | String | The actual status of the financial movement. It can be `pending` , `accepted` or `rejected` |
+| linkedPerson | String | The linked person  |
 
 
+**Example:**
+
+```js
+{
+	"id": "BE43914002356001" ,
+	"amount":{ amountObject },
+	"communicatonCode": "Wire for compagny creation" ,
+	"status": "pending" ,
+	"linkedPerson":"M Champoux Maxime"
+},	
+```
+<hr />
