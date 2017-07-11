@@ -107,7 +107,7 @@ This object shows the shareholder ownership and detailed information. We gave yo
 **Example 2: corporate shareholder**
 
 ```js
-"shareholder": {
+{
 	"id": "PK4edA",
 	"type": "Corporate",
 	"shares": 40000,
@@ -143,7 +143,7 @@ Specific information when the shareholder is an individual.
 **Example:**
 
 ```js
-"registeredIndividual": {
+{
 	"civility": "M",
 	"firstName": "Maxime",
 	"lastName": "Champoux",
@@ -192,7 +192,7 @@ When an Account is specified as part of a JSON body, it is encoded as an object 
 **Example:**
 
 ```js
-"account": {
+{
     "currency": "EUR",
     "tag": "My payment account EUR",
     "accountNumber": "BE169816385163133",
@@ -219,7 +219,7 @@ When an address is specified as part of a JSON body, it is encoded as an object 
 **Example:**
 
 ```js
-"address": {
+{
 	"street": "42 avenue de la grande armée",
 	"postCode": "75017",
 	"city": "Paris",
@@ -244,9 +244,9 @@ When an amount of currency is specified as part of a JSON body, it is encoded as
 **Example:**
 
 ```js
-"amount": {
-	"value": "10000.00",
-	"currency": "EUR"
+{
+    "value": "10000.00",
+    "currency": "EUR"
 }
 ```
 
@@ -286,6 +286,7 @@ Here is the list of documents you may encounter while using the iBanFirst APi.
 | ProofOfAddress | An official document confirming your address. |
 
 **Document resources for compagny creation:**
+
 | Name | Description |
 |-------|-------------|
 | BuisnessPlan | An official document confirming your identity. |
