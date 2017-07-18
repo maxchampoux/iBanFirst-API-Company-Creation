@@ -554,7 +554,7 @@ Method: GET
 URL: /companies/-{id}/
 ```
 
-If you have not implemented our Webhook, you can use this service either this API service to retrieve status and information on your company creation project.
+If you have not implemented our Webhook, you can use this API service to retrieve status and information on your company creation project.
 
 **Parameters:**
 
