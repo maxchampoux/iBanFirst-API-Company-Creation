@@ -41,8 +41,8 @@ The main object in my company creation project. Status is automatically updated 
 {
     "id": "NDgzOTU",
     "status": "registration",
-    "registredName": "Pied Pieper Paris",
-    "registredAddress": { address },
+    "registeredName": "Pied Pieper Paris",
+    "registeredAddress": { address },
     "activityCode": "334B",
     "legalForm": "SAS",
     "authorizedCapital": null,
@@ -74,7 +74,7 @@ This object shows the shareholder ownership and detailed information.
 
 ```js
 {
-    "type": "Individual",
+    "type": "individual",
     "sharesNumber": 50,
     "isMainFounder": false,
     "isPep": true,
