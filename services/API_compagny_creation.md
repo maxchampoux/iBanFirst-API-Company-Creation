@@ -106,7 +106,7 @@ POST /companies/
 			"currency": "EUR"
 		},
 		"sharesNumber": 100,
-		"percentageRelease": 100
+        "liberated": 100
 	},
 	"shareholdingStructure": [
 		{
@@ -191,6 +191,7 @@ POST /companies/
             "value": 100000.00,
             "currency": "EUR"
         },
+        "liberated": 100,
         "documents": [],
         "documentsToUpload": [
             {
@@ -362,6 +363,7 @@ PUT /companies/NDgzOTU/document/NTM5MTcx/
         "legalForm": "SAS",
         "activityCode": "334B",
         "shares": 100,
+        "liberated": 100,
         "sharesCapital": {
             "value": 100000.00,
             "currency": "EUR"
@@ -628,6 +630,7 @@ GET /companies/NDgzOTU/
             "value": 100000.00,
             "currency": "EUR"
         },
+        "liberated": 100,
         "documents": [],
         "documentsToUpload": [
             {
