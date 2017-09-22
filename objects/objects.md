@@ -7,6 +7,7 @@
 * [Address Object](#address_object)
 * [Account Object](#account_object)
 * [Registered Individual Object](#registeredIndividual_object)
+* [Registered Corporate Object](#registeredCorporate_object)
 * [Amount Object](#amount_object)
 * [Document Object](#document_object)
 * [Document List](#document_list)
@@ -23,36 +24,59 @@ The main object in my company creation project. Status is automatically updated 
 |-------|------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the company to be created. |
 | status | String (60) | The status of your company creation project. The full list of status is accessible in the [Status List](#status_list)  |
-| registredName | [Company Creation Datas Object](#companyCreationDatas_object) | The registered name of the company. |
-| registredAddress | [Company Creation Datas Object](#companyCreationDatas_object) | The registered address of the company. |
-| activityCode | String (6) | The activity code of the company. |
-| legalForm | String | The legalform of the compagny. |
-| authorizedCapital | Float | The authorized captial of the company. |
-| sharesNumber | Integer | The number of share for a company . |
-| documents | Array<Document> | Information, documents regarding the company you want to create. |
-| documentToUpload | Array<DocumentToUpload> | Information, documents to upload regarding the company you want to create. |
+| companyCreationDatas | [Company Creation Datas Object](#companyCreationDatas_object) | Information, documents regarding the company you want to create. |
 | shareholdingStructures | Array<[Shareholder Object](#shareholder_object)> | The regulatory list of shareholders, part of the Ultimate Beneficiary Owners that must be identified as part as our Compliance procedure on your company creation project. |
 | account | [Account Object](#account_object) | The IBAN account that has been opened for the purpose of your company creation project. |
 
-
-
 **Example:**
 ```js
-{
-    "id": "NDgzOTU",
-    "status": "registration",
-    "registeredName": "Pied Pieper Paris",
-    "registeredAddress": { address },
-    "activityCode": "334B",
-    "legalForm": "SAS",
-    "authorizedCapital": null,
-    "sharesNumber": 100,
-    "documents": [{ document },{ document }],
-    "documentsToUpload": [{ documentToUpload },{ documentToUpload }],
-    "shareholdingStructures":[{ shareholder },{ shareholder }],
-    "account":{ account }
+"companies": {
+    		"id": "NT4edA",
+	 "status": "awaitingFunds",
+	 "companyCreationDatas": {companyCreationDatas},
+	 "shareholdingStructure": [{shareholder},{shareholder}],
+	 "account": {account},
 },
 ```
+<hr />
+
+#### <a id="companyCreationDatas_object"></a> Company Creation Datas Object ####
+
+Specific information required for opening a company creation project.
+
+**Object resources:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| registeredName | String (100) | The legal name of the company to be created. |
+| registeredAddress | [Address Object](#address_object) | The registered address of the company to be created. |
+| legalForm | String (5) | The legal form of the company to be created. It can be one of those 4 forms: `sasu`,`sarl`,`sas` and `eurl` |
+| activityCode | [NAF ID](../conventions/formattingConventions.md#NAF) | The code identifying the type of business of the company to be created. |
+| shares | Integer | The number of shares to be issued. |
+| sharesCapital | [Amount Object](#amount_object) | The amount in shareholding capital as mentionned in the articles of association. |
+| liberated | Integer (3) | The percentage of shareholding capital to be released when the company is created. "20", "50" or "100". |
+| documents | Array<[Document Object](#document_object)> | The required documents for creating a company. Value for document object can take documentToComplete if your are posting a project and we will return documentCompleted when the document has been updated. |
+| documentsToUpload | Array<[Document Object](#document_object)> | An Array of the document you need to upload with the [API Document Upload](#put_document). |
+
+**Example:**
+
+```js
+"companyCreationDatas": {
+    "registeredName": "Pied Pieper",
+    "registeredAddress": {address},
+    "legalForm":"sas",
+    "activityCode":"6201Z",
+    "authorizedCapital":{amount},
+    "shares": 100000,
+    "liberated": 100,
+    "commercialName": "Pied Pieper",
+    "commercialAddress": {address},
+    "documents": [{document},{document}]
+	"documentsToUpload": [{documentsToUpload},{documentsToUpload}]
+
+}
+```
+
 <hr />
 
 #### <a id="shareholder_object"></a> Shareholder Object ####
@@ -63,38 +87,39 @@ This object shows the shareholder ownership and detailed information.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | String (10) | It can only be `Individual`. |
-| isMainFounder | Boolean | Indicates who is introducing the project among the project. It can be `true` or `false`. You can only have one Main Founder. |
-| sharesNumber | Integer | The number of shares that belong to the shareholder. |
-| isPep | Boolean | True if the shareholder is politically exposed |
+| id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying in a unique way the shareholder. |
+| type | String (10) | It can be `individual` or `corporate`. |
+| isMainFounder | Boolean | Indicates who is introducing the project among the project. It can be `true` or `false`. You can only have on Main Founder. |
+| isPep | Boolean | You indicates if the shareholder is legally recognized as a [PEP](https://en.wikipedia.org/wiki/Politically_exposed_person). `true` or `false`. |
+| isFACTA | Boolean | You indicates if the shareholder is FACTA dependent, for more information, following the [link](https://fr.wikipedia.org/wiki/Foreign_Account_Tax_Compliance_Act) |
+| fiscalNumber | Number | You must indicates a fiscal numver if the shareholder don't live in France | 
+| shares | Integer | The number of shares that belong to the shareholder. |
 | email | string (60) | Dedicated email of the shareholder. We may use this email to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have an email format. |
 | registeredAddress | [Address Object](#address_object) | The registered address of the shareholder. |
-| registeredIndividuaName | [Registered Individual Object](#registeredIndividual_object) | The registered information of the shareholder when type is `individual`. |
-**Example : individual shareholder**
+| registeredIndividualName | [Registered Individual Object](#registeredIndividual_object) | The registered information of the shareholder when type is `individual`. |
+| documents | Array<[Document Object](#document_object)> | The required documents related to this shareholder. |
+| phoneNumber | [Phone](../conventions/formattingConventions.md#type_phone) | Dedicated phone number of the shareholder. We may use this number to send personal information about the company in project. We are also checking the format of the field and return an error if we don't have the right format. |
+
+
+**Example 1: individual shareholder**
 
 ```js
-{
-    "type": "individual",
-    "sharesNumber": 50,
-    "isMainFounder": false,
-    "isPep": true,
-    "email": "test@ibanfirst.com",
-    "registeredAddress": {
-        "street": "42 avenue de la grande armée",
-        "postCode": "75017",
-        "city": "Paris",
-        "country": "FR"
-    },
-    "registeredIndividualName": {
-        "civility": "M",
-        "firstName": "Arnaud",
-        "lastName": "Ruppe",
-        "nationality" : "FR,BE",
-        "birthDate": "1970-01-01",
-        "birthCity": "Paris",
-        "birthCountry" : "FR"
-    }
-}
+"shareholder": {
+	"id": "XV4edA",
+	"type": "individual",
+	"isMainFounder": true,
+	"isPep": false,
+	"isFACTA": false,
+    "fiscalNumber": null,
+   	"shares": 50000,
+    "phoneNumber": "+33999999999",
+   	"registeredName": {registeredName},
+	"email": "mch@ibanfirst.com",
+	"registeredAddress": {registeredAddress},
+	"registeredIndividualName": {registeredIndividualName},
+	"documents": [{document},{document}],
+	"documentsToUpload": [{documentsToUpload},{documentsToUpload}],
+},
 ```
 
 <hr />
@@ -110,22 +135,24 @@ Specific information when the shareholder is an individual.
 | civility | String(3) | It can be `M` or `Mme`. |
 | firstName | String(35) | The individual's first name. Truncated after the first 35 characters. |
 | lastName | String(35) | The individual's last name. Truncated after the first 35 characters. |
-| nationality | String | The two-letters abbreviation for the country where the shareholder is registered, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166). If you have more than one nationality, separate the different nationality with a `,` for exemple : `FR,ES` |
-| birthDate | Date | The birth date of the shareholder. `YYYY-MM-DD` |
-| birthCity | String(35) | The individual's birth city. Truncated after the first 35 characters. |
-| birthCountry | String (2) | The two-letters abbreviation for the country where the shareholder is born, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166). |
+| nationality | String (2) | The two-letters abbreviation for the country where the shareholder is registered if type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166).|
+| birthDate | Date | The birth date of the shareholder when type is `individual`. `YYYY-MM-DD` |
+| birthCity | String(35) | The indidual's birth city. Truncated after the first 35 characters. |
+| birthCountry | String (2) | The two-letters abbreviation for the country where the shareholder is born when type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166). |
+
+
 
 **Example:**
 
 ```js
-{
+"registeredIndividual": {
 	"civility": "M",
 	"firstName": "Maxime",
 	"lastName": "Champoux",
-	"nationality": "FR,ES",
-	"birthDate": "1991-06-25",
+	"nationality": "FR",
+	"birthDate": 1991-06-25,
 	"birthCity": "Pessac",
-	"birthCountry": "FR",
+	"birthCountry": "FR"	
 },	
 ```
 <hr />
@@ -138,15 +165,14 @@ Here is the list of status you may encounter while using the iBanFirst API.
 
 | Status | Description |
 |-------|-------------|
-| registration | Welcome to your company creation journey! A few document will be required to go to the next step and obtain you IBAN. |
+| subscribing | Welcome to your company creation journey! A few document will be required to go to the next step and obtain you IBAN. |
 | awaitingFunds | When your project is ready and all required document has been filled and signed, we return you this status together with you IBAN. |
-| iBanFirstAnalysis | When all funds has been collected and matched, you may ask for your certificate of deposit. This call triggered a KYC process on our side. |
-| refusedKyc | Something went wrong with your application, you are not compliant with our acceptance criterion. |
-| rejectedKyc | We need more information from this compagny. |
+| pendingKyc | When all funds has been collected and matched, you may ask for your certificate of deposit. This call triggered a KYC process on our side. |
+| pendingInformation | While we are making our KYC process and reviewing your projects. We may ask you some more documents or information. Your project will not move to the enxt step until you provide the required document or information. |
+| rejectedKyc | Something went wrong with your application, you are not compliant with our acceptance criterion. Please apply again or contact your account manager. |
 | awaitingIncorporation | When certificate of deposit is available, you can use it to incorporate your company with the appropriate local authorities. |
 | checkKbis | When certificate of deposit is available, you can use it to incorporate your company with the appropriate local authorities. |
-| releaseOfFunds | You'rte in process to releasing of the funds |
-| fundsReleased | The funds has been released. | 
+| finalized | Here we are, you company is created and you capital has just been released to the bank account you just opened. Congrats! |
 
 <hr />
 
@@ -167,7 +193,7 @@ When an Account is specified as part of a JSON body, it is encoded as an object 
 **Example:**
 
 ```js
-{
+"account": {
     "currency": "EUR",
     "tag": "My payment account EUR",
     "accountNumber": "BE169816385163133",
@@ -189,15 +215,17 @@ When an address is specified as part of a JSON body, it is encoded as an object 
 | street | String(255) | The street for the address described. |
 | postCode | String(15) | The ZIP/Post code for the address described. |
 | city | String(35) | The city for the address described. |
+| state | String(2) | The state code for the address described. This field could be required if the country use a state system, like United States or Canada. To see a full list of state code, please refer to [this site](http://www.mapability.com/ei8ic/contest/states.php). |
 | country | String(2) | The two-letters abbreviation for the country, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166) for the address described. |
 
 **Example:**
 
 ```js
-{
-	"street": "42 avenue de la grande armée",
-	"postCode": "75017",
-	"city": "Paris",
+"address": {
+	"street": "4 NEW YORK PLAZA, FLOOR 15",
+	"postCode": "10004",
+	"city": "NEW YORK",
+	"state": "NY",
 	"country": "US"
 }
 ```
@@ -214,14 +242,14 @@ When an amount of currency is specified as part of a JSON body, it is encoded as
 | Field | Type | Description |
 |-------|------|-------------|
 | value  | Float | The quantity of the currency. |
-| currency | [Currency](../conventions/formattingConventions.md#type_currency) | The three-digit code specifying the currency related to the amount. At this moment, only EUR is available |
+| currency | [Currency](../conventions/formattingConventions.md#type_currency) | The three-digit code specifying the currency related to the amount. |
 
 **Example:**
 
 ```js
-{
-    "value": "10000.00",
-    "currency": "EUR"
+"amount": {
+	"value": "10000.00",
+	"currency": "GBP"
 }
 ```
 
@@ -229,40 +257,44 @@ When an amount of currency is specified as part of a JSON body, it is encoded as
 
 #### <a id="document_object"></a> Document Object ####
 
+When an amount of document is specified as part of a JSON body, it is encoded as an object with the following fields:
+
 **Object resources:**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the document. |
-| typeName | String | The type of your document  |
+| documentType | String (60) | The full list of document is accessible in the [Document List](#document_list)  |
+| file | String | The binary content of the file, encoded with a base64 algorithm. |
 
 **Example:**
 
 ```js
-{
+"document": {
     "id": "aB4edA",
-    "typeName": "Identity"
+    "documentType": "invoice",
+    "file": "iVBORw0KGgoAAAANSU...Go2Z4OjsDO0sKl72GVORK5CYII=",
 }
 ```
 
 <hr />
 
+#### <a id="documentToUpload_object"></a> Document to Upload Object ####
 
-#### <a id="document_object"></a> DocumentToUpload Object ####
+When an amount of documentToUpload is specified as part of a JSON body, it is encoded as an object with the following fields:
 
 **Object resources:**
 
 | Field | Type | Description |
 |-------|------|-------------|
-| id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the documentToUpload. |
-| typeName | String | The type of your document as you must used it with the corresponding `PUT /companies/{id}/document/{idDoc}` calls. |
-
+| id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the document. |
+| documentType | String (60) | The full list of document is accessible in the [Document List](#document_list)  |
 **Example:**
 
 ```js
-{
+"document": {
     "id": "aB4edA",
-    "typeName": "Identity"
+    "documentType": "invoice",
 }
 ```
 
@@ -276,67 +308,25 @@ Here is the list of documents you may encounter while using the iBanFirst APi.
 
 | Name | Description |
 |-------|-------------|
-| Identity | An official document confirming your identity. |
-| ProofOfAddress | An official document confirming your address. |
+| proofOfIdentity | An official document confirming your identity. |
+| mandateShareholder | A mandate that deleguate powers of attorney from all shareholders to the main one : `mainShareholder`. |
 
-**Document resources for compagny creation:**
+**Document resources for corporates:**
 
 | Name | Description |
 |-------|-------------|
-| BuisnessPlan | An official document confirming your identity. |
-| CompagnyStatusDraft | An official document confirming your address. |
-| ContractFunderCreasoc | An official document confirming the agreement for the main funder. |
-
+| articleOfAssociationDraft | Draft article of association as set-out in your company creation project. |
+| articleOfAssociationSigned | Signed article of association when registered at the local authorities. |
+| certificateOfIncorporation | Proof of incorporation of the company when registered at the local authorities. |
+| certificateOfDeposit | Proof of fund deposit we deliver when receiving the full amount of expected capital. |
+| openingAccountContract | A contract with our partner that delivers the certificate of deposit of funds. |
+| finalOpeningAccountContract | A contract with iBanFirst to open an account once the company is created. |
+| mandateShareholder | A mandate that deleguate powers of attorney from all shareholders to the main one : `mainShareholder`. |
 
 <hr />
 
 
-#### <a id="account_object"></a> Account Object ####
-
-This object contain all the financial part for comapgny creation serivce
-
-**Object resources:**
-
-| Field | Type | Description |
-|-------|------|-------------|
-| iban | String | The iban you must transfer the capital |
-| financialMouvments | Array<financialMouvment> | An array of the different financial mouvement linked to this iban. |
-
-**Example:**
-
-```js
-{
-	"iban": "BE43914002356001" ,
-	"financialMouvments":[ {financialMouvment},{financialMouvment} ]
-},	
-```
-<hr />
 
 
-#### <a id="account_object"></a> Financial movement Object ####
-
-This object contain all the detail for a financial movement.
-
-**Object resources:**
-
-| Field | Type | Description |
-|-------|------|-------------|
-| id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying the documentToUpload. |
-| amount | [Amount Object](#amount_object) | The amount of the movement |
-| communicatonCode | String | The communciation code give with the wire |
-| status | String | The actual status of the financial movement. It can be `pending` , `accepted` or `rejected` |
-| linkedPerson | String | The linked person  |
 
 
-**Example:**
-
-```js
-{
-	"id": "BE43914002356001" ,
-	"amount":{ amountObject },
-	"communicatonCode": "Wire for compagny creation" ,
-	"status": "pending" ,
-	"linkedPerson":"M Champoux Maxime"
-},	
-```
-<hr />
