@@ -54,7 +54,7 @@ Specific information required for opening a company creation project.
 | activityCode | [NAF ID](../conventions/formattingConventions.md#NAF) | The code identifying the type of business of the company to be created. |
 | shares | Integer | The number of shares to be issued. |
 | sharesCapital | [Amount Object](#amount_object) | The amount in shareholding capital as mentionned in the articles of association. |
-| liberated | Integer (3) | The percentage of shareholding capital to be released when the company is created. "20", "50" or "100". |
+| percentageRelease | Integer (3) | The percentage of shareholding capital to be released when the company is created. "20", "50" or "100". |
 | documents | Array<[Document Object](#document_object)> | The required documents for creating a company. Value for document object can take documentToComplete if your are posting a project and we will return documentCompleted when the document has been updated. |
 | documentsToUpload | Array<[Document Object](#document_object)> | An Array of the document you need to upload with the [API Document Upload](#put_document). |
 
@@ -68,9 +68,7 @@ Specific information required for opening a company creation project.
     "activityCode":"6201Z",
     "authorizedCapital":{amount},
     "shares": 100000,
-    "liberated": 100,
-    "commercialName": "Pied Pieper",
-    "commercialAddress": {address},
+    "percentageRelease": 100,
     "documents": [{document},{document}]
 	"documentsToUpload": [{documentsToUpload},{documentsToUpload}]
 
@@ -88,7 +86,7 @@ This object shows the shareholder ownership and detailed information.
 | Field | Type | Description |
 |-------|------|-------------|
 | id | [ID](../conventions/formattingConventions.md#type_id) | The IF code identifying in a unique way the shareholder. |
-| type | String (10) | It can be `individual` or `corporate`. |
+| type | String (10) | It can be only `Individual`. |
 | isMainFounder | Boolean | Indicates who is introducing the project among the project. It can be `true` or `false`. You can only have on Main Founder. |
 | isPep | Boolean | You indicates if the shareholder is legally recognized as a [PEP](https://en.wikipedia.org/wiki/Politically_exposed_person). `true` or `false`. |
 | isFACTA | Boolean | You indicates if the shareholder is FACTA dependent, for more information, following the [link](https://fr.wikipedia.org/wiki/Foreign_Account_Tax_Compliance_Act) |
