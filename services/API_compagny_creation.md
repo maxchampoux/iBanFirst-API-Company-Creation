@@ -106,7 +106,7 @@ POST /companies/
 			"currency": "EUR"
 		},
 		"sharesNumber": 100,
-        "liberated": 100
+		"liberated": 100
 	},
 	"shareholdingStructure": [
 		{
@@ -114,10 +114,10 @@ POST /companies/
 			"sharesNumber": 50,
 			"isMainFounder": true,
 			"isPep": false,
-            "isFACTA": false,
-            "fiscalNumber": null,
-            "phone": +33999999999,
-			"email": "test@ibanfirst.com",            
+			"isFACTA": false,
+			"fiscalNumber": null,
+			"phone": +33999999999,
+			"email": "test@ibanfirst.com",
 			"registeredAddress": {
 				"street": "4 NEW YORK PLAZA, FLOOR 15",
 				"postCode": "75008",
@@ -139,9 +139,9 @@ POST /companies/
 			"sharesNumber": 50,
 			"isMainFounder": false,
 			"isPep": true,
-            "isFACTA": false,
-            "fiscalNumber": null,
-            "phone": +33999999999,
+			"isFACTA": false,
+			"fiscalNumber": null,
+			"phone": +33999999999,
 			"email": "test@ibanfirst.com",
 			"registeredAddress": {
 				"street": "42 avenue de la grande armée",
