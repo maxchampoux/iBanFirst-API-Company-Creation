@@ -137,6 +137,8 @@ Specific information when the shareholder is an individual.
 | birthDate | Date | The birth date of the shareholder when type is `individual`. `YYYY-MM-DD` |
 | birthCity | String(35) | The indidual's birth city. Truncated after the first 35 characters. |
 | birthCountry | String (2) | The two-letters abbreviation for the country where the shareholder is born when type is `individual`, following the [ISO-3166](http://fr.wikipedia.org/wiki/ISO_3166). |
+| profession | String | The profession you have |
+| maritalStatus | String | It can be "Single","Married","Divorced","Widower" or "PACS" |
 
 
 
@@ -150,7 +152,9 @@ Specific information when the shareholder is an individual.
 	"nationality": "FR",
 	"birthDate": 1991-06-25,
 	"birthCity": "Pessac",
-	"birthCountry": "FR"	
+	"birthCountry": "FR",
+	"profession": "CEO of another company",
+	"maritalStatus": "Single"
 },	
 ```
 <hr />

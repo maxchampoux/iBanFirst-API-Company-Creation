@@ -131,7 +131,9 @@ POST /companies/
 				"nationality" : "FR",
 				"birthDate": "1991-06-25",
 				"birthCity": "Pessac",
-				"birthCountry" : "FR"
+				"birthCountry" : "FR",
+                "profession": "CEO of another company",
+                "maritalStatus": "Single"
 			}			
 		},
 		{
@@ -156,7 +158,9 @@ POST /companies/
 				"nationality" : "FR,BE",
 				"birthDate": "1970-01-01",
 				"birthCity": "Paris",
-				"birthCountry" : "FR"
+				"birthCountry" : "FR",
+                "profession": "CEO of another company",
+                "maritalStatus": "Single"
 			}			
 		}
 	]
