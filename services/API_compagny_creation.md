@@ -1,44 +1,3 @@
-## Authentication ##
-
-Every call on the IbanFirst API must be authenticated, which must be done by adding a custom HTTP header (X-WSSE) with the username and secret provided by the previous request. This section contains detailed instructions on how to create valid headers to execute requests on the API.
-
-**Example of X-WSSE header:**
-
-```js
-X-WSSE: UsernameToken
-	PasswordDigest="+QpstwYoZeToelOvVaObTdRdEZs=",
-	Nonce="d36e3162829ed4c89851497a717f",
-	Created="2014-03-20T12:51:45Z"
-```
-| Field | Description |
-|-------|-------------|
-| UsernameToken | Authentication method. The X-WSSE header must contain a UsernameToken as we only support token-based authentication. |
-| PasswordDigest | Field containing the hashed token which will prove the authenticity of your request. It is essential that you recompute this hash for every request as a hash is only valid for a certain period, and then it expires. |
-| Nonce | A random value used to make your request unique so it cannot be replicated by any other unknown party. |
-| Created | Field containing the current UTC, GMT, ZULU timestamp (YYYY-MM-DDTHH:MM:SSZ) according to the ISO8601 format, *e.g. 2014-03-20T12:51:45Z*) |
-
-**Computing the Password Digest** 
-
-1.	Get a randomly generated 16 bytes Nonce formatted as 32 hexadecimal characters.
-2.	Get the current Created timestamp in ISO-8601 format.
-3.	Concatenate the following three values in this order: nonce, timestamp, secret.
-4.	Calculate the SHA-1 hash value of the concatenated string, and make sure this value is in binary format! Some languages, like PHP, output hexadecimal hash by default. You may need to use special methods to obtain binary hashes in different languages or even convert byte to hex values by hand (see the sample codes below for more information).
-5.	Apply a Base64 encoding to the resulted hash to get the final PasswordDigest value.
-
-**Authenticate the third-party partner**
-
-Albeit using the WSSE security to do request for a user to the API, the third-party partner must authenticate themselves. 
-
-To authenticate, the third-party partner will be granted a partner token, a 16-character hexadecimal string, that will be mandatory to execute requests on the API. 
-
-This partner token must be given by the “X-WSSE-REQUESTED-BY” HTTP header.
-
-```js
-X-WSSE-REQUESTED-BY: c6da61fcff03c20b
-```
-
-If you do not provide this header doing requests on the API, the request will be rejected.
-
 ## API Routes ##
 
 | Route | Description |
@@ -77,7 +36,7 @@ On all founders ([Shareholder Object](../objects/objects.md#shareholder_object))
 
 By submitting your project, you consider that your project is complete and all documents properly signed.
 * We will return an IBAN that each shareholder can use to send their capital deposit. Status is `awaitingFunds` until all funds from shareholder has been correctly collected and matched.
-* We will proceed a due diligence review of your project, the shareholders and the presence of the right deposits. When we are fine, your project status will be updated automatically to `pendingKyc` that means that your certificate of deposit has been generated and is ready to be retrieved using the API Route: [`GET /companies/-{id}/certificateOfDeposit/`](#getDocuments_certificateDeposit).
+* We will proceed a due diligence review of your project, the shareholders and the presence of the right deposits. When we are fine, your project status will be updated automatically to `pendingKyc` that means that your certificate of deposit has been generated and is ready to be retrieved using the API Route: [`GET /companies/{id}/certificateOfDeposit/`](#getDocuments_certificateDeposit).
 * Next step will be to upload your kbis and ask for the release of the deposit.
 
 **Parameters:**
@@ -314,11 +273,11 @@ POST /companies/
 
 ```
 Method: PUT
-URL: /companies/-{id}/document/-{idDoc}/
+URL: /companies/{id}/document/{idDoc}/
 ```
 
 You have already declared documents that you must submit in you company creation project. In return we have sent you and ID for each of those documents.
-You can upload those document one by one using this service and must use the ID we have sent you.
+You can upload those document one by one using this service and must use the ID we have sent you. This service allow you to upload document for the company creation project and 
 
 
 **Parameters:**
@@ -333,7 +292,7 @@ You can upload those document one by one using this service and must use the ID 
 
 **Example:**
 ```js
-PUT /companies/NDgzOTU/document/NTM5MTcx/
+PUT /companies/NDgzOTU/document/NTM5MTc2/
 {
     "document": {
         "documentType": "Identity",
@@ -372,20 +331,17 @@ PUT /companies/NDgzOTU/document/NTM5MTcx/
             "value": 100000.00,
             "currency": "EUR"
         },
-        "documents": [],
-        "documentsToUpload": [
-            {
-                "id": "NTM5MTY5",
-                "typeName": "BuisnessPlan"
-            },
-            {
-                "id": "NTM5MTcw",
-                "typeName": "CompagnyStatusDraft"
-            },
+        "documents": [
             {
                 "id": "NTM5MTc2",
                 "typeName": "ContractFunderCreasoc"
             }
+        ],
+        "documentsToUpload": [
+            {
+                "id": "NTM5MTcw",
+                "typeName": "CompagnyStatusDraft"
+            }            
         ],
     },    
     "shareholdingStructures": [
@@ -396,10 +352,7 @@ PUT /companies/NDgzOTU/document/NTM5MTcx/
             "isPep": false,
             "isFACTA": false,
             "fiscalNumber": null,
-            "phone": {
-                "phoneCode": "+33"
-                "phoneNumber": "999999999"
-            },
+             "phoneNumber": "+33999999999",
             "registeredName": {
                 "civility": "M",
                 "firstName": "Maxime",
@@ -421,13 +374,12 @@ PUT /companies/NDgzOTU/document/NTM5MTcx/
                 "country": "FR",
                 "state": null
             },
-            "documents": [
+            "documents": [],
+            "documentsToUpload": [
                 {
                     "id": "NTM5MTcx",
                     "typeName": "Identity"
-                }
-            ],
-            "documentsToUpload": [
+                },
                 {
                     "id": "NTM5MTcy",
                     "typeName": "ProofOfAddress"
@@ -484,7 +436,7 @@ PUT /companies/NDgzOTU/document/NTM5MTcx/
 
 ```
 Method: GET 
-URL: /companies/-{id}/certificateOfDeposit/
+URL: /companies/{id}/certificateOfDeposit/
 ```
 
 You can use either this API service, a FTP server or a tailor-made webhook to retrieve your certificate of deposit.
@@ -530,7 +482,7 @@ GET /companies/NDgzOTU/certificateOfDeposit/
 
 ```
 Method: PUT
-URL: /companies/-{id}/releaseDeposit/
+URL: /companies/{id}/releaseDeposit/
 ```
 
 Congrats! At this stage, basically your company should be registered. You may use this service to automatically convert your company creation account into a Pro account. Otherwise, just send us the IBAN of the account you want to release your capital (it must be an account at your company's name). 
@@ -555,7 +507,7 @@ Our team will need a quick analysis of the documents you sent before you can enj
 
 **Example:**
 ```js
-PUT /companies/-NT4edA/certificateIncorporation/
+PUT /companies/NT4edA/certificateIncorporation/
 {
 	"regitrationNumber": "814455614",
 	"regitrationDate": 2017-06-25,
@@ -591,7 +543,7 @@ PUT /companies/-NT4edA/certificateIncorporation/
 
 ```
 Method: GET 
-URL: /companies/-{id}/
+URL: /companies/{id}/
 ```
 
 If you have not implemented our Webhook, you can use this API service to retrieve status and information on your company creation project.

@@ -51,7 +51,7 @@ Specific information required for opening a company creation project.
 | registeredName | String (100) | The legal name of the company to be created. |
 | registeredAddress | [Address Object](#address_object) | The registered address of the company to be created. |
 | legalForm | String (5) | The legal form of the company to be created. It can be one of those 4 forms: `sasu`,`sarl`,`sas` and `eurl` |
-| activityCode | [NAF ID](../conventions/formattingConventions.md#NAF) | The code identifying the type of business of the company to be created. |
+| activityCode | [NAF ID](../conventions/formattingConventions.md#type_nafCode) | The code identifying the type of business of the company to be created. |
 | shares | Integer | The number of shares to be issued. |
 | sharesCapital | [Amount Object](#amount_object) | The amount in shareholding capital as mentionned in the articles of association. |
 | percentageRelease | Integer (3) | The percentage of shareholding capital to be released when the company is created. "20", "50" or "100". |

@@ -11,14 +11,13 @@ The iBanFirst Company Creation API conforms to the following general behavior fo
 As an additional convention, all responses from iBanFirst-REST contain a `"success"` field with a boolean value indicating whether or not the success
 
 * [Errors](#errors_conventions)
-* [normalized Types](#anonymous_object)
+* [Normalized Types](#normalized_conventions)
 	* [ID type](#type_id)
 	* [Date type](#type_date)
 	* [DateTime type](#type_datetime)
 	* [Currency type](#type_currency)
 	* [Phone type](#type_phone)
 	* [QuotedDecimal type](#type_quoteddecimal)
-* [anonymous Objects](#anonymous_object)
 * [Versioning](#versioning)
 
 ## <a id="errors_conventions"></a> Errors ##
@@ -60,7 +59,7 @@ Our API libraries can raise exceptions for many reasons, such as failed trade, i
 
 You can see a full list of errors and error details <a href="http://wonderfullmalus.fr/RestError/all/" target="_blank">here</a>.
 
-## <a id="normalized_types"></a> Normalized Types ##
+## <a id="normalized_conventions"></a> Normalized Types ##
 
 The iBanFirst API uses a set of types that describe a particular parameters and values.<br />
 It allows developpers to know the format and the content to send for a particular field.
@@ -114,6 +113,14 @@ The QuotedDecimal type describe an formatted floating number.
 | Type | Real type | format | description | example |
 |------|-----------|--------|-------------|---------|
 | QuotedDecimal | String | `^((\-){?})[0-9]{12}((\.[0-9]{1-7}){?})$` | A String representing a formatted floating number. | `"1.11723"` |
+
+### <a id="type_nafCode"></a> Naf Code Type ###
+
+The naf code type describe a formatted naf code.
+
+| Type | Real type | format | description | example |
+|------|-----------|--------|-------------|---------|
+| NafCode | String | `^[0-9]{4}[A-Z]{1}$` | A String representing a naf code. | `6209Z` | 
 
 ## <a id="versioning"></a> Versioning ##
 
